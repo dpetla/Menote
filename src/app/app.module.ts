@@ -1,3 +1,4 @@
+// modules
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule } from 'angularfire2';
@@ -14,8 +15,6 @@ import { CoreModule } from './core/core.module';
 
 // components
 import { AppComponent } from './app.component';
-
-
 
 
 @NgModule({

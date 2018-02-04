@@ -56,3 +56,8 @@ iframe {
   background-color: #FCA32D !important;
   border: #FCA32D;
 }
+
+/* froala */
+.fr-wrapper div a {
+  display: none !important;
+}

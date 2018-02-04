@@ -1,0 +1,24 @@
+div div:nth-child(1) {
+}
+
+div div:nth-child(2) {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  background: url("../../../assets/images/keepjournal.jpg") no-repeat;
+  background-size: 100%;
+}
+
+div div:nth-child(3) {
+  /*margin-top: -150px;*/
+  background: #fff;
+}
+
+div div:nth-child(4) {
+  /*background: rgba(27, 156, 226, 0.5);*/
+  height: auto;
+}
+
+ul {
+  list-style-type: none;
+}

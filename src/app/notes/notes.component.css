@@ -1,0 +1,22 @@
+#notes-container {
+  height: calc(100vh - 56px);
+}
+
+#notes-list {
+  min-width: 350px;
+  position: fixed;
+  bottom: 0;
+  top: 55px;
+  z-index: 100;
+}
+
+@media only screen and (min-width: 900px) {
+  #notes-list {
+    position: inherit;
+  }
+}
+
+#btn-add {
+  margin-top: 200px;
+}
+

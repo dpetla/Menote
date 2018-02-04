@@ -1,0 +1,51 @@
+<div class="container d-flex p-3 w-50" id="container-signup">
+    <div class="col-sm-auto mx-auto w-100">
+      <div class="float-left">
+        <i
+          class="fa fa-arrow-left fa-lg ml-3 text-primary align-middle pointer"
+          routerLink="/"
+          aria-hidden="true"></i>
+      </div>
+      <h4 class="text-primary text-center font-weight-bold mb-3">Sign up for free</h4>
+      <form
+        (ngSubmit)="onEmailSignup(f)"
+        #f="ngForm"
+        class="w-100 p-4 w-100"
+        style="width: 600px">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="name"
+            id="name"
+            name="name"
+            ngModel
+            class="form-control"
+            placeholder="Enter name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            ngModel
+            class="form-control"
+            placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            ngModel
+            class="form-control"
+            placeholder="Enter password">
+        </div>
+        <button
+          class="btn btn-primary w-100"
+          type="submit">Sign up for free</button>
+      </form>
+    </div>
+</div>
+

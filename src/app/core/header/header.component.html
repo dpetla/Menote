@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-md navbar-light bg-primary justify-content-between">
+  <div>
+    <i
+      class="fa fa-bars fa-lg text-white pointer"
+      aria-hidden="true"
+      *ngIf="!isLargeScreen()"
+      (click)="toggleSideMenu()"></i>
+    <a
+      routerLink="/notes"
+      class="navbar-brand text-white ml-1"
+      id="brand-text">me<strong>note</strong></a>
+  </div>
+  <div
+    class="dropdown nav-item"
+    *ngIf="isAuthenticated(); else noAuthLinks">
+    <a
+      class="pointer"
+      id="dropdownMenuButton"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false">
+      <img
+        width="38px"
+        class="img-thumbnail rounded-circle p-0"
+        src="../../../assets/images/account-profile-user-icon.png">
+      <!--[src]="(userDoc | async)?.profileUrl">-->
+    </a>
+    <div
+      class="dropdown-menu"
+      aria-labelledby="dropdownMenuButton"
+      style="right: 0; left: auto;">
+      <a
+        class="dropdown-item px-3"
+        routerLink="settings/account">
+        <i
+          class="fa fa-cog fa-fw mr-2"
+          aria-hidden="true"></i>Settings
+      </a>
+      <a
+        class="dropdown-item px-3"
+        (click)="onLogout()">
+        <i
+          class="fa fa-sign-out fa-fw mr-2"
+          aria-hidden="true"></i>Sign out
+      </a>
+      <a
+        class="dropdown-item px-3"
+        routerLink="about">
+        <i
+          class="fa fa-info-circle fa-fw mr-2"
+          aria-hidden="true"></i>About
+      </a>
+    </div>
+  </div>
+  <ng-template #noAuthLinks>
+    <div>
+      <span
+        routerLink="/about"
+        routerLinkActive="d-none"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="text-white pointer">About</span>
+      <span
+        routerLink=""
+        routerLinkActive="d-none"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="text-white pointer">Home</span>
+    </div>
+  </ng-template>
+</nav>

@@ -1,0 +1,29 @@
+.card {
+  min-width: 370px;
+  height: 95% !important;
+  border: 0;
+}
+.card-header {
+  border: 1px solid rgba(0,0,0,.125);
+}
+.card-body {
+  padding: 0;
+}
+
+.card-input {
+  background-color: transparent;
+}
+
+@media only screen and (max-width: 768px) {
+  .card {
+  margin: 0 !important;
+  }
+}
+
+#tag-input {
+  width-min: 200px;
+  width: auto;
+}
+
+
+

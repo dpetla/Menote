@@ -1,0 +1,11 @@
+.col-3 {
+  border-right: 1pt solid lightgray;
+}
+
+#settings-menu {
+  min-width: 120px;
+}
+
+#settings-content {
+  margin-top: 1rem!important;
+}

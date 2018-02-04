@@ -1,0 +1,43 @@
+<div class="container p-3 col-12 col-lg-10" id="container-signin">
+  <div class="align-items-center w-100">
+    <div class="col-12 align-middle mx-auto">
+      <h4 class="text-primary text-center font-weight-bold mb-3">Sign In</h4>
+      <form
+        (ngSubmit)="onEmailSignin(f)"
+        #f="ngForm"
+        class="w-100 p-4 text-white"
+        style="width: 600px">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            ngModel
+            class="form-control"
+            placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            ngModel
+            class="form-control"
+            placeholder="Enter password">
+        </div>
+        <button
+          class="btn btn-primary w-100"
+          type="submit">Sign In</button>
+        <small class=" d-block text-danger mt-3">
+          {{ getErrorMsg() }}
+        </small>
+      </form>
+      <div class="w-100 mt-4 text-center">
+        <small class="d-block text-white">Don't have an account?</small>
+        <a routerLink="/signup" class="text-primary">Create Account</a>
+      </div>
+    </div>
+  </div>
+</div>

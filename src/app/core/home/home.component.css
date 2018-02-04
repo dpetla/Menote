@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+
+#container-home {
+  height: calc(100vh - 62px);
+  background-size: cover;
+  background-image: url("../../../assets/images/angelo-pantazis-299693_opt.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#container-home video {
+  opacity: 1;
+  position: absolute;
+  top: 55px;
+  left: 0;
+  right: 0;
+  min-width: 100%;
+  max-width: 100vw;
+  min-height: 100%;
+  object-fit: fill;
+  /*z-index: -1;*/
+}
+
+#home-statement {
+  font-size: 32pt;
+  font-family: 'Permanent Marker', cursive;
+  overflow-wrap: break-word;
+}

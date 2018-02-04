@@ -1,0 +1,72 @@
+<h3 class="h3 mt-2">Account</h3>
+<hr>
+<div class="d-flex flex-row my-3" style="height: 38px">
+  <span class="h6 my-auto">Username</span>
+  <p class="ml-auto my-auto">{{ getUserName() }}</p>
+</div>
+
+<div class="d-flex flex-row my-3" style="height: 38px">
+  <span class="h6 my-auto">Email verified?</span>
+  <p class="ml-auto my-auto">{{ isEmailVerified() }}</p>
+</div>
+
+<div class="d-flex flex-row my-3" style="height: 38px">
+  <span class="h6 my-auto">Member Since</span>
+  <p class="ml-auto my-auto">{{ getAccountCreation() }}</p>
+</div>
+
+<div class="d-flex flex-row my-3" style="height: 38px">
+  <span class="h6 my-auto">Last Signin</span>
+  <p class="ml-auto my-auto">{{ getLastSignin() }}</p>
+</div>
+<hr>
+<div class="d-flex flex-row mb-3">
+  <span class="h6 my-auto">Deactivate Account</span>
+  <button
+    type="button"
+    class="btn btn-outline-danger ml-auto"
+    data-toggle="modal"
+    data-target="#deactivate-modal"
+  >Deactivate</button>
+</div>
+
+<!-- Confirmation Modal -->
+<div class="modal fade" id="deactivate-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <h5 class="modal-title" id="exampleModalLabel">Account Deactivation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col">
+            <h5 class="h5">Deactivate?</h5>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" (change)="onConfirmDeactivation()">
+                Yes, I want to deactivate my account
+              </label>
+            </div>
+            <div *ngIf="deactivateConfirmed">
+              <hr class="mt-4">
+              <p class="font-weight-bold">Deactivating your account</p>
+              <p class="text-justify mb-4">If you are sure that you want to deactivate your account,
+                you may want to Return to your notes and delete any private notes, then Empty the Trash to
+                permanently delete these notes (Journal App does not automatically delete your notes).
+                Then, return to this page to complete the process.</p>
+              <button
+                disabled
+                type="button"
+                class="btn btn-danger"
+                data-dismiss="modal"
+                (click)="onDeactivateAccount()">Deactivate account</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

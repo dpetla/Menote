@@ -1,0 +1,11 @@
+nav {
+  z-index: 10;
+}
+.dropdown-menu {
+  box-shadow: 0 2px 10px rgba(0,0,0,.2);
+  border-radius: .15rem;
+}
+
+#brand-text {
+  font-size: 1.5em;
+}

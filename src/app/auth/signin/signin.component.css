@@ -1,0 +1,9 @@
+#container-signin {
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 5px;
+}
+
+form {
+  border: 1pt solid #868e96;
+  border-radius: 5px;
+}

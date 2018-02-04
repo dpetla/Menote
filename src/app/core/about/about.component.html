@@ -1,0 +1,24 @@
+<div class="d-flex flex-column">
+  <div class="container">
+    <h1 class="text-center p-5 my-4">Remember who you are.</h1>
+  </div>
+  <div class="container-fluid"></div>
+  <div class="container mt-4 p-5 ">
+    <h3 class="mb-4">What is me<strong>note</strong>?</h3>
+    <p>Menote is a free web app designed to help you easily keep a journal and record the most important things about your day. With Menote you can easily record:</p>
+    <ul>
+      <li *ngFor="let feature of features" class="p-3">
+        <i class=" mr-2 fa fa-lg fa-{{ feature.icon }}" aria-hidden="true"></i>
+        {{ feature.name }}
+      </li>
+    </ul>
+    <p>
+      Mauris iaculis, nulla id pharetra egestas, nulla felis dignissim felis, et convallis mauris felis sed ante. Nulla facilisi. Morbi sollicitudin hendrerit nisl, sed congue lorem consectetur ac. Sed sagittis molestie arcu quis commodo. Aenean nec justo nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In vestibulum orci gravida mi dignissim, et varius tellus semper. Ut ac imperdiet sapien. Nam in accumsan tortor. Donec ornare justo vitae est accumsan, at consequat ipsum sollicitudin. Donec condimentum massa a sagittis pellentesque. Duis et rhoncus nibh.
+    </p>
+  </div>
+  <div class="container p-5 h-100">
+    <h3 class="mb-4">Meet me</h3>
+    <p>The name is Douglas. I’ve been a software developer for about 2 years now and I enjoy challenges and opportunities to learn. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    <p>Aliquam lacinia vulputate ex, in aliquam eros consequat et. Curabitur ut tincidunt ipsum. Pellentesque faucibus, sapien id accumsan venenatis, nibh nulla pretium turpis, et scelerisque lacus ipsum nec enim.</p>
+  </div>
+</div>

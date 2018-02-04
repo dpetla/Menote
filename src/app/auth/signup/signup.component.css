@@ -1,0 +1,9 @@
+#container-signup {
+  height: calc(100vh - 60px);
+  border-radius: 5px;
+}
+
+form {
+  border: 1pt solid #868e96;
+  border-radius: 5px;
+}

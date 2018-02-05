@@ -1,13 +1,15 @@
 .card {
   min-width: 370px;
-  height: 95% !important;
+  height: calc(100% - 30px) !important;
   border: 0;
+  overflow: hidden;
 }
 .card-header {
   border: 1px solid rgba(0,0,0,.125);
 }
 .card-body {
   padding: 0;
+  height: calc(100% - 113px);
 }
 
 .card-input {
@@ -17,6 +19,7 @@
 @media only screen and (max-width: 768px) {
   .card {
   margin: 0 !important;
+    height: 100% !important;
   }
 }
 

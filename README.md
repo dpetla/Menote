@@ -2,6 +2,7 @@
 
 An Journaling and note taking app.
 
+[![Build Status](https://travis-ci.org/dpetla/ng-journal-app.svg?branch=master)](https://travis-ci.org/dpetla/ng-journal-app)
 
 ---
 ## Build process

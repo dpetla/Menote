@@ -4,6 +4,7 @@
 body {
   height: 100vh;
   width: 100%;
+  overflow: hidden;
 }
 
 .pointer {
@@ -25,24 +26,6 @@ app-note-start {
   0px 1px 5px 0px rgba(0,0,0,0.12);
 }
 
-/* ckeditor */
-.cke,
-.cke_chrome,
-.cke_inner,
-.cke_contents,
-iframe {
-  height: 100% !important;
-  overflow: hidden;
-}
-
-.cke_bottom {
-  display: none !important;
-}
-
-iframe {
-  padding: 0 !important;
-}
-
 /* Override BS4*/
 .bg-primary {
   background-color: #1B9CE2 !important;
@@ -60,4 +43,23 @@ iframe {
 /* froala */
 .fr-wrapper div a {
   display: none !important;
+}
+
+.fr-top {
+  border-top: 0;
+}
+
+.fr-box {
+  min-height: calc(100% - 113px) !important;
+  height: 100% !important;
+}
+.fr-wrapper {
+  height: calc(100% - 76px);
+  overflow-x: scroll;
+}
+
+@media only screen and (max-width: 900px) {
+  .fr-wrapper {
+    height: calc(100% - 38px);
+  }
 }

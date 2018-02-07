@@ -4,9 +4,9 @@
 body {
   height: 100vh;
   width: 100%;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
-body:after{
+body:after {
   content: "beta";
   position: fixed;
   width: 80px;

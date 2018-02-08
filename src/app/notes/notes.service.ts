@@ -15,7 +15,7 @@ export class NotesService {
   newNote: Note = {
     uid: '',
     title: new Date().toDateString(),
-    content: '<h3>Describe your day ...</h3>',
+    content: '',
     dateCreated: null,
     dateUpdated: null,
     location: '',

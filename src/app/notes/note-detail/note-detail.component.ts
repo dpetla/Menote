@@ -128,9 +128,9 @@ export class NoteDetailComponent implements OnInit {
   // TODO Fix event not triggering
   onContentChange(event) {
     console.log(event);
-    // this.noteDoc.update({ 'content': event })
-    //   .then(() => this.updateDate())
-    //   .catch(reason => console.log(reason));
+    this.noteDoc.update({ 'content': event })
+      .then(() => this.updateDate())
+      .catch(reason => console.log(reason));
   }
 
   toggleTagEdit() {

@@ -19,7 +19,7 @@ import { AuthService } from '../auth/auth.service';
 export class DataService {
   // users variables
   usersRef: AngularFirestoreCollection<User>;
-  userRef: AngularFirestoreDocument<User>; // User??
+  userRef: AngularFirestoreDocument<User>;
   deletedUsersRef: AngularFirestoreCollection<User>;
 
   // notes variables

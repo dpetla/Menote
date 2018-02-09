@@ -1,3 +1,8 @@
+#container-about {
+  overflow: scroll;
+  height: calc(100vh - 62px);
+}
+
 div div:nth-child(1) {
 }
 
@@ -10,12 +15,10 @@ div div:nth-child(2) {
 }
 
 div div:nth-child(3) {
-  /*margin-top: -150px;*/
   background: #fff;
 }
 
 div div:nth-child(4) {
-  /*background: rgba(27, 156, 226, 0.5);*/
   height: auto;
 }
 

@@ -84,7 +84,8 @@ export class NoteDetailComponent implements OnInit {
 
   constructor(private notesService: NotesService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
     // get note id from url param
@@ -125,7 +126,6 @@ export class NoteDetailComponent implements OnInit {
       .catch(reason => console.log(reason));
   }
 
-  // TODO Fix event not triggering
   onContentChange(event) {
     this.noteDoc.update({ 'content': event })
       .then(() => this.updateDate())

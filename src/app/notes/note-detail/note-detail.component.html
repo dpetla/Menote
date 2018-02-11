@@ -1,32 +1,29 @@
 <div class="card m-3 d-flex flex-column cust-box-shadow">
   <div class="card-header">
-    <!--<ng-container *ngIf="note | async as note; else loadingHeader">-->
-      <div class="d-flex justify-content-between">
-        <input
-          type="text"
-          maxlength="100"
-          class="card-input mb-md-3 border-0"
-          required
-          [ngModel]="note?.title"
-          (ngModelChange)="onTitleChange($event)">
-        <div class="text-right">
-          <a
-            (click)="onDeleteNote()"
-            class="card-link pointer">
-            <i class="fa fa-trash" aria-hidden="true"></i>
-          </a>
-        </div>
+    <div class="d-flex justify-content-between">
+      <input
+        type="text"
+        maxlength="100"
+        class="card-input mb-md-3 border-0"
+        required
+        [ngModel]="note?.title"
+        (ngModelChange)="onTitleChange($event)">
+      <div class="text-right">
+        <a
+          (click)="onDeleteNote()"
+          class="card-link pointer">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </a>
       </div>
-      <h6 class="card-subtitle mb-2 text-muted d-inline d-md-block">
+    </div>
+    <h6 class="card-subtitle mb-2 text-muted d-inline d-md-block">
         <span>
         {{ note?.location }}
       </span>
-        <span class="ml-4">
+      <span class="ml-4">
         {{ note?.weather }}
       </span>
-      </h6>
-    <!--</ng-container>-->
-    <!--<ng-template #loadingHeader>Loading header data ...</ng-template>-->
+    </h6>
     <div class="d-inline d-md-block ml-2 ml-md-auto">
       <span
         class="badge badge-pill badge-secondary mr-1"
@@ -47,11 +44,12 @@
       </button>
       <ng-template #tagInput>
         <input
-          autofocus
+          [autofocus]="tagEditable"
           type="text"
           id="tag-input"
           class="card-input border-0"
-          (keyup.enter)="onSaveTag($event)">
+          (keyup.enter)="onSaveTag($event)"
+          (blur)="tagEditable = false">
       </ng-template>
     </div>
   </div>

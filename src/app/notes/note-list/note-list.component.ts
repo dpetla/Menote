@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { Note } from '../note.model';
@@ -10,25 +10,19 @@ import { ViewService } from '../../shared/view.service';
   templateUrl: './note-list.component.html',
   styleUrls: ['./note-list.component.css']
 })
-export class NoteListComponent implements OnInit {
-  notes: Observable<Note[]>;
+export class NoteListComponent {
+  @Input('notes') notes: Observable<Note[]>;
   innerWidth = window.innerWidth;
-  selectedNote: Note;
 
   constructor(private notesService: NotesService,
               private viewService: ViewService) {
-  }
-
-  ngOnInit() {
-    this.notes = this.notesService.getNotes();
   }
 
   onCreateNote() {
     this.notesService.createNote();
   }
 
-  onSelectNote(note: Note) {
-    this.selectedNote = note;
+  onSelectNote() {
     this.viewService.showSideMenu = false;
   }
 

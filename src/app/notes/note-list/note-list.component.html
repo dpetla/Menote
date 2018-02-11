@@ -5,7 +5,7 @@
         class="list-group-item list-group-item-action flex-column align-items-start cust-navbar"
         *ngFor="let note of noteList"
         [ngClass]="{ 'active': selectedNote == note }"
-        (click)="onSelectNote(note)"
+        (click)="onSelectNote()"
         [routerLink]="['/notes', note.id]"
         routerLinkActive="active">
         <div class="d-flex w-100 justify-content-between">

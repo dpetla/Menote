@@ -1,28 +1,71 @@
-@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+/*@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');*/
 
-#container-home {
-  height: calc(100vh - 62px);
-  background-size: cover;
-  background-image: url("../../../assets/images/angelo-pantazis-299693_opt.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
+/*#container-home {*/
+  /*height: calc(100vh - 62px);*/
+  /*background-size: cover;*/
+  /*background-image: url("../../../assets/images/angelo-pantazis-299693_opt.jpg");*/
+  /*background-repeat: no-repeat;*/
+  /*background-position: center;*/
+/*}*/
+
+/*#container-home video {*/
+  /*opacity: 1;*/
+  /*position: absolute;*/
+  /*top: 55px;*/
+  /*left: 0;*/
+  /*right: 0;*/
+  /*min-width: 100%;*/
+  /*max-width: 100vw;*/
+  /*min-height: 100%;*/
+  /*object-fit: fill;*/
+  /*!*z-index: -1;*!*/
+/*}*/
+
+/*#home-statement {*/
+  /*font-size: 32pt;*/
+  /*font-family: 'Permanent Marker', cursive;*/
+  /*overflow-wrap: break-word;*/
+/*}*/
+
+.container-fluid {
+  padding: 0;
+}
+div.row {
+  height: 400px;
 }
 
-#container-home video {
-  opacity: 1;
-  position: absolute;
-  top: 55px;
-  left: 0;
-  right: 0;
-  min-width: 100%;
-  max-width: 100vw;
-  min-height: 100%;
-  object-fit: fill;
-  /*z-index: -1;*/
+button {
+  width: 170px;
 }
 
-#home-statement {
-  font-size: 32pt;
-  font-family: 'Permanent Marker', cursive;
-  overflow-wrap: break-word;
+.feature-card {
+  width: 275px;
+  height: 171px;
+  margin: 40px;
+}
+
+.feature-card i {
+  color: gray;
+}
+
+.feature-name {
+  font-size: 18pt;
+  font-weight: bold;
+  padding: 25px 0 20px;
+  text-align: center;
+  color: #444;
+  margin: 0;
+}
+
+.feature-desc {
+  font-size: 10pt;
+  line-height: 14pt;
+  text-align: center;
+  color: #444;
+}
+
+a.btn {
+  background: #1B9CE2;
+  border-color: #1B9CE2;
+  color: #ffffff;
 }

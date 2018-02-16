@@ -1,27 +1,9 @@
-#container-about {
-  overflow: scroll;
-  height: calc(100vh - 62px);
+.pageheader {
+  color: #fff;
+  background-color: #1A222B;
 }
 
-div div:nth-child(1) {
+.lead {
+  color: #54C2F2;
 }
 
-div div:nth-child(2) {
-  position: relative;
-  width: 100%;
-  min-height: 300px;
-  background: url("../../../assets/images/keepjournal.jpg") no-repeat;
-  background-size: 100%;
-}
-
-div div:nth-child(3) {
-  background: #fff;
-}
-
-div div:nth-child(4) {
-  height: auto;
-}
-
-ul {
-  list-style-type: none;
-}

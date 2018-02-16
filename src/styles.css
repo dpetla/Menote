@@ -4,11 +4,13 @@
 body {
   height: 100vh;
   width: 100%;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
+
+/* beta tag */
 body:after {
   content: "beta";
-  position: fixed;
+  position: absolute;
   width: 80px;
   height: 25px;
   background: #EE8E4A;
@@ -25,6 +27,7 @@ body:after {
   -webkit-transform:rotate(-45deg);
   transform:rotate(-45deg);
   z-index: 10;
+  overflow: hidden;
 }
 
 .pointer {

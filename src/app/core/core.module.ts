@@ -18,15 +18,19 @@ import { DataService } from '../shared/data.service';
 import { LocalInfoService } from '../shared/local-info.service';
 import { AuthService } from '../auth/auth.service';
 import { ViewService } from '../shared/view.service';
+import { FooterComponent } from './footer/footer.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     HomeComponent,
     AboutComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
+    FormsModule,
     AppRoutingModule,
     AuthModule
   ],

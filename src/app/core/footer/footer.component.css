@@ -1,0 +1,19 @@
+footer {
+  background: #343a40;
+  width: 100%;
+  line-height: 40px;
+}
+
+hr {
+  border-color: gray;
+  margin-top: 0;
+}
+
+a {
+  color: #6c757d;
+  font-weight: 500;
+}
+
+a:hover {
+  color: #0275d8;
+}

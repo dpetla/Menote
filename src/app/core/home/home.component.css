@@ -38,6 +38,14 @@ button {
   width: 170px;
 }
 
+#start-container {
+  height: calc(100vh - 62px);
+}
+
+#features-container {
+  z-index: 1;
+}
+
 .feature-card {
   width: 275px;
   height: 171px;
@@ -68,4 +76,24 @@ a.btn {
   background: #1B9CE2;
   border-color: #1B9CE2;
   color: #ffffff;
+}
+
+video {
+  opacity: 0.75;
+  /*position: absolute;*/
+  /*top: 62px;*/
+  /*left: 0;*/
+  /*right: 0;*/
+  /*min-width: 100%;*/
+  /*max-width: 100vw;*/
+  /*min-height: 100%;*/
+  /*object-fit: fill;*/
+  /*z-index: -1;*/
+  left: 50%;
+  min-height: 100%;
+  min-width: 100%;
+  position: absolute;
+  top: 60%;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
 }

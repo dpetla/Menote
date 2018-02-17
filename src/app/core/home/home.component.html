@@ -28,11 +28,20 @@
 
 <div class="container-fluid d-flex flex-column">
   <!-- start -->
-  <div class="bg-white py-3 py-md-5" style="height: 500px;">
-
+  <div class="bg-white py-3 py-md-5" id="start-container">
+    <video
+      autoplay
+      muted
+      preload
+      loop>
+      <source
+        src="../../../assets/videos/homepage-video.mp4"
+        type="video/mp4">
+    </video>
+    <a href='https://www.freepik.com/free-vector/technological-devices-design_953321.htm'>Designed by Freepik</a>
   </div>
   <!--features -->
-  <div class="bg-light mx-auto">
+  <div class="bg-light mx-auto" id="features-container">
     <div class="d-flex flex-column text-center py-3 py-md-5">
       <h3>Features</h3>
       <h5>Here are some features that makes journaling and note taking simple and enjoyable with menote!</h5>
@@ -48,40 +57,40 @@
   <!-- contact form -->
   <div class="bg-dark">
     <div class="container my-5 py-5">
-        <h3 class="text-white pb-5">Got some questions or suggestions about the app? Talk to me about it.</h3>
-        <form class="form-group row">
-            <div class="col-12 col-md-3">
-              <label
-                for="email"
-                class="sr-only">Email
-              </label>
-              <input
-                [(ngModel)]="email"
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Email"
-                class="form-control form-control-lg">
-            </div>
-            <div class="col-12 col-md-7 my-md-auto my-3">
-              <label
-                for="message"
-                class="sr-only">Message
-              </label>
-              <input
-                [(ngModel)]="message"
-                type="text"
-                name="message"
-                id="message"
-                placeholder="Your message"
-                class="form-control form-control-lg">
-            </div>
-            <div class="col-12 col-md-2">
-                <a class="btn btn-lg btn-primary w-100"
-                   href="mailto:dpetla%40gmail.com?subject=Menote%20question/suggestion
+      <h3 class="text-white pb-5">Got some questions or suggestions about the app? Talk to me about it.</h3>
+      <form class="form-group row">
+        <div class="col-12 col-md-3">
+          <label
+            for="email"
+            class="sr-only">Email
+          </label>
+          <input
+            [(ngModel)]="email"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            class="form-control form-control-lg">
+        </div>
+        <div class="col-12 col-md-7 my-md-auto my-3">
+          <label
+            for="message"
+            class="sr-only">Message
+          </label>
+          <input
+            [(ngModel)]="message"
+            type="text"
+            name="message"
+            id="message"
+            placeholder="Your message"
+            class="form-control form-control-lg">
+        </div>
+        <div class="col-12 col-md-2">
+          <a class="btn btn-lg btn-primary w-100"
+             href="mailto:dpetla%40gmail.com?subject=Menote%20question/suggestion
 &amp;body={{ message }}%0D%0Amessage from: {{ email }} ">Send</a>
-            </div>
-        </form>
+        </div>
+      </form>
     </div>
   </div>
   <!-- footer -->

@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-// module and components
+// modules
 import { SettingsRoutingModule } from './settings-routing.module';
+
+// components
 import { AccountComponent } from './account/account.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SecurityComponent } from './security/security.component';

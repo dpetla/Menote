@@ -1,59 +1,48 @@
-<!--<div-->
-<!--id="container-home"-->
-<!--class="container-fluid">-->
-<!--<video-->
-<!--autoplay-->
-<!--muted-->
-<!--preload-->
-<!--loop-->
-<!--class="d-none d-xl-block">-->
-<!--<source-->
-<!--src="../../../assets/videos/homepage-video.mp4"-->
-<!--type="video/mp4">-->
-<!--</video>-->
-<!--<div class="row align-items-center justify-content-between bg-transparent h-100">-->
-<!--<div class="col-md justify-content-center pl-4 py-sm-4">-->
-<!--<h1-->
-<!--class="text-center text-white"-->
-<!--id="home-statement">-->
-<!--"Sometimes you never know the true value of a moment until it becomes a memory."-->
-<!--</h1>-->
-<!--</div>-->
-<!--<div class="col-md">-->
-<!--<app-signin></app-signin>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-
 <div class="container-fluid d-flex flex-column">
+
   <!-- start -->
-  <div class="bg-white py-3 py-md-5" id="start-container">
-    <video
-      autoplay
-      muted
-      preload
-      loop>
-      <source
-        src="../../../assets/videos/homepage-video.mp4"
-        type="video/mp4">
-    </video>
-    <a href='https://www.freepik.com/free-vector/technological-devices-design_953321.htm'>Designed by Freepik</a>
+  <div class="bg-light py-3 py-md-5 d-flex flex-column justify-content-center" id="start-container">
+    <div class="text-center d-flex align-items-center justify-content-center">
+      <img
+        src="../../../assets/images/menote_logo.webp"
+        width="55px"
+        alt="menote logo"
+        class="d-inline mx-2">
+      <h1 class="d-inline text-primary" id="brand-start">menote</h1>
+    </div>
+    <h1
+      class="text-center p-md-5 mb-5"
+      id="home-statement">
+      "Sometimes you never know the true value of a moment until it becomes a memory."
+    </h1>
+    <img
+      id="devices-sample"
+      src="../../../assets/images/devices_sample_opt.webp"
+      alt="devices responsive design"
+      class="mx-auto">
   </div>
+
   <!--features -->
-  <div class="bg-light mx-auto" id="features-container">
-    <div class="d-flex flex-column text-center py-3 py-md-5">
+  <div class="bg-white mx-auto">
+    <div class="d-flex flex-column text-center py-5 py-md-5 my-md-5">
       <h3>Features</h3>
       <h5>Here are some features that makes journaling and note taking simple and enjoyable with menote!</h5>
       <div class="d-flex justify-content-center flex-wrap">
-        <div class="feature-card" *ngFor="let feature of features">
+        <div
+          class="feature-card"
+          *ngFor="let feature of features">
           <i class=" d-block fa fa-3x fa-{{ feature.icon }}" aria-hidden="true"></i>
           <p class="feature-name ">{{ feature.name }}</p>
           <p class="feature-desc">{{ feature.desc }}</p>
         </div>
       </div>
+      <a
+        class="btn btn-primary btn-lg mx-auto w-50 my-5"
+        routerLink="/signup"
+      >Sign up for free</a>
     </div>
   </div>
+
   <!-- contact form -->
   <div class="bg-dark">
     <div class="container my-5 py-5">
@@ -93,6 +82,7 @@
       </form>
     </div>
   </div>
+
   <!-- footer -->
   <app-footer></app-footer>
 </div>

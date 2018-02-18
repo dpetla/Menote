@@ -1,51 +1,42 @@
-/*@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');*/
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
 
-/*#container-home {*/
-  /*height: calc(100vh - 62px);*/
-  /*background-size: cover;*/
-  /*background-image: url("../../../assets/images/angelo-pantazis-299693_opt.jpg");*/
-  /*background-repeat: no-repeat;*/
-  /*background-position: center;*/
-/*}*/
 
-/*#container-home video {*/
-  /*opacity: 1;*/
-  /*position: absolute;*/
-  /*top: 55px;*/
-  /*left: 0;*/
-  /*right: 0;*/
-  /*min-width: 100%;*/
-  /*max-width: 100vw;*/
-  /*min-height: 100%;*/
-  /*object-fit: fill;*/
-  /*!*z-index: -1;*!*/
-/*}*/
-
-/*#home-statement {*/
-  /*font-size: 32pt;*/
-  /*font-family: 'Permanent Marker', cursive;*/
-  /*overflow-wrap: break-word;*/
-/*}*/
-
+/* start section */
 .container-fluid {
   padding: 0;
 }
-div.row {
-  height: 400px;
-}
-
-button {
-  width: 170px;
-}
 
 #start-container {
-  height: calc(100vh - 62px);
+  min-height: calc(100vh - 62px);
+  background-size: cover;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.85),
+    rgba(255, 255, 255, 1)
+  ), url("../../../assets/images/4659_opt.webp") repeat 50% 50%;
 }
 
-#features-container {
+#brand-start {
+  font-weight: 900;
+  font-size: 3rem;
+}
+
+#home-statement {
+  font-size: 32pt;
+  font-family: 'Permanent Marker', cursive;
+  overflow-wrap: break-word;
   z-index: 1;
 }
 
+#devices-sample {
+  z-index: 1;
+  min-width: 375px;
+  width: 90%;
+  max-width: 900px;
+  height: auto;
+}
+
+
+/* feature section */
 .feature-card {
   width: 275px;
   height: 171px;
@@ -76,24 +67,4 @@ a.btn {
   background: #1B9CE2;
   border-color: #1B9CE2;
   color: #ffffff;
-}
-
-video {
-  opacity: 0.75;
-  /*position: absolute;*/
-  /*top: 62px;*/
-  /*left: 0;*/
-  /*right: 0;*/
-  /*min-width: 100%;*/
-  /*max-width: 100vw;*/
-  /*min-height: 100%;*/
-  /*object-fit: fill;*/
-  /*z-index: -1;*/
-  left: 50%;
-  min-height: 100%;
-  min-width: 100%;
-  position: absolute;
-  top: 60%;
-  -webkit-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 // feature modules
 import { AppRoutingModule } from '../app-routing.module';
@@ -9,6 +10,7 @@ import { AuthModule } from '../auth/auth.module';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { FooterComponent } from './footer/footer.component';
 
 // services
 import { UserService } from '../shared/user.service';
@@ -18,8 +20,6 @@ import { DataService } from '../shared/data.service';
 import { LocalInfoService } from '../shared/local-info.service';
 import { AuthService } from '../auth/auth.service';
 import { ViewService } from '../shared/view.service';
-import { FooterComponent } from './footer/footer.component';
-import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,6 +37,7 @@ import {FormsModule} from '@angular/forms';
   exports: [
     AppRoutingModule,
     HeaderComponent,
+    FooterComponent
   ],
   providers: [
     NotesService,

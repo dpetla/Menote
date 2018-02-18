@@ -26,11 +26,11 @@ import { AppComponent } from './app.component';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase, 'ng-journal-app'),
     AngularFirestoreModule.enablePersistence(),
+    AuthModule,
+    CoreModule,
     HttpClientModule,
     RouterModule,
-    AppRoutingModule,
-    AuthModule,
-    CoreModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

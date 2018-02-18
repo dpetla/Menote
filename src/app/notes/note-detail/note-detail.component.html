@@ -1,4 +1,6 @@
 <div class="card m-3 d-flex flex-column cust-box-shadow">
+
+  <!-- card header -->
   <div class="card-header">
     <div class="d-flex justify-content-between">
       <input
@@ -24,6 +26,8 @@
         {{ note?.weather }}
       </span>
     </h6>
+
+    <!-- tags -->
     <div class="d-inline d-md-block ml-2 ml-md-auto">
       <span
         class="badge badge-pill badge-secondary mr-1"
@@ -55,8 +59,11 @@
       </ng-template>
     </div>
   </div>
+
+  <!--card body-->
   <div class="card-body">
     <div class="card-text h-100">
+      <!-- forala editor-->
       <div
         [froalaEditor]="froalaOptions"
         [ngModel]="note?.content"

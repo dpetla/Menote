@@ -16,7 +16,6 @@
 }
 
 #brand-start {
-  font-weight: 900;
   font-size: 3rem;
 }
 
@@ -25,6 +24,12 @@
   font-family: 'Permanent Marker', cursive;
   overflow-wrap: break-word;
   z-index: 1;
+}
+
+@media only screen and (max-width: 400px) {
+  #home-statement {
+    font-size: 26px;
+  }
 }
 
 #devices-sample {

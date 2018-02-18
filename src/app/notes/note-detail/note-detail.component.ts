@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+// modules
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestoreDocument } from 'angularfire2/firestore';
 import * as firebase from 'firebase';
-
-import { Note } from '../note.model';
-import { NotesService } from '../notes.service';
 import { Subscription } from 'rxjs/Subscription';
+
+// models
+import { Note } from '../note.model';
+
+// services
+import { NotesService } from '../notes.service';
 
 // constants
 const tagsMax = 10;
@@ -15,7 +19,7 @@ const tagsMax = 10;
   templateUrl: './note-detail.component.html',
   styleUrls: ['./note-detail.component.css']
 })
-export class NoteDetailComponent implements OnInit {
+export class NoteDetailComponent implements OnInit, OnDestroy {
   // local variables
   noteDoc: AngularFirestoreDocument<{}>;
   id: string;
@@ -188,8 +192,8 @@ export class NoteDetailComponent implements OnInit {
     }
   }
 
-  // ngOnDestroy(): void {
-  //   this.subscription.unsubscribe();
-  //   console.log('subscription destroyed');
-  // }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+    console.log('subscription destroyed');
+  }
 }

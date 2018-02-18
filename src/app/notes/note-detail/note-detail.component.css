@@ -1,3 +1,4 @@
+/* card */
 .card {
   min-width: 370px;
   height: calc(100% - 30px) !important;
@@ -23,9 +24,19 @@
   }
 }
 
+
+/* tag */
 #tag-input {
-  width-min: 200px;
+  min-width: 100px;
   width: auto;
+  border: 1pt solid gray !important;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+#tag-input:focus {
+  border: none !important;
 }
 
 

@@ -1,5 +1,6 @@
 // modules
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -42,5 +43,13 @@ export class HomeComponent {
       icon: 'picture-o'
     }
   ];
+
+  onSend(f: NgForm) {
+    const isFormEmpty = f.value.email === '' || f.value.message === '';
+    if (f.dirty && !isFormEmpty) {
+      window.location.href = 'mailto:dpetla%40gmail.com?subject=Menote%20question/suggestion&body='
+        + f.value.message + '%0D%0Amessage from:' + f.value.email + '';
+    }
+  }
 
 }

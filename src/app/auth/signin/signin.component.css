@@ -1,9 +1,24 @@
-#container-signin {
-  background-color: rgba(0,0,0,0.5);
-  border-radius: 5px;
+#signin-container {
+  min-height: calc(100vh - 167px);
+}
+.pageheader {
+  color: #fff;
+  background-color: #343a40;
 }
 
-form {
-  border: 1pt solid #868e96;
-  border-radius: 5px;
+.lead {
+  color: #54C2F2;
 }
+
+#sigin-body {
+  min-height: calc(100vh - 415px);
+}
+
+form, #signup-section {
+  min-width: 360px;
+}
+
+a.btn:hover {
+  color: #fff;
+}
+

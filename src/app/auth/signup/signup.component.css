@@ -1,9 +1,26 @@
-#container-signup {
-  height: calc(100vh - 63px);
+#container-signin {
+  background-color: rgba(0,0,0,0.5);
   border-radius: 5px;
 }
 
 form {
-  border: 1pt solid #868e96;
-  border-radius: 5px;
+  min-width: 350px;
 }
+
+#signup-container {
+  min-height: calc(100vh - 62px);
+}
+.pageheader {
+  color: #fff;
+  background-color: #343a40;
+}
+
+.lead {
+  color: #54C2F2;
+}
+
+#signup-body {
+  min-height: calc(100vh - 415px);
+}
+
+

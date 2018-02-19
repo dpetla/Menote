@@ -1,12 +1,20 @@
-<div class="container p-3 col-12 col-lg-10" id="container-signin">
-  <div class="align-items-center w-100">
-    <div class="col-12 align-middle mx-auto">
-      <h4 class="text-primary text-center font-weight-bold mb-3">Sign In</h4>
+<div id="signin-container">
+
+  <!-- header -->
+  <div class="pageheader py-3 py-md-5 text-center text-sm-left">
+    <div class="container">
+      <h1>Sign In</h1>
+      <p class="lead">Enter your username and password</p>
+    </div>
+  </div>
+
+  <!-- body -->
+  <div class="container py-4" id="signin-body">
+    <div class="d-flex align-items-center flex-wrap">
       <form
         (ngSubmit)="onEmailSignin(f)"
         #f="ngForm"
-        class="w-100 p-4 text-white"
-        style="width: 600px">
+        class="p-4 w-50">
         <div class="form-group">
           <label for="email">Email</label>
           <input
@@ -27,17 +35,17 @@
             class="form-control"
             placeholder="Enter password">
         </div>
-        <button
-          class="btn btn-primary w-100"
-          type="submit">Sign In</button>
+        <button type="submit" class="btn btn-primary w-100">Sign In</button>
         <small class=" d-block text-danger mt-3">
           {{ getErrorMsg() }}
         </small>
       </form>
-      <div class="w-100 mt-4 text-center">
-        <small class="d-block text-white">Don't have an account?</small>
+      <div id="signup-section" class="w-50 align-items-center text-center">
+        <p class="d-block">Don't have an account?</p>
         <a routerLink="/signup" class="text-primary">Create Account</a>
       </div>
     </div>
   </div>
 </div>
+
+

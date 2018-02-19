@@ -1,8 +1,10 @@
+// modules
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { Injectable } from '@angular/core';
-import { User } from './user.model';
 
+// models
+import { User } from './user.model';
 
 @Injectable()
 export class AuthService {

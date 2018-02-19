@@ -1,9 +1,13 @@
+// modules
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import * as firebase from 'firebase';
 
+// services
 import { AuthService } from '../auth.service';
 import { UserService } from '../../shared/user.service';
+
+// models
 import { User } from '../user.model';
 
 @Component({

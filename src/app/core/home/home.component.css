@@ -20,15 +20,15 @@
 }
 
 #home-statement {
-  font-size: 32pt;
+  font-size: 28pt;
   font-family: 'Permanent Marker', cursive;
   overflow-wrap: break-word;
-  z-index: 1;
+  /*z-index: 1;*/
 }
 
 @media only screen and (max-width: 400px) {
   #home-statement {
-    font-size: 26px;
+    font-size: 24px;
   }
 }
 
@@ -68,8 +68,3 @@
   color: #444;
 }
 
-a.btn {
-  background: #1B9CE2;
-  border-color: #1B9CE2;
-  color: #ffffff;
-}

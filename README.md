@@ -13,20 +13,17 @@ An Journaling and note taking app.
  
 ## Features
 
-- Rich text editor ([ng2-ckeditor](https://github.com/chymz/ng2-ckeditor))
+- Rich text editor ([angular-froala-wysiwyg](https://github.com/froala/angular-froala-wysiwyg))
+- cloud storage
+- Autosave
 - capture date, location and weather
 - organize with tags
-- inline images
+- images to notes
 
-## Views
+## View
 
-### Desktop
+![alt text](https://github.com/dpetla/ng-journal-app/src/assets/images/devices_sample_opt.webp)
 
-- to be included ...
-
-### Mobile
-
-- to be included ...
 
 ## Areas of improvements
 

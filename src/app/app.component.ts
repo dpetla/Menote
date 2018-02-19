@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import * as firebase from 'firebase';
 })
 export class AppComponent implements OnInit {
 
-  constructor() {
+  constructor(public router: Router) {
   }
   ngOnInit() {
     firebase.initializeApp({

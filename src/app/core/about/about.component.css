@@ -1,9 +1,9 @@
 #about-container {
-  min-height: calc(100vh - 62px);
+  min-height: calc(100vh - 167px);
 }
 .pageheader {
   color: #fff;
-  background-color: #1A222B;
+  background-color: #343a40;
 }
 
 .lead {

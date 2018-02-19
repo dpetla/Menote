@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +16,12 @@ export class AppComponent implements OnInit {
       apiKey: 'AIzaSyBcC9pbQu9Xb6nmfs5WhpSB_1aWX6syQdU',
       authDomain: 'ng-journal-app.firebaseapp.com'
     });
+
+    this.router.events
+      .filter(event => event instanceof NavigationEnd)
+      .subscribe((event: NavigationEnd) => {
+        window.scroll(0, 0);
+      });
   }
 }
 

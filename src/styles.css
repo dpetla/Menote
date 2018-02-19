@@ -58,7 +58,8 @@ app-note-start {
   color: #1B9CE2 !important;
 }
 
-a.btn.btn-primary {
+a.btn.btn-primary,
+button.btn.btn-primary {
   background: #1B9CE2;
   border-color: #1B9CE2;
   color: #ffffff;

@@ -1,33 +1,36 @@
-<h3 class="h3 mt-2">Account</h3>
-<hr>
-<div class="d-flex flex-row my-3" style="height: 38px">
-  <span class="h6 my-auto">Username</span>
-  <p class="ml-auto my-auto">{{ getUserName() }}</p>
-</div>
+<!-- account content -->
+<div id="account-container" class="w-50">
+  <h3 class="h3 mt-2">Account</h3>
+  <hr>
+  <div class="d-flex flex-row my-3" style="height: 38px">
+    <span class="h6 my-auto">Username</span>
+    <p class="ml-auto my-auto">{{ getUserName() }}</p>
+  </div>
 
-<div class="d-flex flex-row my-3" style="height: 38px">
-  <span class="h6 my-auto">Email verified?</span>
-  <p class="ml-auto my-auto">{{ isEmailVerified() }}</p>
-</div>
+  <div class="d-flex flex-row my-3" style="height: 38px">
+    <span class="h6 my-auto">Email verified?</span>
+    <p class="ml-auto my-auto">{{ isEmailVerified() }}</p>
+  </div>
 
-<div class="d-flex flex-row my-3" style="height: 38px">
-  <span class="h6 my-auto">Member Since</span>
-  <p class="ml-auto my-auto">{{ getAccountCreation() }}</p>
-</div>
+  <div class="d-flex flex-row my-3" style="height: 38px">
+    <span class="h6 my-auto">Member Since</span>
+    <p class="ml-auto my-auto">{{ getAccountCreation() }}</p>
+  </div>
 
-<div class="d-flex flex-row my-3" style="height: 38px">
-  <span class="h6 my-auto">Last Signin</span>
-  <p class="ml-auto my-auto">{{ getLastSignin() }}</p>
-</div>
-<hr>
-<div class="d-flex flex-row mb-3">
-  <span class="h6 my-auto">Deactivate Account</span>
-  <button
-    type="button"
-    class="btn btn-outline-danger ml-auto"
-    data-toggle="modal"
-    data-target="#deactivate-modal"
-  >Deactivate</button>
+  <div class="d-flex flex-row my-3" style="height: 38px">
+    <span class="h6 my-auto">Last Signin</span>
+    <p class="ml-auto my-auto">{{ getLastSignin() }}</p>
+  </div>
+  <hr>
+  <div class="d-flex flex-row mb-3">
+    <span class="h6 my-auto">Deactivate Account</span>
+    <button
+      type="button"
+      class="btn btn-danger ml-auto"
+      data-toggle="modal"
+      data-target="#deactivate-modal"
+    >Deactivate</button>
+  </div>
 </div>
 
 <!-- Confirmation Modal -->

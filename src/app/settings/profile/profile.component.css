@@ -1,3 +1,19 @@
+#profile-container {
+  min-width: 350px;
+}
+
 .img-thumbnail {
   max-width: none;
+}
+
+.btn-outline-primary {
+  color: #1B9CE2;
+  border-color: #1B9CE2;
+}
+
+.btn-outline-primary:active,
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: #1B9CE2;
+  border-color: #1B9CE2;
 }

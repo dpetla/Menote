@@ -1,11 +1,18 @@
-.col-3 {
-  border-right: 1pt solid lightgray;
+#settings-container {
+  min-height: calc(100vh - 167px);
+}
+.pageheader {
+  color: #fff;
+  background-color: #343a40;
 }
 
-#settings-menu {
-  min-width: 120px;
+a.nav-link {
+  color: #54C2F2;
 }
 
-#settings-content {
-  margin-top: 1rem!important;
+#settings-body {
+  min-height: calc(100vh - 415px);
+  padding-bottom: 2rem;
 }
+
+

@@ -1,51 +1,50 @@
-<h3 class="h3 mt-2">Profile</h3>
-<hr>
-<form
-  #f="ngForm"
-  (ngSubmit)="onSubmit(f)">
-  <ng-container *ngIf="userDoc | async as user">
-    <div class="my-3">
-      <label>Profile Photo</label>
-      <div class="row">
-        <div class="col-3">
-          <!-- TODO get profile picture -->
-          <img
-            class="img-thumbnail rounded-circle mb-2"
-            style="width: 100px"
-            [src]="user.profileUrl">
-        </div>
-        <div class="col align-self-center pl-5">
-          <button
-            class="btn btn-outline-primary"
-            (click)="onLoadProfileImage()">Change Photo</button>
-          <small class="text-muted d-block">.jpg, .gif, or .png. Max file size 500K.</small>
+<div id="profile-container" class="w-50">
+  <h3 class="h3 mt-2">Profile</h3>
+  <form
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f)">
+    <ng-container *ngIf="userDoc | async as user">
+      <div class="my-3">
+        <label>Profile Photo</label>
+        <div class="row">
+          <div class="col-3">
+            <!-- TODO get profile picture -->
+            <img
+              class="img-thumbnail rounded-circle mb-2"
+              style="width: 100px"
+              [src]="user.profileUrl">
+          </div>
+          <div class="col align-self-center pl-5">
+            <button
+              class="btn btn-outline-primary"
+              (click)="onLoadProfileImage()">Change Photo</button>
+            <small class="text-muted d-block">.jpg, .gif, or .png. Max file size 500K.</small>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        [ngModel]="user.name"
-        class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input
-        type="text"
-        id="email"
-        name="email"
-        [ngModel]="user.email"
-        class="form-control">
-    </div>
-  </ng-container>
-  <button
-    type="submit"
-    [disabled]="f.pristine"
-    [ngClass]="!f.pristine ? 'pointer' : 'not-allowed'"
-    class="btn btn-outline-success mb-2">Save Changes</button>
-</form>
-
-
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          [ngModel]="user.name"
+          class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          id="email"
+          name="email"
+          [ngModel]="user.email"
+          class="form-control">
+      </div>
+    </ng-container>
+    <button
+      type="submit"
+      [disabled]="f.pristine"
+      [ngClass]="!f.pristine ? 'pointer' : 'not-allowed'"
+      class="btn btn-primary my-3 w-100">Save Changes</button>
+  </form>
+</div>

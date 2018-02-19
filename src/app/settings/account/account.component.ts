@@ -1,5 +1,7 @@
+// component
 import { Component, OnInit } from '@angular/core';
 
+// services
 import { AuthService } from '../../auth/auth.service';
 import { UserService } from '../../shared/user.service';
 

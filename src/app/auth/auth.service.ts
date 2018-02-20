@@ -1,31 +1,51 @@
 // modules
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 
 // models
 import { User } from './user.model';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class AuthService {
+export class AuthService implements OnInit {
   uid: string;
   idToken: string;
   userAccount: any;
   errorMsg = '';
+  user: Observable<firebase.User>;
+  userDetails: firebase.User = null;
 
   constructor(private router: Router) {
   }
 
+  ngOnInit() {
+    // this.user = this.firebaseAuth.authState;
+    // this.user.subscribe(user => {
+    //   if (user) {
+    //     this.userDetails = user;
+    //     console.log(this.userDetails);
+    //   } else {
+    //     this.userDetails = null;
+    //   }
+    // });
+  }
+
+  // isLoggedIn() {
+  //   if (this.userDetails == null ) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // }
+
   emailSignup(user: User): Promise<any> {
-    return new Promise(resolve => {
-      firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+    return firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
         .then(() => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/notes']);
+          firebase.auth().currentUser.sendEmailVerification();
         })
-        .catch(
-          error => console.log(error)
-        );
-    });
+        .catch(error => console.log(error));
   }
 
   emailSignin(email: string, password: string) {
@@ -48,6 +68,10 @@ export class AuthService {
         }
       );
   }
+
+  // signInWithGoogle() {
+  //   return new firebase.auth.GoogleAuthProvider();
+  // }
 
   logout() {
     firebase.auth().signOut()

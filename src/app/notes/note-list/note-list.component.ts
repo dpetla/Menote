@@ -19,7 +19,7 @@ export class NoteListComponent {
   }
 
   onCreateNote() {
-    this.notesService.createNote();
+    this.notesService.createNote(false);
     // TODO select newly created note -> move to service
     console.log(this.notes
       .filter((note, index) => index === 0)

@@ -84,6 +84,7 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
     imageMove: true,
     imagePaste: true,
     imageUpload: true,
+    imageResizeWithPercent: true
   };
 
   constructor(private notesService: NotesService,

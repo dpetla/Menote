@@ -11,24 +11,16 @@ import { Observable } from 'rxjs/Observable';
 export class AuthService implements OnInit {
   uid: string;
   idToken: string;
+  auth: any;
   userAccount: any;
   errorMsg = '';
   user: Observable<firebase.User>;
-  userDetails: firebase.User = null;
 
   constructor(private router: Router) {
   }
 
   ngOnInit() {
-    // this.user = this.firebaseAuth.authState;
-    // this.user.subscribe(user => {
-    //   if (user) {
-    //     this.userDetails = user;
-    //     console.log(this.userDetails);
-    //   } else {
-    //     this.userDetails = null;
-    //   }
-    // });
+    this.auth = firebase.auth();
   }
 
   // isLoggedIn() {
@@ -76,7 +68,6 @@ export class AuthService implements OnInit {
   logout() {
     firebase.auth().signOut()
       .then(() => {
-        // firebase.auth().signOut();
         localStorage.removeItem('ng-journal-user');
         this.idToken = null;
         this.router.navigate(['/']);

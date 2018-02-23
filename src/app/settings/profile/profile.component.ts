@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { DataService } from '../../shared/data.service';
 import { User } from '../../auth/user.model';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -13,8 +14,11 @@ import { User } from '../../auth/user.model';
 export class ProfileComponent implements OnInit {
   userDoc: Observable<User>;
   user: User;
+  displayConfirmation = false;
+  displayError = false;
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -22,13 +26,28 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    // update users db
     this.dataService.userRef
       .update({
-      name: form.value.name,
-      email: form.value.email
+        name: form.value.name,
+        email: form.value.email
       })
-      .then(data => console.log(data)) // TODO confirmation message
-      .catch(reason => console.log(reason));
+      .then(() => {
+        // update firebase authentication account
+        this.authService.userAccount.updateEmail(form.value.email)
+          .then(() => {
+            this.authService.userAccount.sendEmailVerification();
+            // display confirmation message
+            this.displayConfirmation = true;
+            setTimeout(() => this.displayConfirmation = false, 5000);
+          });
+      })
+      .catch(reason => {
+        console.log(reason);
+        // display error message
+        this.displayError = true;
+        setTimeout(() => this.displayError = false, 5000);
+      });
   }
 
   onLoadProfileImage() {

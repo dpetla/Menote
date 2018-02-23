@@ -1,8 +1,24 @@
+<div
+  *ngIf="displayConfirmation"
+  class="alert alert-warning alert-dismissible fade show"
+  role="alert">
+  Changes saved!
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div
+  *ngIf="displayError"
+  class="alert alert-danger alert-dismissible fade show"
+  role="alert">
+  Error: change were not saved!
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 <div id="profile-container" class="w-50">
   <h3 class="h3 mt-2">Profile</h3>
-  <form
-    #f="ngForm"
-    (ngSubmit)="onSubmit(f)">
+  <form #f="ngForm">
     <ng-container *ngIf="userDoc | async as user">
       <div class="my-3">
         <label>Profile Photo</label>
@@ -11,7 +27,6 @@
             <!-- TODO get profile picture -->
             <img
               class="img-thumbnail rounded-circle mb-2"
-              style="width: 100px"
               [src]="user.profileUrl">
           </div>
           <div class="col align-self-center pl-5">
@@ -45,6 +60,7 @@
       type="submit"
       [disabled]="f.pristine"
       [ngClass]="!f.pristine ? 'pointer' : 'not-allowed'"
-      class="btn btn-primary my-3 w-100">Save Changes</button>
+      class="btn btn-primary my-3 w-100"
+      (click)="onSubmit(f)">Save Changes</button>
   </form>
 </div>

@@ -1,3 +1,7 @@
 #account-container {
   min-width: 350px;
 }
+
+.account-item {
+  height: 38px;
+}

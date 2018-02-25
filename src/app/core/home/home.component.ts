@@ -1,13 +1,17 @@
 // modules
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+
+// services
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   email = '';
   message = '';
 
@@ -43,6 +47,18 @@ export class HomeComponent {
       icon: 'picture-o'
     }
   ];
+
+  constructor(private authService: AuthService,
+              private router: Router) { }
+
+  ngOnInit(): void {
+    if (this.isLoggedIn()) {
+      this.router.navigate(['/notes']);
+    }
+  }
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
 
   onSend(f: NgForm) {
     const isFormEmpty = f.value.email === '' || f.value.message === '';

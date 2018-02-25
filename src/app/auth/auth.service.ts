@@ -23,13 +23,9 @@ export class AuthService implements OnInit {
     this.auth = firebase.auth();
   }
 
-  // isLoggedIn() {
-  //   if (this.userDetails == null ) {
-  //     return false;
-  //   } else {
-  //     return true;
-  //   }
-  // }
+  isLoggedIn() {
+    return this.userAccount !== null;
+  }
 
   emailSignup(user: User): Promise<any> {
     return firebase.auth().createUserWithEmailAndPassword(user.email, user.password)

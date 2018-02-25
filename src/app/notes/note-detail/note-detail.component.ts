@@ -183,18 +183,13 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
 
   onDeleteNote() {
     if (window.confirm('Do you want to delete this note?')) {
-      // TODO add confirmation and notification at completion or/and processing spinner
       this.noteDoc.delete()
         .catch(reason => console.log(reason));
-      this.router.navigate(['/notes'])
-        .then(() => {
-          // TODO select first note of the list
-        });
+      this.router.navigate(['/notes']);
     }
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    console.log('subscription destroyed');
   }
 }

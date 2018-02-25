@@ -12,17 +12,11 @@ import { ViewService } from '../../shared/view.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  // userDoc: Observable<User>;
 
   constructor(private authService: AuthService,
-              private router: Router,
               private viewService: ViewService) { }
 
   ngOnInit() {
-    // this.userDoc = this.dataService.userRef.valueChanges();
-    // if (this.isAuthenticated()) {
-    //   this.router.navigate(['/notes']);
-    // }
   }
 
   onLogout() {

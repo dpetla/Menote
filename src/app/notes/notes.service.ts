@@ -7,6 +7,7 @@ import { Note } from './note.model';
 // services
 import { DataService } from '../shared/data.service';
 import { LocalInfoService } from '../shared/local-info.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class NotesService {
@@ -26,7 +27,8 @@ export class NotesService {
   };
 
   constructor(private dataService: DataService,
-              private localInfoService: LocalInfoService) {
+              private localInfoService: LocalInfoService,
+              private router: Router) {
   }
 
   // Get all notes
@@ -58,9 +60,7 @@ export class NotesService {
 
         // create note document in db
         this.dataService.notesRef.add(this.newNote)
-          .then(() => {
-            console.log('note created!');
-          })
+          .then((note) => this.router.navigate([note.path]))
           .catch(error => console.log(error));
       });
   }

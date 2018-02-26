@@ -22,7 +22,7 @@ An Journaling and note taking app.
 
 ## View
 
-![devices sample](https://github.com/dpetla/ng-journal-app/blob/master/src/assets/images/devices_sample_opt.webp)
+![devices sample](https://github.com/dpetla/ng-journal-app/blob/master/src/assets/images/devices_sample_opt.png)
 
 
 ## Areas of improvements

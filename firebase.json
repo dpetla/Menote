@@ -11,11 +11,6 @@
         "source": "**",
         "destination": "/index.html"
       }
-    ],
-    "redirects": [ {
-      "source" : "https://ng-journal-app.firebaseapp.com/",
-      "destination" : "https://menote.ca/",
-      "type" : 301
-    } ]
+    ]
   }
 }

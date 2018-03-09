@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 // feature modules
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +27,7 @@ import { AppComponent } from './app.component';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase, 'ng-journal-app'),
     AngularFirestoreModule.enablePersistence(),
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     AuthModule,
     CoreModule,
     HttpClientModule,

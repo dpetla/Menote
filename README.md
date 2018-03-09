@@ -18,12 +18,15 @@
   </a>
 </p>
 
----
+<br>
+
 ## Build process
 
  - Clone or download the repo
  - `npm install`
  - `npm start`
+ 
+ <br>
  
 ## Features
 
@@ -43,12 +46,13 @@
 
 :iphone: **Responsive**: Responsive UI providing a similar experience to native apps
 
-
+<br>
 
 ## View
 
 ![devices sample](https://github.com/dpetla/ng-journal-app/blob/master/src/assets/images/devices_sample_opt-min.png)
 
+<br>
 
 ## Areas of improvements
 

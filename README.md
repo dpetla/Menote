@@ -32,19 +32,20 @@
 
 :rocket: **Progressive Web App**: [Lighthouse](https://github.com/GoogleChrome/lighthouse) score of 100/100
 
+:iphone: **Responsive**: Responsive UI providing a similar experience to native apps
+
 :pencil: **Rich text editor**: Using Froala for Angular ([angular-froala-wysiwyg](https://github.com/froala/angular-froala-wysiwyg))
 
 :cloud: **Cloud storage**: Real-time database powered by [Firebase](https://github.com/firebase)
 
 :floppy_disk: **Autosave**
 
-:date: **capture date, location and weather**
+:date: **Capture date, location and weather**
 
-:bookmark_tabs: **organize with tags**
+:bookmark_tabs: **Organize with tags**
 
-:camera: **images to notes**
+:camera: **Images to notes**
 
-:iphone: **Responsive**: Responsive UI providing a similar experience to native apps
 
 <br>
 

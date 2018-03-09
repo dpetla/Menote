@@ -30,7 +30,7 @@
  
 ## Features
 
-:rocket: **Progressive Web App**: [Lighthouse](https://github.com/GoogleChrome/lighthouse) score of 100/100
+:rocket: **Progressive Web App**: [Lighthouse](https://github.com/GoogleChrome/lighthouse) score of 91/100
 
 :iphone: **Responsive**: Responsive UI providing a similar experience to native apps
 

@@ -1,9 +1,9 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 import { ViewService } from '../shared/view.service';
-import {NotesService} from './notes.service';
-import {Observable} from 'rxjs/Observable';
-import {Note} from './note.model';
+import { NotesService } from './notes.service';
+import { Observable } from 'rxjs';
+import { Note } from './note.model';
 
 @Component({
   selector: 'app-notes',
@@ -13,9 +13,7 @@ import {Note} from './note.model';
 export class NotesComponent implements OnInit {
   notes: Observable<Note[]>;
 
-  constructor(private viewService: ViewService,
-              private notesService: NotesService) {
-  }
+  constructor(private viewService: ViewService, private notesService: NotesService) {}
 
   // get list of notes
   ngOnInit() {

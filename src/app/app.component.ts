@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 import { NavigationEnd, Router } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class AppComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
-  constructor(public router: Router) {
-  }
+  constructor(public router: Router) {}
 
   ngOnInit() {
     firebase.initializeApp({
@@ -29,5 +28,3 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 }
-
-

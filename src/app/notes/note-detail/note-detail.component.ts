@@ -3,11 +3,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestoreDocument } from 'angularfire2/firestore';
 import * as firebase from 'firebase';
-import { Subscription } from 'rxjs/Subscription';
-
+import { Subscription } from 'rxjs';
 // models
 import { Note } from '../note.model';
-
 // services
 import { NotesService } from '../notes.service';
 
@@ -45,28 +43,150 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
 
     // #style
     colorsBackground: [
-      '#61BD6D', '#1ABC9C', '#54ACD2', '#2C82C9', '#9365B8', '#475577', '#CCCCCC',
-      '#41A85F', '#00A885', '#3D8EB9', '#2969B0', '#553982', '#28324E', '#000000',
-      '#F7DA64', '#FBA026', '#EB6B56', '#E25041', '#A38F84', '#EFEFEF', '#FFFFFF',
-      '#FAC51C', '#F37934', '#D14841', '#B8312F', '#7C706B', '#D1D5D8', 'REMOVE'
+      '#61BD6D',
+      '#1ABC9C',
+      '#54ACD2',
+      '#2C82C9',
+      '#9365B8',
+      '#475577',
+      '#CCCCCC',
+      '#41A85F',
+      '#00A885',
+      '#3D8EB9',
+      '#2969B0',
+      '#553982',
+      '#28324E',
+      '#000000',
+      '#F7DA64',
+      '#FBA026',
+      '#EB6B56',
+      '#E25041',
+      '#A38F84',
+      '#EFEFEF',
+      '#FFFFFF',
+      '#FAC51C',
+      '#F37934',
+      '#D14841',
+      '#B8312F',
+      '#7C706B',
+      '#D1D5D8',
+      'REMOVE'
     ],
     colorsText: [
-      '#61BD6D', '#1ABC9C', '#54ACD2', '#2C82C9', '#9365B8', '#475577', '#CCCCCC',
-      '#41A85F', '#00A885', '#3D8EB9', '#2969B0', '#553982', '#28324E', '#000000',
-      '#F7DA64', '#FBA026', '#EB6B56', '#E25041', '#A38F84', '#EFEFEF', '#FFFFFF',
-      '#FAC51C', '#F37934', '#D14841', '#B8312F', '#7C706B', '#D1D5D8', 'REMOVE'
+      '#61BD6D',
+      '#1ABC9C',
+      '#54ACD2',
+      '#2C82C9',
+      '#9365B8',
+      '#475577',
+      '#CCCCCC',
+      '#41A85F',
+      '#00A885',
+      '#3D8EB9',
+      '#2969B0',
+      '#553982',
+      '#28324E',
+      '#000000',
+      '#F7DA64',
+      '#FBA026',
+      '#EB6B56',
+      '#E25041',
+      '#A38F84',
+      '#EFEFEF',
+      '#FFFFFF',
+      '#FAC51C',
+      '#F37934',
+      '#D14841',
+      '#B8312F',
+      '#7C706B',
+      '#D1D5D8',
+      'REMOVE'
     ],
     // editorClass: 'custom-class',
 
     // #toolbar
-    toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle',
-      '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', 'insertLink', 'insertImage',
-      'insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', '|', 'print', 'spellChecker', 'help', '|', 'undo', 'redo'],
-    toolbarButtonsMD: ['fullscreen', 'bold', 'italic', 'underline', 'fontFamily', 'fontSize', 'color', '|', 'paragraphFormat', 'align',
-      'formatOL', 'formatUL', 'insertLink', 'insertImage', 'insertTable', 'undo', 'redo'],
-    toolbarButtonsSM: ['fullscreen', 'bold', 'italic', 'underline', 'fontFamily', 'fontSize', 'color', '|', 'paragraphFormat', 'align',
-      'formatOL', 'formatUL', 'insertLink', 'insertImage', 'insertTable', 'undo', 'redo'],
-    toolbarButtonsXS: ['bold', 'italic', 'fontFamily', 'fontSize', 'formatOL', 'formatUL', 'undo', 'redo'],
+    toolbarButtons: [
+      'fullscreen',
+      'bold',
+      'italic',
+      'underline',
+      '|',
+      'fontFamily',
+      'fontSize',
+      'color',
+      'inlineStyle',
+      'paragraphStyle',
+      '|',
+      'paragraphFormat',
+      'align',
+      'formatOL',
+      'formatUL',
+      'outdent',
+      'indent',
+      'quote',
+      'insertLink',
+      'insertImage',
+      'insertTable',
+      '|',
+      'emoticons',
+      'specialCharacters',
+      'insertHR',
+      '|',
+      'print',
+      'spellChecker',
+      'help',
+      '|',
+      'undo',
+      'redo'
+    ],
+    toolbarButtonsMD: [
+      'fullscreen',
+      'bold',
+      'italic',
+      'underline',
+      'fontFamily',
+      'fontSize',
+      'color',
+      '|',
+      'paragraphFormat',
+      'align',
+      'formatOL',
+      'formatUL',
+      'insertLink',
+      'insertImage',
+      'insertTable',
+      'undo',
+      'redo'
+    ],
+    toolbarButtonsSM: [
+      'fullscreen',
+      'bold',
+      'italic',
+      'underline',
+      'fontFamily',
+      'fontSize',
+      'color',
+      '|',
+      'paragraphFormat',
+      'align',
+      'formatOL',
+      'formatUL',
+      'insertLink',
+      'insertImage',
+      'insertTable',
+      'undo',
+      'redo'
+    ],
+    toolbarButtonsXS: [
+      'bold',
+      'italic',
+      'fontFamily',
+      'fontSize',
+      'formatOL',
+      'formatUL',
+      'undo',
+      'redo'
+    ],
     // toolbarContainer: '#toolbarContainer',
     // toolbarInline: true,
     // toolbarBottom: false,
@@ -75,10 +195,24 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
     // toolbarVisibleWithoutSelection: true,
     codeView: false,
 
-
     // #images
     // imageDefaultWidth: 200,
-    // imageEditButtons: ['imageReplace', 'imageAlign', 'imageCaption', 'imageRemove', '|', 'imageLink', 'linkOpen', 'linkEdit', 'linkRemove', '-', 'imageDisplay', 'imageStyle', 'imageAlt', 'imageSize'],
+    // imageEditButtons: [
+    //   'imageReplace',
+    //   'imageAlign',
+    //   'imageCaption',
+    //   'imageRemove',
+    //   '|',
+    //   'imageLink',
+    //   'linkOpen',
+    //   'linkEdit',
+    //   'linkRemove',
+    //   '-',
+    //   'imageDisplay',
+    //   'imageStyle',
+    //   'imageAlt',
+    //   'imageSize'
+    // ],
     // imageMaxSize: 1024 * 1024 * 10,
     // imageMinWidth: 16,
     imageMove: true,
@@ -87,15 +221,16 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
     imageResizeWithPercent: true
   };
 
-  constructor(private notesService: NotesService,
-              private route: ActivatedRoute,
-              private router: Router) {
-  }
+  constructor(
+    private notesService: NotesService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     // get note id from url param
-    this.subscription = this.route.params.subscribe(params => {
-
+    this.subscription = this.route.params.subscribe(
+      params => {
         // get note document with with ID passed through the URL
         this.id = params['id'];
         this.noteDoc = this.notesService.getNote(this.id);
@@ -113,7 +248,7 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
               const values = Object.values(this.note['tags']);
 
               // add tag to local array if value true
-              values.forEach(((value, index) => value && this.tags$.push(keys[index])));
+              values.forEach((value, index) => value && this.tags$.push(keys[index]));
             }
 
             // set flags
@@ -128,13 +263,15 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
   }
 
   onTitleChange(event) {
-    this.noteDoc.update({'title': event})
+    this.noteDoc
+      .update({ title: event })
       .then(() => this.updateDate())
       .catch(reason => console.log(reason));
   }
 
   onContentChange(event) {
-    this.noteDoc.update({'content': event})
+    this.noteDoc
+      .update({ content: event })
       .then(() => this.updateDate())
       .catch(reason => console.log(reason));
   }
@@ -160,9 +297,10 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
       }, initVal);
 
       // load tags to db
-      this.noteDoc.update({
-        tags: tagObj
-      })
+      this.noteDoc
+        .update({
+          tags: tagObj
+        })
         .then(() => this.updateDate())
         .catch(reason => console.log(reason));
     }
@@ -170,9 +308,10 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
   }
 
   onRemoveTag(tag: string) {
-    this.noteDoc.update({
-      ['tags.' + tag]: firebase.firestore.FieldValue.delete()
-    })
+    this.noteDoc
+      .update({
+        ['tags.' + tag]: firebase.firestore.FieldValue.delete()
+      })
       .then(() => this.updateDate())
       .catch(reason => console.log(reason));
   }
@@ -185,8 +324,7 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
 
   onDeleteNote() {
     if (window.confirm('Do you want to delete this note?')) {
-      this.noteDoc.delete()
-        .catch(reason => console.log(reason));
+      this.noteDoc.delete().catch(reason => console.log(reason));
       this.router.navigate(['/notes']);
     }
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { DataService } from '../../shared/data.service';
 import { User } from '../../auth/user.model';
@@ -17,9 +17,7 @@ export class ProfileComponent implements OnInit {
   displayConfirmation = false;
   displayError = false;
 
-  constructor(private dataService: DataService,
-              private authService: AuthService) {
-  }
+  constructor(private dataService: DataService, private authService: AuthService) {}
 
   ngOnInit() {
     this.userDoc = this.dataService.userRef.valueChanges();
@@ -34,24 +32,22 @@ export class ProfileComponent implements OnInit {
       })
       .then(() => {
         // update firebase authentication account
-        this.authService.userAccount.updateEmail(form.value.email)
-          .then(() => {
-            this.authService.userAccount.sendEmailVerification();
-            // display confirmation message
-            this.displayConfirmation = true;
-            setTimeout(() => this.displayConfirmation = false, 5000);
-          });
+        this.authService.userAccount.updateEmail(form.value.email).then(() => {
+          this.authService.userAccount.sendEmailVerification();
+          // display confirmation message
+          this.displayConfirmation = true;
+          setTimeout(() => (this.displayConfirmation = false), 5000);
+        });
       })
       .catch(reason => {
         console.log(reason);
         // display error message
         this.displayError = true;
-        setTimeout(() => this.displayError = false, 5000);
+        setTimeout(() => (this.displayError = false), 5000);
       });
   }
 
   onLoadProfileImage() {
     alert('Select a new profile picture');
   }
-
 }

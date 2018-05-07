@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { Note } from '../note.model';
 import { NotesService } from '../notes.service';
@@ -14,9 +14,7 @@ export class NoteListComponent {
   @Input('notes') notes: Observable<Note[]>;
   innerWidth = window.innerWidth;
 
-  constructor(private notesService: NotesService,
-              private viewService: ViewService) {
-  }
+  constructor(private notesService: NotesService, private viewService: ViewService) {}
 
   onCreateNote() {
     this.notesService.createNote(false);
@@ -25,5 +23,4 @@ export class NoteListComponent {
   onSelectNote() {
     this.viewService.showSideMenu = false;
   }
-
 }

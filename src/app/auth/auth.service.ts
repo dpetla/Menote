@@ -5,7 +5,7 @@ import { Injectable, OnInit } from '@angular/core';
 
 // models
 import { User } from './user.model';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthService implements OnInit {
@@ -16,8 +16,7 @@ export class AuthService implements OnInit {
   errorMsg = '';
   user: Observable<firebase.User>;
 
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.auth = firebase.auth();
@@ -28,33 +27,30 @@ export class AuthService implements OnInit {
   }
 
   emailSignup(user: User): Promise<any> {
-    return firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-        .then(() => {
-          this.router.navigate(['/notes']);
-          firebase.auth().currentUser.sendEmailVerification();
-        })
-        .catch(error => console.log(error));
+    return firebase
+      .auth()
+      .createUserWithEmailAndPassword(user.email, user.password)
+      .then(() => {
+        this.router.navigate(['/notes']);
+        firebase.auth().currentUser.sendEmailVerification();
+      })
+      .catch(error => console.log(error));
   }
 
   emailSignin(email: string, password: string) {
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(
-        user => {
-          user.getIdToken()
-            .then(
-              (token: string) => this.idToken = token
-            );
-          localStorage.setItem('ng-journal-user', user.uid);
-          this.router.navigate(['/notes']);
-        }
-      )
-      .catch(
-        error => {
-          console.log(error);
-          this.errorMsg = error.message;
-          setTimeout(() => this.errorMsg = '', 20000);
-        }
-      );
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(user => {
+        user.getIdToken().then((token: string) => (this.idToken = token));
+        localStorage.setItem('ng-journal-user', user.uid);
+        this.router.navigate(['/notes']);
+      })
+      .catch(error => {
+        console.log(error);
+        this.errorMsg = error.message;
+        setTimeout(() => (this.errorMsg = ''), 20000);
+      });
   }
 
   // signInWithGoogle() {
@@ -62,7 +58,9 @@ export class AuthService implements OnInit {
   // }
 
   logout() {
-    firebase.auth().signOut()
+    firebase
+      .auth()
+      .signOut()
       .then(() => {
         localStorage.removeItem('ng-journal-user');
         this.idToken = null;
@@ -74,10 +72,10 @@ export class AuthService implements OnInit {
   }
 
   getIdToken() {
-    firebase.auth().currentUser.getIdToken()
-      .then(
-        token => this.idToken = token
-      );
+    firebase
+      .auth()
+      .currentUser.getIdToken()
+      .then(token => (this.idToken = token));
     return this.idToken;
   }
 

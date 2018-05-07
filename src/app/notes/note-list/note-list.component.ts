@@ -20,11 +20,6 @@ export class NoteListComponent {
 
   onCreateNote() {
     this.notesService.createNote(false);
-    // TODO select newly created note -> move to service
-    console.log(this.notes
-      .filter((note, index) => index === 0)
-      .map(note => note[0].uid)
-    );
   }
 
   onSelectNote() {

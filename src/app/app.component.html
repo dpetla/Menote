@@ -1,6 +1,6 @@
 <div class="d-flex flex-column">
   <app-header></app-header>
-  <div class="align-self-strech" id="outlet-container">
+  <div class="align-self-strech">
     <router-outlet></router-outlet>
   </div>
   <app-footer *ngIf="router.url.indexOf('/notes') < 0"></app-footer>

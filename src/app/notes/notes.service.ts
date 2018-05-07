@@ -22,7 +22,7 @@ export class NotesService {
     location: '',
     weather: '',
     mood: '',
-    tags: { },
+    tags: {},
     images: [],
   };
 

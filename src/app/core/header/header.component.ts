@@ -14,7 +14,8 @@ import { ViewService } from '../../shared/view.service';
 export class HeaderComponent implements OnInit {
 
   constructor(private authService: AuthService,
-              private viewService: ViewService) { }
+              private viewService: ViewService) {
+  }
 
   ngOnInit() {
   }

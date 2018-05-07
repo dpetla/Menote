@@ -60,7 +60,7 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
 
     // #toolbar
     toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle',
-      '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote',  'insertLink', 'insertImage',
+      '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', 'insertLink', 'insertImage',
       'insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', '|', 'print', 'spellChecker', 'help', '|', 'undo', 'redo'],
     toolbarButtonsMD: ['fullscreen', 'bold', 'italic', 'underline', 'fontFamily', 'fontSize', 'color', '|', 'paragraphFormat', 'align',
       'formatOL', 'formatUL', 'insertLink', 'insertImage', 'insertTable', 'undo', 'redo'],
@@ -95,11 +95,15 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // get note id from url param
     this.subscription = this.route.params.subscribe(params => {
+
+        // get note document with with ID passed through the URL
         this.id = params['id'];
         this.noteDoc = this.notesService.getNote(this.id);
+
+        // subscribing to the firebase document (note)
         this.noteDoc.valueChanges().subscribe(
           data => {
-            // store data note locally
+            // store data note in local variable
             this.note = data as Note;
 
             // get keys and values from tag object
@@ -109,12 +113,10 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
               const values = Object.values(this.note['tags']);
 
               // add tag to local array if value true
-              for (let i = 0; i < values.length; i++) {
-                if (values[i]) {
-                  this.tags$.push(keys[i]);
-                }
-              }
+              values.forEach(((value, index) => value && this.tags$.push(keys[index])));
             }
+
+            // set flags
             this.isTagsFull = this.tags$.length >= tagsMax;
             this.tagEditable = false;
           },
@@ -126,13 +128,13 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
   }
 
   onTitleChange(event) {
-    this.noteDoc.update({ 'title': event })
+    this.noteDoc.update({'title': event})
       .then(() => this.updateDate())
       .catch(reason => console.log(reason));
   }
 
   onContentChange(event) {
-    this.noteDoc.update({ 'content': event })
+    this.noteDoc.update({'content': event})
       .then(() => this.updateDate())
       .catch(reason => console.log(reason));
   }
@@ -159,7 +161,7 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
 
       // load tags to db
       this.noteDoc.update({
-        tags : tagObj
+        tags: tagObj
       })
         .then(() => this.updateDate())
         .catch(reason => console.log(reason));

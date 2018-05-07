@@ -49,13 +49,15 @@ export class HomeComponent implements OnInit {
   ];
 
   constructor(private authService: AuthService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     if (this.isLoggedIn()) {
       this.router.navigate(['/notes']);
     }
   }
+
   isLoggedIn() {
     return this.authService.isLoggedIn();
   }

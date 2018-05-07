@@ -16,11 +16,7 @@
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
-            "assets": [
-              "src/assets",
-              "src/favicon.ico",
-              "src/manifest.json"
-            ],
+            "assets": ["src/assets", "src/favicon.ico", "src/manifest.json"],
             "styles": [
               "node_modules/froala-editor/css/froala_editor.pkgd.min.css",
               "node_modules/froala-editor/css/froala_style.min.css",
@@ -46,7 +42,7 @@
               "vendorChunk": false,
               "buildOptimizer": true,
               "serviceWorker": true,
-              "ngswConfigPath": "/src/ngsw-config.json",
+              "ngswConfigPath": "src/ngsw-config.json",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -92,23 +88,14 @@
               "node_modules/font-awesome/css/font-awesome.css",
               "src/styles.css"
             ],
-            "assets": [
-              "src/assets",
-              "src/favicon.ico",
-              "src/manifest.json"
-            ]
+            "assets": ["src/assets", "src/favicon.ico", "src/manifest.json"]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -128,12 +115,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }

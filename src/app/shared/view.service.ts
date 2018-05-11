@@ -1,4 +1,3 @@
-// modules
 import { OnInit } from '@angular/core';
 
 // target width (in px) to hide/show side menu

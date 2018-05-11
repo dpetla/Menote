@@ -7,12 +7,10 @@
 }
 
 a.nav-link {
-  color: #54C2F2;
+  color: #54c2f2;
 }
 
 #settings-body {
   min-height: calc(100vh - 415px);
   padding-bottom: 2rem;
 }
-
-

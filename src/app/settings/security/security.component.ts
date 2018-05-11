@@ -1,4 +1,3 @@
-// modules
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
@@ -8,14 +7,9 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./security.component.css']
 })
 export class SecurityComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
-  }
-
-  onChangePassword(form: NgForm) {
-
-  }
-
+  onChangePassword(form: NgForm) {}
 }

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
-
-import { DataService } from '../../shared/data.service';
-import { User } from '../../auth/user.model';
 import { AuthService } from '../../auth/auth.service';
+import { User } from '../../auth/user.model';
+import { DataService } from '../../shared/data.service';
 
 @Component({
   selector: 'app-profile',

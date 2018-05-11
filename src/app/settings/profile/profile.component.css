@@ -7,15 +7,15 @@
 }
 
 .btn-outline-primary {
-  color: #1B9CE2;
-  border-color: #1B9CE2;
+  color: #1b9ce2;
+  border-color: #1b9ce2;
 }
 
 .btn-outline-primary:active,
 .btn-outline-primary:hover {
   color: #fff;
-  background-color: #1B9CE2;
-  border-color: #1B9CE2;
+  background-color: #1b9ce2;
+  border-color: #1b9ce2;
 }
 
 img {

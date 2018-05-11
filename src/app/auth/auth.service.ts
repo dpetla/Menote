@@ -1,11 +1,8 @@
-// modules
+import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
-import { Injectable, OnInit } from '@angular/core';
-
-// models
-import { User } from './user.model';
 import { Observable } from 'rxjs';
+import { User } from './user.model';
 
 @Injectable()
 export class AuthService implements OnInit {
@@ -52,10 +49,6 @@ export class AuthService implements OnInit {
         setTimeout(() => (this.errorMsg = ''), 20000);
       });
   }
-
-  // signInWithGoogle() {
-  //   return new firebase.auth.GoogleAuthProvider();
-  // }
 
   logout() {
     firebase

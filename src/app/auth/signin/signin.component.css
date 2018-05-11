@@ -7,18 +7,18 @@
 }
 
 .lead {
-  color: #54C2F2;
+  color: #54c2f2;
 }
 
 #sigin-body {
   min-height: calc(100vh - 415px);
 }
 
-form, #signup-section {
+form,
+#signup-section {
   min-width: 360px;
 }
 
 a.btn:hover {
   color: #fff;
 }
-

@@ -1,27 +1,19 @@
-// modules
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { ServiceWorkerModule } from '@angular/service-worker';
-
-// feature modules
 import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 
-// components
-import { AppComponent } from './app.component';
-
-
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -37,4 +29,4 @@ import { AppComponent } from './app.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

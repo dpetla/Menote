@@ -6,7 +6,7 @@
   overflow: hidden;
 }
 .card-header {
-  border: 1px solid rgba(0,0,0,.125);
+  border: 1px solid rgba(0, 0, 0, 0.125);
 }
 .card-body {
   padding: 0;
@@ -19,11 +19,10 @@
 
 @media only screen and (max-width: 768px) {
   .card {
-  margin: 0 !important;
+    margin: 0 !important;
     height: 100% !important;
   }
 }
-
 
 /* tag */
 #tag-input {
@@ -38,6 +37,3 @@
 #tag-input:focus {
   border: none !important;
 }
-
-
-

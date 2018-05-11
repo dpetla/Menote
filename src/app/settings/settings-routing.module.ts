@@ -1,22 +1,22 @@
-// modules
-import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-
-// components
-import { SettingsComponent } from './settings.component';
-import { ProfileComponent } from './profile/profile.component';
-import { AccountComponent } from './account/account.component';
-import { SecurityComponent } from './security/security.component';
-
-// services
+import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/auth-guard.service';
+import { AccountComponent } from './account/account.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SecurityComponent } from './security/security.component';
+import { SettingsComponent } from './settings.component';
 
 const settingsRoutes: Routes = [
-  { path: '', component: SettingsComponent, children: [
-    { path: 'account', component: AccountComponent },
-    { path: 'profile', component: ProfileComponent },
-    { path: 'security', component: SecurityComponent }
-  ], canActivate: [AuthGuard] }
+  {
+    path: '',
+    component: SettingsComponent,
+    children: [
+      { path: 'account', component: AccountComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'security', component: SecurityComponent }
+    ],
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({
@@ -24,6 +24,4 @@ const settingsRoutes: Routes = [
   exports: [RouterModule],
   providers: [AuthGuard]
 })
-export class SettingsRoutingModule {
-
-}
+export class SettingsRoutingModule {}

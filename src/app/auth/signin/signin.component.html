@@ -11,29 +11,14 @@
   <!-- body -->
   <div class="container py-4" id="signin-body">
     <div class="d-flex align-items-center flex-wrap">
-      <form
-        (ngSubmit)="onEmailSignin(f)"
-        #f="ngForm"
-        class="p-4 w-50">
+      <form (ngSubmit)="onEmailSignin(f)" #f="ngForm" class="p-4 w-50">
         <div class="form-group">
           <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            ngModel
-            class="form-control"
-            placeholder="Enter email">
+          <input type="email" id="email" name="email" ngModel class="form-control" placeholder="Enter email">
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            ngModel
-            class="form-control"
-            placeholder="Enter password">
+          <input type="password" id="password" name="password" ngModel class="form-control" placeholder="Enter password">
         </div>
         <button type="submit" class="btn btn-primary w-100">Sign In</button>
         <small class=" d-block text-danger mt-3">
@@ -47,5 +32,3 @@
     </div>
   </div>
 </div>
-
-

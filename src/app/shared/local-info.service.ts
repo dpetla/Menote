@@ -1,6 +1,5 @@
-// modules
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class LocalInfoService {
@@ -29,8 +28,12 @@ export class LocalInfoService {
 
   // use position and api call to get weather and location data
   getLocalInfo(callback: Function) {
-    this.url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + this.latlng +
-      '&APPID=' + this.appId + '&units=metric';
+    this.url =
+      'https://api.openweathermap.org/data/2.5/weather?lat=' +
+      this.latlng +
+      '&APPID=' +
+      this.appId +
+      '&units=metric';
 
     // openweathermap.org api call
     this.http.get(this.url).subscribe(
@@ -49,5 +52,4 @@ export class LocalInfoService {
       }
     );
   }
-
 }

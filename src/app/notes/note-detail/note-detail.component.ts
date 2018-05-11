@@ -1,12 +1,9 @@
-// modules
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestoreDocument } from 'angularfire2/firestore';
 import * as firebase from 'firebase';
 import { Subscription } from 'rxjs';
-// models
 import { Note } from '../note.model';
-// services
 import { NotesService } from '../notes.service';
 
 // constants

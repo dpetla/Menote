@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import * as firebase from 'firebase';
 import { NavigationEnd, Router } from '@angular/router';
+import * as firebase from 'firebase';
 import { Subscription } from 'rxjs';
 
 @Component({

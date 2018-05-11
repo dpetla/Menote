@@ -1,4 +1,3 @@
-// modules
 import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
@@ -7,10 +6,8 @@ import {
 } from 'angularfire2/firestore';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
-// services
 import { AuthService } from '../auth/auth.service';
 import { User } from '../auth/user.model';
-// models
 import { Note } from '../notes/note.model';
 
 @Injectable()

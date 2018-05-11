@@ -1,8 +1,5 @@
-// modules
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-
-// services
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -13,10 +10,9 @@ import { AuthService } from '../auth.service';
 export class SigninComponent implements OnInit {
   email: string;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onEmailSignin(form: NgForm) {
     this.email = form.value.email;

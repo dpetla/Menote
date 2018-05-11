@@ -1,7 +1,4 @@
-// component
 import { Component, OnInit } from '@angular/core';
-
-// services
 import { AuthService } from '../../auth/auth.service';
 import { UserService } from '../../shared/user.service';
 
@@ -13,11 +10,9 @@ import { UserService } from '../../shared/user.service';
 export class AccountComponent implements OnInit {
   deactivateConfirmed = false;
 
-  constructor(private authService: AuthService,
-              private userService: UserService) { }
+  constructor(private authService: AuthService, private userService: UserService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   getAccountCreation() {
     const options = {
@@ -25,8 +20,10 @@ export class AccountComponent implements OnInit {
       day: '2-digit',
       year: 'numeric'
     };
-    return new Date(this.authService.userAccount.metadata.creationTime)
-      .toLocaleString('en-US', options);
+    return new Date(this.authService.userAccount.metadata.creationTime).toLocaleString(
+      'en-US',
+      options
+    );
   }
   getLastSignin() {
     const options = {
@@ -39,8 +36,10 @@ export class AccountComponent implements OnInit {
       second: 'numeric',
       timeZoneName: 'short'
     };
-    return new Date(this.authService.userAccount.metadata.lastSignInTime)
-      .toLocaleString('en-US', options);
+    return new Date(this.authService.userAccount.metadata.lastSignInTime).toLocaleString(
+      'en-US',
+      options
+    );
   }
 
   getUserName() {
@@ -56,6 +55,6 @@ export class AccountComponent implements OnInit {
   }
 
   onConfirmDeactivation() {
-    return this.deactivateConfirmed = !this.deactivateConfirmed;
+    return (this.deactivateConfirmed = !this.deactivateConfirmed);
   }
 }

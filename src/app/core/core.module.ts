@@ -1,45 +1,24 @@
-// modules
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-// feature modules
+import { AngularFireAuth } from 'angularfire2/auth';
 import { AppRoutingModule } from '../app-routing.module';
 import { AuthModule } from '../auth/auth.module';
-
-// components
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-import { FooterComponent } from './footer/footer.component';
-
-// services
-import { UserService } from '../shared/user.service';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthService } from '../auth/auth.service';
 import { NotesService } from '../notes/notes.service';
 import { DataService } from '../shared/data.service';
 import { LocalInfoService } from '../shared/local-info.service';
-import { AuthService } from '../auth/auth.service';
+import { UserService } from '../shared/user.service';
 import { ViewService } from '../shared/view.service';
+import { AboutComponent } from './about/about.component';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    HomeComponent,
-    AboutComponent,
-    FooterComponent,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    AppRoutingModule,
-    AuthModule
-  ],
-  exports: [
-    AppRoutingModule,
-    HeaderComponent,
-    FooterComponent
-  ],
+  declarations: [HeaderComponent, HomeComponent, AboutComponent, FooterComponent],
+  imports: [CommonModule, FormsModule, AppRoutingModule, AuthModule],
+  exports: [AppRoutingModule, HeaderComponent, FooterComponent],
   providers: [
     NotesService,
     DataService,
@@ -50,6 +29,4 @@ import { ViewService } from '../shared/view.service';
     ViewService
   ]
 })
-export class CoreModule {
-
-}
+export class CoreModule {}

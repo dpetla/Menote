@@ -1,9 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-
-import { ViewService } from '../shared/view.service';
-import { NotesService } from './notes.service';
 import { Observable } from 'rxjs';
+import { ViewService } from '../shared/view.service';
 import { Note } from './note.model';
+import { NotesService } from './notes.service';
 
 @Component({
   selector: 'app-notes',

@@ -1,9 +1,6 @@
-// modules
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-
-// services
 import { AuthService } from '../../auth/auth.service';
 
 @Component({
@@ -28,7 +25,7 @@ export class HomeComponent implements OnInit {
     },
     {
       name: 'AutoSave',
-      desc: 'We save your notes so you don\'t have to!',
+      desc: "We save your notes so you don't have to!",
       icon: 'save'
     },
     {
@@ -48,9 +45,7 @@ export class HomeComponent implements OnInit {
     }
   ];
 
-  constructor(private authService: AuthService,
-              private router: Router) {
-  }
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     if (this.isLoggedIn()) {
@@ -65,9 +60,12 @@ export class HomeComponent implements OnInit {
   onSend(f: NgForm) {
     const isFormEmpty = f.value.email === '' || f.value.message === '';
     if (f.dirty && !isFormEmpty) {
-      window.location.href = 'mailto:dpetla%40gmail.com?subject=Menote%20question/suggestion&body='
-        + f.value.message + '%0D%0Amessage from:' + f.value.email + '';
+      window.location.href =
+        'mailto:dpetla%40gmail.com?subject=Menote%20question/suggestion&body=' +
+        f.value.message +
+        '%0D%0Amessage from:' +
+        f.value.email +
+        '';
     }
   }
-
 }

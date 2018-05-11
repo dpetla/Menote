@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-
+import { ViewService } from '../../shared/view.service';
 import { Note } from '../note.model';
 import { NotesService } from '../notes.service';
-import { ViewService } from '../../shared/view.service';
 
 @Component({
   selector: 'app-note-list',

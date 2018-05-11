@@ -1,8 +1,4 @@
-// modules
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
-// services
 import { AuthService } from '../../auth/auth.service';
 import { ViewService } from '../../shared/view.service';
 
@@ -12,13 +8,9 @@ import { ViewService } from '../../shared/view.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  constructor(private authService: AuthService, private viewService: ViewService) {}
 
-  constructor(private authService: AuthService,
-              private viewService: ViewService) {
-  }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onLogout() {
     this.authService.logout();

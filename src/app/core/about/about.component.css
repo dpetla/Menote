@@ -7,10 +7,9 @@
 }
 
 .lead {
-  color: #54C2F2;
+  color: #54c2f2;
 }
 
 #about-body {
   min-height: calc(100vh - 415px);
 }
-

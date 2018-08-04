@@ -39,9 +39,10 @@ export class AuthService implements OnInit {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(user => {
-        user.getIdToken().then((token: string) => (this.idToken = token));
-        localStorage.setItem('ng-journal-user', user.uid);
-        this.router.navigate(['/notes']);
+        console.log(user);
+        // user.getIdToken().then((token: string) => (this.idToken = token));
+        // localStorage.setItem('ng-journal-user', user.uid);
+        // this.router.navigate(['/notes']);
       })
       .catch(error => {
         console.log(error);

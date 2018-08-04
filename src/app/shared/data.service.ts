@@ -6,6 +6,7 @@ import {
 } from 'angularfire2/firestore';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../auth/user.model';
 import { Note } from '../notes/note.model';
@@ -39,13 +40,15 @@ export class DataService {
           });
 
           // subscription to user's notes
-          this.notes = this.notesRef.snapshotChanges().map(actions => {
-            return actions.map(action => {
-              const data = action.payload.doc.data() as Note;
-              const id = action.payload.doc.id;
-              return { id, ...data };
-            });
-          });
+          this.notes = this.notesRef.snapshotChanges().pipe(
+            map(actions => {
+              return actions.map(action => {
+                const data = action.payload.doc.data() as Note;
+                const id = action.payload.doc.id;
+                return { id, ...data };
+              });
+            })
+          );
 
           // notes trash ref
           this.deletedNotesRef = this.afs.collection('notes-deleted');
@@ -58,8 +61,7 @@ export class DataService {
           this.deletedUsersRef = this.afs.collection('users-deactivated');
         }
       },
-      error => console.log(error),
-      () => console.log('completed')
+      error => console.log(error)
     );
   }
 }

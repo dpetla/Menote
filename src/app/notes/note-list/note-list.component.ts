@@ -10,7 +10,8 @@ import { NotesService } from '../notes.service';
   styleUrls: ['./note-list.component.css']
 })
 export class NoteListComponent {
-  @Input('notes') notes: Observable<Note[]>;
+  @Input('notes')
+  notes: Observable<Note[]>;
   innerWidth = window.innerWidth;
 
   constructor(private notesService: NotesService, private viewService: ViewService) {}
@@ -22,4 +23,7 @@ export class NoteListComponent {
   onSelectNote() {
     this.viewService.showSideMenu = false;
   }
+  // getTimeCreated(note: Note) {
+  //   return note.dateCreated.getTime();
+  // }
 }

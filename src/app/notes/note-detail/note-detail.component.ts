@@ -6,15 +6,13 @@ import { Subscription } from 'rxjs';
 import { Note } from '../note.model';
 import { NotesService } from '../notes.service';
 
-// constants
-const tagsMax = 10;
-
 @Component({
   selector: 'app-note-detail',
   templateUrl: './note-detail.component.html',
   styleUrls: ['./note-detail.component.css']
 })
 export class NoteDetailComponent implements OnInit, OnDestroy {
+  readonly tagsMax = 10;
   // local variables
   noteDoc: AngularFirestoreDocument<{}>;
   id: string;
@@ -249,7 +247,7 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
             }
 
             // set flags
-            this.isTagsFull = this.tags$.length >= tagsMax;
+            this.isTagsFull = this.tags$.length >= this.tagsMax;
             this.tagEditable = false;
           },
           error => console.log(error)
@@ -282,7 +280,7 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
     const initVal = {};
 
     // add to local tags arrays
-    if (this.tags$.length < tagsMax) {
+    if (this.tags$.length < this.tagsMax) {
       this.tags$.push(tag);
 
       // convert tags array to object

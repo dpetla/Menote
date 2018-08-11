@@ -1,13 +1,14 @@
 <div class="list-group h-100 w-100">
   <div *ngIf="notes | async as noteList; else loading">
     <ng-container *ngIf="noteList.length; else noItems">
-      <a class="list-group-item list-group-item-action flex-column align-items-start cust-navbar" *ngFor="let note of noteList"
-        [ngClass]="{ 'active': selectedNote == note }" (click)="onSelectNote()" [routerLink]="['/notes', note.id]" routerLinkActive="active">
+      <a class="list-group-item list-group-item-action flex-column align-items-start cust-navbar"
+        *ngFor="let note of noteList" [ngClass]="{ 'active': selectedNote == note }"
+        (click)="onSelectNote()" [routerLink]="['/notes', note.id]" routerLinkActive="active">
         <div class="d-flex w-100 justify-content-between">
           <h6 class="mb-1">
             {{ note.title }}
           </h6>
-          <small>{{ note.dateCreated.getTime() | date:'shortTime' }}</small>
+          <!-- <small>{{ note.dateCreated.getTime() | date:'shortTime' }}</small> -->
         </div>
         <small class="my-0 mr-3">
           <i class="fa fa-map-marker" aria-hidden="true" *ngIf="note.location.length > 0">
@@ -31,7 +32,8 @@
     <div class="loader align-self-center my-auto"></div>
   </ng-template>
   <div class="d-block">
-    <a id="btn-add" class="btn btn-lg btn-orange rounded-circle pointer text-white position-fixed m-1 cust-box-shadow" (click)="onCreateNote()">
+    <a id="btn-add" class="btn btn-lg btn-orange rounded-circle pointer text-white position-fixed m-1 cust-box-shadow"
+      (click)="onCreateNote()">
       <i class="fa fa-plus pointer text-lg-center"></i>
     </a>
   </div>

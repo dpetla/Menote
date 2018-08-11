@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://menote.ca">
-    <img alt="Angular 2 HN" title="Angular 2 HN" src="https://github.com/dpetla/ng-journal-app/blob/master/src/assets/images/menote_logo.png" width="150">
+    <img alt="Menote" title="Menote" src="https://github.com/dpetla/ng-journal-app/blob/master/src/assets/images/icons-192.png" width="150">
   </a>
 </p>
 <h3 align="center">Menote</h3>
@@ -22,12 +22,12 @@
 
 ## Build process
 
- - Clone or download the repo
- - `npm install`
- - `npm start`
- 
+- Clone or download the repo
+- `npm install`
+- `npm start`
+
  <br>
- 
+
 ## Features
 
 :rocket: **Progressive Web App**: [Lighthouse](https://github.com/GoogleChrome/lighthouse) score of 91/100
@@ -45,7 +45,6 @@
 :bookmark_tabs: **Organize with tags**
 
 :camera: **Images to notes**
-
 
 <br>
 

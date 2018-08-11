@@ -1,20 +1,21 @@
 {
   "short_name": "Menote",
   "name": "Menote",
-  "start_url": "/",
-
+  "start_url": "/notes",
   "theme_color": "#1b9ce2",
-  "background_color": "#ffffff",
-
+  "background_color": "#1b9ce2",
   "display": "standalone",
   "orientation": "portrait",
-
   "icons": [
     {
-      "src": "/assets/images/menote_logo.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "/assets/images/icons-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/assets/images/icons-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ]
-
 }

@@ -20,10 +20,7 @@ export class AccountComponent implements OnInit {
       day: '2-digit',
       year: 'numeric'
     };
-    return new Date(this.authService.userAccount.metadata.creationTime).toLocaleString(
-      'en-US',
-      options
-    );
+    return new Date(this.authService.user.metadata.creationTime).toLocaleString('en-US', options);
   }
   getLastSignin() {
     const options = {
@@ -36,18 +33,15 @@ export class AccountComponent implements OnInit {
       second: 'numeric',
       timeZoneName: 'short'
     };
-    return new Date(this.authService.userAccount.metadata.lastSignInTime).toLocaleString(
-      'en-US',
-      options
-    );
+    return new Date(this.authService.user.metadata.lastSignInTime).toLocaleString('en-US', options);
   }
 
   getUserName() {
-    return this.authService.userAccount.email;
+    return this.authService.user.email;
   }
 
   isEmailVerified() {
-    return this.authService.userAccount.emailVerified;
+    return this.authService.user.emailVerified;
   }
 
   onDeactivateAccount() {

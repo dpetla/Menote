@@ -1,5 +1,6 @@
 <div id="notes-container" class="d-flex flex-row align-items-stretch">
-  <app-note-list [notes]="notes" id="notes-list" (window:resize)="onResize($event)" *ngIf="isLargeScreen() || showSideMenu()">
+  <app-note-list [notes]="notes" id="notes-list" (window:resize)="onResize($event)"
+    *ngIf="isLargeScreen() || showSideMenu()">
   </app-note-list>
   <router-outlet></router-outlet>
 </div>

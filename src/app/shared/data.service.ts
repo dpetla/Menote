@@ -28,10 +28,10 @@ export class DataService {
     firebase.auth().onAuthStateChanged(
       user => {
         if (user) {
-          this.authService.userAccount = user;
+          this.authService.user = user;
           user
             .getIdToken()
-            .then(idToken => (this.authService.idToken = idToken))
+            .then(idToken => (this.authService.token = idToken))
             .catch(error => console.log(error));
 
           // getting user's notes ref
@@ -55,7 +55,7 @@ export class DataService {
 
           // users ref and current user ref
           this.usersRef = this.afs.collection('users');
-          this.userRef = this.usersRef.doc(this.authService.userAccount.uid);
+          this.userRef = this.usersRef.doc(this.authService.user.uid);
 
           // deactivated users ref
           this.deletedUsersRef = this.afs.collection('users-deactivated');

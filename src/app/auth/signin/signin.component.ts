@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -7,20 +6,12 @@ import { AuthService } from '../auth.service';
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
-export class SigninComponent implements OnInit {
+export class SigninComponent {
   email: string;
 
   constructor(private authService: AuthService) {}
 
-  ngOnInit() {}
-
-  onEmailSignin(form: NgForm) {
-    this.email = form.value.email;
-    const password = form.value.password;
-    this.authService.emailSignin(this.email, password);
-  }
-
-  getErrorMsg() {
-    return this.authService.errorMsg;
+  onLogin() {
+    this.authService.login();
   }
 }

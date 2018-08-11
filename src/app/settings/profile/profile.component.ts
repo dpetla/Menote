@@ -31,8 +31,8 @@ export class ProfileComponent implements OnInit {
       })
       .then(() => {
         // update firebase authentication account
-        this.authService.userAccount.updateEmail(form.value.email).then(() => {
-          this.authService.userAccount.sendEmailVerification();
+        this.authService.user.updateEmail(form.value.email).then(() => {
+          this.authService.user.sendEmailVerification();
           // display confirmation message
           this.displayConfirmation = true;
           setTimeout(() => (this.displayConfirmation = false), 5000);

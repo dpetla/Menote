@@ -4,14 +4,15 @@
   <div class="pageheader py-3 py-md-5 text-center text-sm-left">
     <div class="container">
       <h1>Sign In</h1>
-      <p class="lead">Enter your username and password</p>
+      <!-- <p class="lead">Enter your username and password</p> -->
     </div>
   </div>
 
   <!-- body -->
   <div class="container py-4" id="signin-body">
     <div class="d-flex align-items-center flex-wrap">
-      <form (ngSubmit)="onEmailSignin(f)" #f="ngForm" class="p-4 w-50">
+      <button class="btn btn-primary" (click)="onLogin()">Google Signin</button>
+      <!-- <form (ngSubmit)="onEmailSignin(f)" #f="ngForm" class="p-4 w-50">
         <div class="form-group">
           <label for="email">Email</label>
           <input type="email" id="email" name="email" ngModel class="form-control" placeholder="Enter email">
@@ -24,11 +25,11 @@
         <small class=" d-block text-danger mt-3">
           {{ getErrorMsg() }}
         </small>
-      </form>
-      <div id="signup-section" class="w-50 align-items-center text-center">
+      </form> -->
+      <!-- <div id="signup-section" class="w-50 align-items-center text-center">
         <p class="d-block">Don't have an account?</p>
         <a routerLink="/signup" class="text-primary">Create Account</a>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

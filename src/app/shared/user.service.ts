@@ -25,7 +25,7 @@ export class UserService {
 
     // TODO remove user data from active user collection
     this.dataService.usersRef
-      .doc(this.authService.uid)
+      .doc(this.authService.user.uid)
       .delete()
       .then(() => {
         // TODO disable firestore account

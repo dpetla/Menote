@@ -1,17 +1,12 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
-import { Observable } from 'rxjs';
-import { User } from './user.model';
 
 @Injectable()
 export class AuthService implements OnInit {
-  uid: string;
-  idToken: string;
+  token: string;
   auth: any;
-  userAccount: any;
-  errorMsg = '';
-  user: Observable<firebase.User>;
+  user: any;
 
   constructor(private router: Router) {}
 
@@ -20,34 +15,22 @@ export class AuthService implements OnInit {
   }
 
   isLoggedIn() {
-    return this.userAccount !== null;
+    return this.user !== null;
   }
 
-  emailSignup(user: User): Promise<any> {
-    return firebase
-      .auth()
-      .createUserWithEmailAndPassword(user.email, user.password)
-      .then(() => {
-        this.router.navigate(['/notes']);
-        firebase.auth().currentUser.sendEmailVerification();
-      })
-      .catch(error => console.log(error));
-  }
-
-  emailSignin(email: string, password: string) {
+  login() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    provider.addScope('profile');
+    provider.addScope('email');
     firebase
       .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(user => {
-        console.log(user);
-        // user.getIdToken().then((token: string) => (this.idToken = token));
-        // localStorage.setItem('ng-journal-user', user.uid);
-        // this.router.navigate(['/notes']);
-      })
-      .catch(error => {
-        console.log(error);
-        this.errorMsg = error.message;
-        setTimeout(() => (this.errorMsg = ''), 20000);
+      .signInWithPopup(provider)
+      .then(result => {
+        console.log(result);
+        result.user.getIdToken().then(token => (this.token = token));
+        this.user = result.user;
+        this.router.navigate(['/notes']);
       });
   }
 
@@ -56,24 +39,13 @@ export class AuthService implements OnInit {
       .auth()
       .signOut()
       .then(() => {
-        localStorage.removeItem('ng-journal-user');
-        this.idToken = null;
+        console.log('signout completed ...');
         this.router.navigate(['/']);
       })
-      .catch(err => {
-        console.log('logout error: ' + err);
-      });
-  }
-
-  getIdToken() {
-    firebase
-      .auth()
-      .currentUser.getIdToken()
-      .then(token => (this.idToken = token));
-    return this.idToken;
+      .catch(error => console.log(error));
   }
 
   isAuthenticated() {
-    return this.idToken != null;
+    return this.token != null;
   }
 }

@@ -20,6 +20,10 @@ export class HeaderComponent implements OnInit {
     return this.authService.isAuthenticated();
   }
 
+  getUserPhotoURL() {
+    return this.authService.user.photoURL;
+  }
+
   isLargeScreen() {
     return this.viewService.isLargeScreen();
   }

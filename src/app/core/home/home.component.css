@@ -60,3 +60,8 @@
   text-align: center;
   color: #444;
 }
+
+.signup-btn {
+  min-width: 300px;
+  max-width: 400px;
+}

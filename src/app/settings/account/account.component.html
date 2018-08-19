@@ -3,7 +3,7 @@
   <h3 class="h3 mt-2">Account</h3>
   <hr>
   <div class="d-flex flex-row my-3 account-item">
-    <span class="h6 my-auto">Username</span>
+    <span class="h6 my-auto">User</span>
     <p class="ml-auto my-auto">{{ getUserName() }}</p>
   </div>
 
@@ -44,18 +44,20 @@
             <h5 class="h5">Deactivate?</h5>
             <div class="form-check">
               <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" (change)="onConfirmDeactivation()"> Yes, I want to deactivate my account
+                <input type="checkbox" class="form-check-input" (change)="onConfirmDeactivation()">                Yes,
+                I want to deactivate my account
               </label>
             </div>
             <div *ngIf="deactivateConfirmed">
               <hr class="mt-4">
               <p class="font-weight-bold">Deactivating your account</p>
-              <p class="text-justify mb-4">If you are sure that you want to deactivate your account, you may want
-                to Return to your notes and delete any private notes, then Empty
-                the Trash to permanently delete these notes (Journal App does not
-                automatically delete your notes). Then, return to this page to complete
-                the process.</p>
-              <button disabled type="button" class="btn btn-danger" data-dismiss="modal" (click)="onDeactivateAccount()">Deactivate account</button>
+              <p class="text-justify mb-4">If you are sure that you want to deactivate
+                your account, you may want to Return to your notes and delete any
+                private notes, then Empty the Trash to permanently delete these notes
+                (Journal App does not automatically delete your notes). Then, return
+                to this page to complete the process.</p>
+              <button disabled type="button" class="btn btn-danger" data-dismiss="modal" (click)="onDeactivateAccount()">Deactivate
+                account</button>
             </div>
           </div>
         </div>

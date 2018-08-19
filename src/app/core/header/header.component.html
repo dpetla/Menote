@@ -9,7 +9,7 @@
   <div class="dropdown nav-item" *ngIf="isAuthenticated(); else noAuthLinks">
     <a class="pointer" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
       aria-expanded="false">
-      <img width="38px" class="img-thumbnail rounded-circle p-0" [src]="getUserPhotoURL()">
+      <img width="38px" class="img-thumbnail rounded-circle p-0" [src]="getUserPhotoURL()" alt="user profile photo">
     </a>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <a class="dropdown-item px-3" routerLink="settings/account">

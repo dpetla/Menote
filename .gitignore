@@ -34,6 +34,9 @@ npm-debug.log
 testem.log
 /typings
 
+# api keys and others
+/src/environments
+
 # e2e
 /e2e/*.js
 /e2e/*.map

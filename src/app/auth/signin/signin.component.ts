@@ -7,11 +7,9 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent {
-  email: string;
-
   constructor(private authService: AuthService) {}
 
   onLogin() {
-    this.authService.login();
+    this.authService.loginWithGoogle();
   }
 }

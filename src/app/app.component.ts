@@ -3,6 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     firebase.initializeApp({
-      apiKey: 'AIzaSyBcC9pbQu9Xb6nmfs5WhpSB_1aWX6syQdU',
+      apiKey: environment.firebase.apiKey,
       authDomain: 'menote.ca'
     });
 

@@ -25,7 +25,7 @@
 - Clone or download the repo
 - `npm install`
 - `npm start`
-- create a environment file with firebase properties and apiKey
+- create an environment.ts file with firebase properties and apiKey
 
  <br>
 

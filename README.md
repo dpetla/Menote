@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://menote.ca">
-    <img alt="Menote" title="Menote" src="https://github.com/dpetla/ng-journal-app/blob/master/src/assets/images/icons/icon-152x152.png" width="150">
+    <img alt="Menote" title="Menote" src="https://github.com/dpetla/ng-journal-app/blob/version-6/src/assets/images/icons/icon-152x152.png" width="150">
   </a>
 </p>
 <h3 align="center">Menote</h3>
@@ -54,8 +54,3 @@
 ![devices sample](https://github.com/dpetla/ng-journal-app/blob/master/src/assets/images/devices_sample_opt-min.png)
 
 <br>
-
-## Areas of improvements
-
-- search bar for note list
-- add pagination or dynamic load for note list

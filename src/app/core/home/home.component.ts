@@ -48,13 +48,13 @@ export class HomeComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    if (this.isLoggedIn()) {
+    if (this.isAuthenticated()) {
       this.router.navigate(['/notes']);
     }
   }
 
-  isLoggedIn() {
-    return this.authService.isLoggedIn();
+  isAuthenticated() {
+    return this.authService.isAuthenticated();
   }
 
   onSend(f: NgForm) {

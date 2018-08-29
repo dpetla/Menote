@@ -8,6 +8,8 @@ import { ViewService } from '../../shared/view.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  userIcon = '../../../assets/images/account-profile-user-icon.png';
+
   constructor(private authService: AuthService, private viewService: ViewService) {}
 
   ngOnInit() {}
@@ -21,7 +23,7 @@ export class HeaderComponent implements OnInit {
   }
 
   getUserPhotoURL() {
-    return this.authService.user.photoURL;
+    return this.authService.user ? this.authService.user.photoURL : this.userIcon;
   }
 
   isLargeScreen() {

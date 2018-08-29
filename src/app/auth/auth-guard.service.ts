@@ -7,10 +7,6 @@ export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.authService.isAuthenticated() || localStorage.getItem('ng-journal-user')) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.authService.isAuthenticated();
   }
 }

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
   AngularFirestoreDocument
 } from 'angularfire2/firestore';
-import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
@@ -17,51 +17,45 @@ export class DataService {
   usersRef: AngularFirestoreCollection<User>;
   userRef: AngularFirestoreDocument<User>;
   deletedUsersRef: AngularFirestoreCollection<User>;
-
   // notes variables
   notesRef: AngularFirestoreCollection<Note>;
   notes: Observable<Note[]>;
   deletedNotesRef: AngularFirestoreCollection<Note[]>;
 
-  constructor(private afs: AngularFirestore, private authService: AuthService) {
-    // subscription to user auth state
-    firebase.auth().onAuthStateChanged(
-      user => {
-        if (user) {
-          this.authService.user = user;
-          user
-            .getIdToken()
-            .then(idToken => (this.authService.token = idToken))
-            .catch(error => console.log(error));
+  constructor(
+    private afs: AngularFirestore,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    if (this.authService.user) {
+      // getting user's notes ref
+      this.notesRef = this.afs.collection('notes', ref => {
+        return ref.where('uid', '==', this.authService.user.uid).orderBy('dateCreated', 'desc');
+      });
 
-          // getting user's notes ref
-          this.notesRef = this.afs.collection('notes', ref => {
-            return ref.where('uid', '==', user.uid).orderBy('dateCreated', 'desc');
+      // subscription to user's notes
+      this.notes = this.notesRef.snapshotChanges().pipe(
+        map(actions => {
+          return actions.map(action => {
+            const data = action.payload.doc.data() as Note;
+            const id = action.payload.doc.id;
+            return { id, ...data };
           });
+        })
+      );
 
-          // subscription to user's notes
-          this.notes = this.notesRef.snapshotChanges().pipe(
-            map(actions => {
-              return actions.map(action => {
-                const data = action.payload.doc.data() as Note;
-                const id = action.payload.doc.id;
-                return { id, ...data };
-              });
-            })
-          );
+      // notes trash ref
+      this.deletedNotesRef = this.afs.collection('notes-deleted');
 
-          // notes trash ref
-          this.deletedNotesRef = this.afs.collection('notes-deleted');
+      // users ref and current user ref
+      this.usersRef = this.afs.collection('users');
+      this.userRef = this.usersRef.doc(this.authService.user.uid);
 
-          // users ref and current user ref
-          this.usersRef = this.afs.collection('users');
-          this.userRef = this.usersRef.doc(this.authService.user.uid);
-
-          // deactivated users ref
-          this.deletedUsersRef = this.afs.collection('users-deactivated');
-        }
-      },
-      error => console.log(error)
-    );
+      // deactivated users ref
+      this.deletedUsersRef = this.afs.collection('users-deactivated');
+    } else {
+      // go to home when not authenticated
+      this.router.navigate(['/']);
+    }
   }
 }

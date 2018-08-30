@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as firebase from 'firebase';
 import { AuthService } from '../../auth/auth.service';
 import { ViewService } from '../../shared/view.service';
 
@@ -12,7 +13,21 @@ export class HeaderComponent implements OnInit {
 
   constructor(private authService: AuthService, private viewService: ViewService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // subscription to user auth state
+    firebase.auth().onAuthStateChanged(user => {
+      this.authService.user = user;
+      console.log(user);
+      // manage token in local storage
+      if (this.authService.user) {
+        this.authService.user
+          .getIdToken()
+          .then(token => localStorage.setItem('menote-user-token', token));
+      } else {
+        localStorage.removeItem('menote-user-token');
+      }
+    });
+  }
 
   onLogout() {
     this.authService.logout();

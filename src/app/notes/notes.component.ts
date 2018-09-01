@@ -16,7 +16,7 @@ export class NotesComponent implements OnInit {
 
   // get list of notes
   ngOnInit() {
-    this.notes = this.notesService.getNotes();
+    this.notesService.initialize().then(notes => (this.notes = notes));
   }
 
   @HostListener('window:resize', ['$event'])

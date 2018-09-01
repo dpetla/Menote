@@ -8,13 +8,27 @@ export class AuthService {
 
   constructor(private router: Router) {}
 
+  subscribeToAuthState() {
+    firebase.auth().onAuthStateChanged(user => {
+      console.log(user);
+      this.user = user;
+      const path = this.user ? '/notes' : '/';
+      this.router.navigate([path]);
+    });
+  }
+
   loginWithGoogle() {
-    const provider = new firebase.auth.GoogleAuthProvider();
     firebase
       .auth()
-      .signInWithPopup(provider)
-      .then(result => this.router.navigate(['/notes']))
-      .catch(error => console.log(`Error while logging in. ERROR: ${error}`));
+      .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+      .then(() => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        firebase
+          .auth()
+          .signInWithPopup(provider)
+          .then(result => this.router.navigate(['/notes']))
+          .catch(error => console.log(`Error while logging in. ERROR: ${error}`));
+      });
   }
 
   logout() {
@@ -22,13 +36,12 @@ export class AuthService {
       .auth()
       .signOut()
       .then(result => {
-        localStorage.removeItem('menote-user-token');
         this.router.navigate(['/']);
       })
       .catch(error => console.log(`Error while logging out. ERROR: ${error}`));
   }
 
   isAuthenticated() {
-    return this.user != null || !!localStorage.getItem('menote-user-token');
+    return this.user != null;
   }
 }

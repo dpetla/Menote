@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
-import { UserService } from '../../shared/user.service';
 
 @Component({
   selector: 'app-account',
@@ -10,7 +9,7 @@ import { UserService } from '../../shared/user.service';
 export class AccountComponent implements OnInit {
   deactivateConfirmed = false;
 
-  constructor(private authService: AuthService, private userService: UserService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {}
 
@@ -36,6 +35,10 @@ export class AccountComponent implements OnInit {
     return new Date(this.authService.user.metadata.lastSignInTime).toLocaleString('en-US', options);
   }
 
+  getDisplayName() {
+    return this.authService.user.displayName;
+  }
+
   getUserName() {
     return this.authService.user.email;
   }
@@ -44,8 +47,12 @@ export class AccountComponent implements OnInit {
     return this.authService.user.emailVerified;
   }
 
+  getProvider() {
+    return this.authService.user.providerData[0].providerId;
+  }
+
   onDeactivateAccount() {
-    this.userService.deactivateAccount();
+    // TODO
   }
 
   onConfirmDeactivation() {

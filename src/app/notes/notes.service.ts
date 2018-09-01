@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import * as firebase from 'firebase';
-import { DataService } from '../shared/data.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { LocalInfoService } from '../shared/local-info.service';
+import { AuthService } from './../auth/auth.service';
 import { Note } from './note.model';
 
 @Injectable()
 export class NotesService {
+  notesRef: AngularFirestoreCollection<Note>;
+  notes: Observable<Note[]>;
+  deletedNotesRef: AngularFirestoreCollection<Note[]>;
+
   // note template used for creating notes
   newNote: Note = {
     uid: '',
@@ -22,19 +29,50 @@ export class NotesService {
   };
 
   constructor(
-    private dataService: DataService,
     private localInfoService: LocalInfoService,
+    private db: AngularFirestore,
+    private authService: AuthService,
     private router: Router
   ) {}
 
+  initialize(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      if (this.authService.user) {
+        // getting user's notes ref
+        this.notesRef = this.db.collection('notes', ref => {
+          return ref.where('uid', '==', this.authService.user.uid).orderBy('dateCreated', 'desc');
+        });
+
+        // subscription to user's notes
+        this.notes = this.notesRef.snapshotChanges().pipe(
+          map(actions => {
+            return actions.map(action => {
+              const data = action.payload.doc.data() as Note;
+              const id = action.payload.doc.id;
+              return { id, ...data };
+            });
+          })
+        );
+
+        // notes trash ref
+        this.deletedNotesRef = this.db.collection('notes-deleted');
+
+        resolve(this.notes);
+      } else {
+        // this.router.navigate(['/']);
+        reject();
+      }
+    });
+  }
+
   // Get all notes
   getNotes() {
-    return this.dataService.notes;
+    return this.notes;
   }
 
   // get note by id
   getNote(id: string) {
-    return this.dataService.notesRef.doc(id);
+    return this.notesRef.doc(id);
   }
 
   // get location data then gather data to create note
@@ -55,7 +93,7 @@ export class NotesService {
       }
 
       // create note document in db
-      this.dataService.notesRef
+      this.notesRef
         .add(this.newNote)
         .then(note => this.router.navigate([note.path]))
         .catch(error => console.log(error));

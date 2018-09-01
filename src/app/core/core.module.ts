@@ -6,9 +6,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { AuthModule } from '../auth/auth.module';
 import { AuthService } from '../auth/auth.service';
 import { NotesService } from '../notes/notes.service';
-import { DataService } from '../shared/data.service';
 import { LocalInfoService } from '../shared/local-info.service';
-import { UserService } from '../shared/user.service';
 import { ViewService } from '../shared/view.service';
 import { AboutComponent } from './about/about.component';
 import { FooterComponent } from './footer/footer.component';
@@ -19,14 +17,6 @@ import { HomeComponent } from './home/home.component';
   declarations: [HeaderComponent, HomeComponent, AboutComponent, FooterComponent],
   imports: [CommonModule, FormsModule, AppRoutingModule, AuthModule],
   exports: [AppRoutingModule, HeaderComponent, FooterComponent],
-  providers: [
-    NotesService,
-    DataService,
-    LocalInfoService,
-    AuthService,
-    AngularFireAuth,
-    UserService,
-    ViewService
-  ]
+  providers: [NotesService, LocalInfoService, AuthService, AngularFireAuth, ViewService]
 })
 export class CoreModule {}

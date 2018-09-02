@@ -1,5 +1,6 @@
 #about-container {
   min-height: calc(100vh - 167px);
+  margin-bottom: 30px;
 }
 .pageheader {
   color: #fff;

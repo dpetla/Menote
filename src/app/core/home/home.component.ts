@@ -49,7 +49,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     if (this.isAuthenticated()) {
-      this.router.navigate(['/notes']);
+      const path = localStorage.getItem('menote-nav-hist') || '/notes';
+      this.router.navigate([path]);
     }
   }
 

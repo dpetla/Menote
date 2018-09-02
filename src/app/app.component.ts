@@ -23,7 +23,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.subscription = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => window.scroll(0, 0));
+      .subscribe((event: NavigationEnd) => {
+        window.scroll(0, 0);
+        const path = event.url !== '/signin' ? event.url : '/notes';
+        localStorage.setItem('menote-nav-hist', path);
+      });
   }
 
   ngOnDestroy() {

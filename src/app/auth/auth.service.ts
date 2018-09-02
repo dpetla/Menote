@@ -12,17 +12,17 @@ export class AuthService {
     firebase.auth().onAuthStateChanged(user => {
       console.log(user);
       this.user = user;
-      const path = this.user ? '/notes' : '/';
+      const path = localStorage.getItem('menote-nav-hist') || '/notes';
       this.router.navigate([path]);
     });
   }
 
   loginWithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
     firebase
       .auth()
       .setPersistence(firebase.auth.Auth.Persistence.SESSION)
       .then(() => {
-        const provider = new firebase.auth.GoogleAuthProvider();
         firebase
           .auth()
           .signInWithPopup(provider)
@@ -36,6 +36,7 @@ export class AuthService {
       .auth()
       .signOut()
       .then(result => {
+        localStorage.setItem('menote-nav-hist', '/');
         this.router.navigate(['/']);
       })
       .catch(error => console.log(`Error while logging out. ERROR: ${error}`));

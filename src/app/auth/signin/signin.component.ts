@@ -9,7 +9,7 @@ import { AuthService } from '../auth.service';
 export class SigninComponent {
   constructor(private authService: AuthService) {}
 
-  onLogin() {
+  onLoginWithGoogle() {
     this.authService.loginWithGoogle();
   }
 }

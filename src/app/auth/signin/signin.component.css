@@ -10,14 +10,28 @@
   min-height: calc(100vh - 415px);
 }
 
-/* form,
-#signup-section {
-  min-width: 360px;
-} */
-
 /* Google sign button */
 .abcRioButtonBlue .abcRioButtonContentWrapper {
   border: 1px solid transparent;
+}
+
+.abcRioButton {
+  position: relative;
+  height: 50px;
+  width: 319px;
+  min-width: 240px;
+  text-align: center;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+  transition: background-color 0.218s, border-color 0.218s, box-shadow 0.218s;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  background-color: #4285f4;
+  border: none;
+  color: #fff;
 }
 
 .abcRioButtonContentWrapper {
@@ -64,24 +78,6 @@
   vertical-align: top;
   font-size: 16px;
   line-height: 48px;
-}
-
-.abcRioButton {
-  position: relative;
-  height: 50px;
-  width: 240px;
-  text-align: center;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
-  transition: background-color 0.218s, border-color 0.218s, box-shadow 0.218s;
-  cursor: pointer;
-  outline: none;
-  overflow: hidden;
-  text-align: center;
-  vertical-align: middle;
-  white-space: nowrap;
-  background-color: #4285f4;
-  border: none;
-  color: #fff;
 }
 
 .abcRioButtonSvg {

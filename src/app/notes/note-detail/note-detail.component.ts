@@ -261,14 +261,14 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
     this.noteDoc
       .update({ title: event })
       .then(() => this.updateDate())
-      .catch(reason => console.log(reason));
+      .catch(error => console.log(error));
   }
 
   onContentChange(event) {
     this.noteDoc
       .update({ content: event })
       .then(() => this.updateDate())
-      .catch(reason => console.log(reason));
+      .catch(error => console.log(error));
   }
 
   toggleTagEdit() {
@@ -297,7 +297,7 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
           tags: tagObj
         })
         .then(() => this.updateDate())
-        .catch(reason => console.log(reason));
+        .catch(error => console.log(error));
     }
     this.toggleTagEdit();
   }
@@ -308,7 +308,7 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
         ['tags.' + tag]: firebase.firestore.FieldValue.delete()
       })
       .then(() => this.updateDate())
-      .catch(reason => console.log(reason));
+      .catch(error => console.log(error));
   }
 
   updateDate() {
@@ -319,7 +319,7 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
 
   onDeleteNote() {
     if (window.confirm('Do you want to delete this note?')) {
-      this.noteDoc.delete().catch(reason => console.log(reason));
+      this.noteDoc.delete().catch(error => console.log(error));
       this.router.navigate(['/notes']);
     }
   }

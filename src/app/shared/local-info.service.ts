@@ -43,10 +43,8 @@ export class LocalInfoService {
         this.city = data['name'];
         this.country = data['sys']['country'];
       },
-      err => {
-        // TODO handle weather request error
-        console.log(err);
-      },
+      // TODO handle weather request error
+      error => console.log(error),
       () => {
         callback();
       }

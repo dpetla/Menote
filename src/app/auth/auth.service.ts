@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 
 @Injectable()
 export class AuthService {
@@ -10,6 +11,8 @@ export class AuthService {
 
   subscribeToAuthState() {
     firebase.auth().onAuthStateChanged(user => {
+      console.log(user);
+
       this.user = user;
       const path = localStorage.getItem('menote-nav-hist') || '/notes';
       this.router.navigate([path]);

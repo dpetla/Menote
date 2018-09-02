@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LocalInfoService } from '../shared/local-info.service';
@@ -79,7 +78,7 @@ export class NotesService {
   createNote(isFirstNote = false) {
     this.localInfoService.getLocalInfo(() => {
       // enter note data
-      this.newNote.uid = firebase.auth().currentUser.uid;
+      this.newNote.uid = this.authService.user.uid;
       this.newNote.location = this.localInfoService.city + ', ' + this.localInfoService.country;
       this.newNote.title = new Date().toDateString();
       this.newNote.dateCreated = new Date();

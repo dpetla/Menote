@@ -18,7 +18,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     firebase.initializeApp({
       apiKey: environment.firebase.apiKey,
-      authDomain: 'menote.ca'
+      authDomain: environment.firebase.authDomain
     });
 
     this.subscription = this.router.events

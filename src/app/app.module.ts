@@ -17,7 +17,7 @@ import { CoreModule } from './core/core.module';
   imports: [
     BrowserModule,
     FormsModule,
-    AngularFireModule.initializeApp(environment.firebase, 'ng-journal-app'),
+    AngularFireModule.initializeApp(environment.firebase, environment.firebase.projectId),
     AngularFirestoreModule.enablePersistence(),
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     AuthModule,

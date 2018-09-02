@@ -1,5 +1,5 @@
 .list-group {
-  overflow-y: scroll;
+  overflow-y: auto;
   background-color: #1a222b;
   border-right: 1pt solid #989da2;
 }
@@ -27,6 +27,7 @@
 #btn-add {
   bottom: 0;
   left: 280px;
+  z-index: 99;
 }
 
 /*

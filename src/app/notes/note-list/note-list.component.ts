@@ -10,19 +10,22 @@ import { NotesService } from '../notes.service';
   styleUrls: ['./note-list.component.css']
 })
 export class NoteListComponent {
+  // tslint:disable-next-line:no-input-rename
   @Input('notes')
   notes: Observable<Note[]>;
   innerWidth = window.innerWidth;
 
   constructor(private notesService: NotesService, private viewService: ViewService) {}
 
-  onCreateNote() {
+  onCreateNote(e: Event) {
+    e.stopPropagation();
     this.notesService.createNote(false);
   }
 
   onSelectNote() {
     this.viewService.showSideMenu = false;
   }
+
   // getTimeCreated(note: Note) {
   //   return note.dateCreated.getTime();
   // }

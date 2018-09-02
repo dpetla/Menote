@@ -1,4 +1,4 @@
-@import "~bootstrap/dist/css/bootstrap.css";
+@import '~bootstrap/dist/css/bootstrap.css';
 
 /* You can add global styles to this file, and also import other style files */
 body {
@@ -8,11 +8,11 @@ body {
 
 /* beta tag */
 body:after {
-  content: "beta";
+  content: 'beta';
   position: absolute;
   width: 80px;
   height: 25px;
-  background: #EE8E4A;
+  background: #ee8e4a;
   top: 7px;
   left: -20px;
   text-align: center;
@@ -22,11 +22,24 @@ body:after {
   font-weight: bold;
   color: #fff;
   line-height: 27px;
-  -ms-transform:rotate(-45deg);
-  -webkit-transform:rotate(-45deg);
-  transform:rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
   z-index: 10;
   overflow: hidden;
+  -webkit-animation: soft-display 2s;
+  -moz-animation: soft-display 2s;
+  -o-animation: soft-display 2s;
+  animation: soft-display 2s;
+  opacity: 1;
+}
+@keyframes soft-display {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .pointer {
@@ -43,30 +56,29 @@ app-note-start {
 }
 
 .cust-box-shadow {
-  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),
-  0px 2px 2px 0px rgba(0,0,0,0.14),
-  0px 1px 5px 0px rgba(0,0,0,0.12);
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 }
 
 /* Override BS4*/
 .bg-primary {
-  background-color: #1B9CE2 !important;
+  background-color: #1b9ce2 !important;
 }
 
 .text-primary {
-  color: #1B9CE2 !important;
+  color: #1b9ce2 !important;
 }
 
 a.btn.btn-primary,
 button.btn.btn-primary {
-  background: #1B9CE2;
-  border-color: #1B9CE2;
+  background: #1b9ce2;
+  border-color: #1b9ce2;
   color: #ffffff;
 }
 
 .btn-orange {
-  background-color: #FCA32D !important;
-  border: #FCA32D;
+  background-color: #fca32d !important;
+  border: #fca32d;
 }
 
 /* froala */
@@ -84,7 +96,7 @@ button.btn.btn-primary {
 }
 .fr-wrapper {
   height: calc(100% - 76px);
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 @media only screen and (max-width: 900px) {
@@ -93,7 +105,7 @@ button.btn.btn-primary {
   }
 }
 
-app-root:empty+.app-loader {
+app-root:empty + .app-loader {
   opacity: 1;
   z-index: 100;
 }

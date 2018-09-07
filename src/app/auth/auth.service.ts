@@ -27,7 +27,7 @@ export class AuthService {
           .auth()
           .signInWithPopup(provider)
           .then(result => this.router.navigate(['/notes']))
-          .catch(error => console.log(`Error while logging in. ERROR: ${error}`));
+          .catch(error => console.log(error));
       });
   }
 

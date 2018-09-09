@@ -6,6 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
+    "pwa": "http-server dist/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -23,6 +24,7 @@
     "@angular/pwa": "^0.7.5",
     "@angular/router": "^6.1.4",
     "@angular/service-worker": "^6.1.4",
+    "@auth0/angular-jwt": "^2.0.0",
     "angular-froala-wysiwyg": "^2.8.4-1",
     "angularfire2": "^5.0.0-rc.12",
     "bootstrap": "^4.1.3",

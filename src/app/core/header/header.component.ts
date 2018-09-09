@@ -14,6 +14,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.authService.subscribeToAuthState();
+    if (navigator.onLine && this.isAuthenticated()) {
+      this.authService.loginWithGoogle();
+    }
   }
 
   onLogout() {

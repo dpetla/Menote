@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
     const isFormEmpty = f.value.email === '' || f.value.message === '';
     if (f.dirty && !isFormEmpty) {
       window.location.href =
-        'mailto:dpetla%40gmail.com?subject=Menote%20question/suggestion&body=' +
+        'mailto:contact%40menote.ca?subject=Menote%20question/suggestion&body=' +
         f.value.message +
         '%0D%0Amessage from:' +
         f.value.email +

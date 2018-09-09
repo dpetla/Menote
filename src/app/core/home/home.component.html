@@ -1,9 +1,11 @@
 <div class="container-fluid d-flex flex-column">
 
   <!-- start -->
-  <div class="bg-light py-3 py-md-5 d-flex flex-column justify-content-center" id="start-container">
+  <div class="bg-light py-3 py-md-5 d-flex flex-column justify-content-center"
+    id="start-container">
     <div class="text-center d-flex align-items-center justify-content-center">
-      <img src="../../../assets/images/icons/icon-96x96.png" alt="menote logo" class="d-inline mx-2">
+      <img src="../../..¨/assets/images/icons/icon-96x96.png" alt="menote logo"
+        class="d-inline mx-2">
       <h1 class="d-inline text-primary" id="brand-start">menote</h1>
     </div>
     <p class="lead text-center pb-md-5 pt-md-2 mb-md-3 my-3 px-md-5" id="home-statement">
@@ -17,7 +19,8 @@
   <div class="bg-white mx-auto">
     <div class="d-flex flex-column text-center py-5 py-md-5 my-md-5">
       <h3>Features</h3>
-      <h5>Here are some features that makes journaling and note taking simple and
+      <h5>Here are some features that makes journaling and note taking simple
+        and
         enjoyable with menote!</h5>
       <div class="d-flex justify-content-center flex-wrap">
         <div class="feature-card" *ngFor="let feature of features">
@@ -34,20 +37,21 @@
   <!-- contact form -->
   <div class="bg-dark">
     <div class="container my-5 py-5">
-      <h3 class="text-white pb-5">Got some questions or suggestions about the app?
+      <h3 class="text-white pb-5">Got some questions or suggestions about the
+        app?
         Talk to me about it.</h3>
       <form class="form-group row" #contactForm="ngForm" (ngSubmit)="onSend(contactForm)">
         <div class="col-12 col-md-3">
           <label for="email" class="sr-only">Email
           </label>
-          <input [(ngModel)]="email" type="email" name="email" id="email" placeholder="Email"
-            class="form-control form-control-lg">
+          <input [(ngModel)]="email" type="email" name="email" id="email"
+            placeholder="Email" class="form-control form-control-lg">
         </div>
         <div class="col-12 col-md-7 my-md-auto my-3">
           <label for="message" class="sr-only">Message
           </label>
-          <input [(ngModel)]="message" type="text" name="message" id="message" placeholder="Your message"
-            class="form-control form-control-lg">
+          <input [(ngModel)]="message" type="text" name="message" id="message"
+            placeholder="Your message" class="form-control form-control-lg">
         </div>
         <div class="col-12 col-md-2">
           <button type="submit" class="btn btn-lg btn-primary w-100">Send</button>

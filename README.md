@@ -25,7 +25,15 @@
 - Clone or download the repo
 - `npm install`
 - `npm start`
-- create an environment.ts file with firebase properties and apiKey
+- Go to [localhost:4200](http://localhost:4200)
+
+#### Build Process using Service Worker
+
+- Clone or download the repo
+- `npm install`
+- `npm run build`
+- `npm run pwa`
+- Go to [localhost:8080](http://localhost:8080)
 
  <br>
 

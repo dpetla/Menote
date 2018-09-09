@@ -1,16 +1,16 @@
 <nav class="navbar navbar-expand-md navbar-light bg-primary justify-content-between">
   <div class="pl-2">
-    <i class="fa fa-bars fa-lg text-white pointer ml-1" aria-hidden="true" *ngIf="!isLargeScreen()"
-      (click)="toggleSideMenu()"></i>
+    <i class="fa fa-bars fa-lg text-white pointer ml-1" aria-hidden="true"
+      *ngIf="!isLargeScreen()" (click)="toggleSideMenu()"></i>
     <a routerLink="/notes" class="navbar-brand text-white ml-1" id="brand-text">
       menote
     </a>
   </div>
   <div class="dropdown nav-item" *ngIf="isAuthenticated(); else noAuthLinks">
-    <a class="pointer" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-      aria-expanded="false">
+    <a class="pointer" id="dropdownMenuButton" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
       <img width="38px" class="img-thumbnail rounded-circle p-0" [src]="getUserPhotoURL()"
-        alt="photo">
+        alt="profile">
     </a>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <a class="dropdown-item px-3" routerLink="settings/account">
@@ -26,8 +26,9 @@
   </div>
   <ng-template #noAuthLinks>
     <div>
-      <span routerLink="/signin" routerLinkActive="d-none" [routerLinkActiveOptions]="{ exact: true }"
-        class="text-white pointer mx-2">Sign In</span>
+      <span routerLink="/signin" routerLinkActive="d-none"
+        [routerLinkActiveOptions]="{ exact: true }" class="text-white pointer mx-2">Sign
+        In</span>
       <span routerLink="" routerLinkActive="d-none" [routerLinkActiveOptions]="{ exact: true }"
         class="text-white pointer mx-2">Home</span>
     </div>

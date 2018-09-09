@@ -35,9 +35,6 @@ testem.log
 /typings
 .firebase
 
-# sensitive data
-/src/environments/
-
 # e2e
 /e2e/*.js
 /e2e/*.map

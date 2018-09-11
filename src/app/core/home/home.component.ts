@@ -11,7 +11,6 @@ import { AuthService } from '../../auth/auth.service';
 export class HomeComponent implements OnInit {
   email = '';
   message = '';
-
   features = [
     {
       name: 'Rich text editor',
@@ -59,14 +58,11 @@ export class HomeComponent implements OnInit {
   }
 
   onSend(f: NgForm) {
-    const isFormEmpty = f.value.email === '' || f.value.message === '';
-    if (f.dirty && !isFormEmpty) {
-      window.location.href =
-        'mailto:contact%40menote.ca?subject=Menote%20question/suggestion&body=' +
-        f.value.message +
-        '%0D%0Amessage from:' +
-        f.value.email +
-        '';
-    }
+    window.location.href =
+      'mailto:contact%40menote.ca?subject=Menote%20question/suggestion&body=' +
+      f.value.message +
+      '%0D%0Amessage from: ' +
+      f.value.email +
+      '';
   }
 }

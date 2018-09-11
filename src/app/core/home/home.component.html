@@ -45,16 +45,16 @@
           <label for="email" class="sr-only">Email
           </label>
           <input [(ngModel)]="email" type="email" name="email" id="email"
-            placeholder="Email" class="form-control form-control-lg">
+            placeholder="Email" email class="form-control form-control-lg">
         </div>
         <div class="col-12 col-md-7 my-md-auto my-3">
           <label for="message" class="sr-only">Message
           </label>
           <input [(ngModel)]="message" type="text" name="message" id="message"
-            placeholder="Your message" class="form-control form-control-lg">
+            placeholder="Your message" required class="form-control form-control-lg">
         </div>
         <div class="col-12 col-md-2">
-          <button type="submit" class="btn btn-lg btn-primary w-100">Send</button>
+          <button type="submit" class="btn btn-lg btn-primary w-100" [disabled]="contactForm.invalid">Send</button>
         </div>
       </form>
     </div>

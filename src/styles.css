@@ -113,3 +113,7 @@ app-root:empty + .app-loader {
 noscript h4 {
   font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica;
 }
+
+button {
+  padding: 0;
+}

@@ -5,7 +5,7 @@
     <div class="d-flex justify-content-between">
       <input type="text" maxlength="100" class="card-input mb-md-3 border-0" required [ngModel]="note?.title" (ngModelChange)="onTitleChange($event)">
       <div class="text-right">
-        <a (click)="onDeleteNote()" class="card-link pointer">
+        <a role="button" (click)="onDeleteNote()" class="card-link pointer">
           <i class="fa fa-trash" aria-hidden="true"></i>
         </a>
       </div>

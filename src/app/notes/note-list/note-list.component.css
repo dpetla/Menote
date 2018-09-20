@@ -3,6 +3,17 @@
   background-color: #1a222b;
   border-right: 1pt solid #989da2;
 }
+input {
+  border: none;
+}
+.searchbar .form-control:focus {
+  box-shadow: none;
+}
+.input-group-text {
+  padding: 3px;
+  background-color: #ffffff;
+  border: none;
+}
 .list-group-item:hover {
   background-color: rgba(255, 255, 255, 0.08);
 }

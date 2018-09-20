@@ -1,9 +1,19 @@
 <div class="list-group h-100 w-100">
   <div *ngIf="notes | async as noteList; else loading">
     <ng-container *ngIf="noteList.length; else noItems">
+      <div class="input-group searchbar">
+        <input type="text" class="form-control" placeholder="Search notes"
+          [ngModel]="searchString" (ngModelChange)="onSearchList($event)">
+        <div class="input-group-append pointer" *ngIf="searchString !== ''">
+          <span class="input-group-text" (click)="resetNoteList()">
+            <i class="far fa-times-circle"></i>
+          </span>
+        </div>
+      </div>
       <a class="list-group-item list-group-item-action flex-column align-items-start cust-navbar"
-        *ngFor="let note of noteList" [ngClass]="{ 'active': selectedNote == note }"
-        (click)="onSelectNote()" [routerLink]="['/notes', note.id]" routerLinkActive="active">
+        *ngFor="let note of _notesResult" [ngClass]="{'active': selectedNote == note}"
+        (click)="onSelectNote()" [routerLink]="['/notes', note.id]"
+        routerLinkActive="active">
         <div class="d-flex w-100 justify-content-between">
           <h6 class="mb-1">
             {{ note.title }}

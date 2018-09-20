@@ -39,7 +39,9 @@ export class NotesService {
       if (this.authService.user) {
         // getting user's notes ref
         this.notesRef = this.db.collection('notes', ref => {
-          return ref.where('uid', '==', this.authService.user.uid).orderBy('dateCreated', 'desc');
+          return ref
+            .where('uid', '==', this.authService.user.uid)
+            .orderBy('dateCreated', 'desc');
         });
 
         // subscription to user's notes

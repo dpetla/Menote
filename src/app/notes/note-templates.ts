@@ -13,10 +13,10 @@ export const newNote = {
 
 export const firstNoteContent = `<h1>How to use menote!</h1><p>With <span style="color: rgb(44, 130, 201);">
 <strong>menote</strong></span> is simple and easy to capture each important part of your day. We want you to focus on your life and the
-moments you live, and let us take care of the rest. Write the story about yourself and let take care you things like:
+moments you live, and let us take care of the rest. Write the story about yourself and let us take care of things like:
 </p><ul><li>Saving. With our <strong>AutoSave</strong> feature, your notes are always saved to the cloud ☁</li>
 <li>Keeping the note date</li><li>Getting your current location&nbsp;</li><li>Logging the current weather condition ☂</li>
-</ul><p><br></p><p>Our rich text editor allows you customize your notes or journal entries to match your style or a specific write style.
+</ul><p><br></p><p>Our rich text editor allows you to customize your notes or journal entries to match your style or a specific write style.
 You can use <strong>Bold</strong>, <em>Italic</em>, <u>underline,</u> <span style="font-family: Arial, Helvetica, sans-serif;">change</span>
 <span style="font-family: Georgia, serif;">the</span> <span style="font-family: Impact, Charcoal, sans-serif;">font</span><span style="font-family:
 Times New Roman,Times,serif,-webkit-standard;">&nbsp;</span><span style="font-family: Tahoma, Geneva, sans-serif;">to 6</span>

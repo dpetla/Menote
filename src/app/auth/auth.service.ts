@@ -4,7 +4,9 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
   user: any;
   jwtHelper = new JwtHelperService();

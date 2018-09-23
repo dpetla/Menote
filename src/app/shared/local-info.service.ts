@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from './../../environments/environment';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class LocalInfoService {
   position = {};
   latlng: string;
-  appId = '0472660f4ad72389269180541cc26370';
   url: string;
   weatherDesc: string;
   temp: string;
@@ -23,16 +25,16 @@ export class LocalInfoService {
   // store lat and long in one sing string variable
   setPosition(position) {
     this.position = position.coords;
-    this.latlng = this.position['latitude'] + '&lon=' + this.position['longitude'];
+    this.latlng = `lat=${this.position['latitude']}&lon=${this.position['longitude']}`;
   }
 
   // use position and api call to get weather and location data
   getLocalInfo(callback: Function) {
     this.url =
-      'https://api.openweathermap.org/data/2.5/weather?lat=' +
+      environment.openWeatherMap +
       this.latlng +
       '&APPID=' +
-      this.appId +
+      environment.openWeatherMap.appId +
       '&units=metric';
 
     // openweathermap.org api call
@@ -45,9 +47,7 @@ export class LocalInfoService {
       },
       // TODO handle weather request error
       error => console.log(error),
-      () => {
-        callback();
-      }
+      () => callback()
     );
   }
 }

@@ -2,8 +2,7 @@
 
 language: node_js
 node_js:
-  - "8.9.4"
-#  - "6.9"
+  - '8.9.4'
 
 branches:
   only:
@@ -17,7 +16,7 @@ script:
   - ng build --prod
 
 after_success:
-  - firebase deploy --token $FIREBASE_TOKEN
+  - firebase deploy -P prod --token $FIREBASE_TOKEN
 
 notifications:
   email:

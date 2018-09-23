@@ -1,5 +1,6 @@
 {
   "projects": {
-    "ng-journal-app": "ng-journal-app"
+    "prod": "menote-prod",
+    "staging": "ng-journal-app"
   }
 }

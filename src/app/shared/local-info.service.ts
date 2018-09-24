@@ -31,7 +31,7 @@ export class LocalInfoService {
   // use position and api call to get weather and location data
   getLocalInfo(callback: Function) {
     this.url =
-      environment.openWeatherMap +
+      environment.openWeatherMap.url +
       this.latlng +
       '&APPID=' +
       environment.openWeatherMap.appId +

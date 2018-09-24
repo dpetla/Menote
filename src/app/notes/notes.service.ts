@@ -45,6 +45,11 @@ export class NotesService {
           })
         );
 
+        // new user welcome note
+        if (this.authService.isNewUser) {
+          this.createNote();
+        }
+
         // notes trash ref
         this.deletedNotesRef = this.db.collection('notes-deleted');
 
@@ -67,7 +72,7 @@ export class NotesService {
   }
 
   // get location data then gather data to create note
-  createNote(isFirstNote = false) {
+  createNote() {
     this.localInfoService.getLocalInfo(() => {
       // enter note data
       this.newNote.uid = this.authService.user.uid;
@@ -77,7 +82,7 @@ export class NotesService {
       this.newNote.weather = `${this.localInfoService.temp} ${this.localInfoService.weatherDesc}`;
 
       // create instruction note when signing up new user
-      if (isFirstNote) {
+      if (this.authService.isNewUser) {
         this.newNote.title = 'Welcome to menote!';
         this.newNote.content = noteTemplate.firstNoteContent;
       }

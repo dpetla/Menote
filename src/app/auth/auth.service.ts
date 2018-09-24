@@ -9,6 +9,7 @@ import 'firebase/auth';
 })
 export class AuthService {
   user: any;
+  isNewUser = false;
   jwtHelper = new JwtHelperService();
 
   constructor(private router: Router) {}
@@ -33,7 +34,10 @@ export class AuthService {
         firebase
           .auth()
           .signInWithPopup(provider)
-          .then(result => this.router.navigate(['/notes']))
+          .then(result => {
+            this.isNewUser = result.additionalUserInfo.isNewUser;
+            this.router.navigate(['/notes']);
+          })
           .catch(error => console.log(error));
       });
   }

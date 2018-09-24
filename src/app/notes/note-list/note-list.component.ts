@@ -33,7 +33,7 @@ export class NoteListComponent implements OnInit, OnChanges {
 
   onCreateNote(e: Event) {
     e.stopPropagation();
-    this.notesService.createNote(false);
+    this.notesService.createNote();
   }
 
   onSelectNote() {

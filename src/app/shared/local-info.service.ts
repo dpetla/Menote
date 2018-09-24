@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { finalize } from 'rxjs/internal/operators/finalize';
 import { environment } from './../../environments/environment';
 
 @Injectable({
@@ -38,16 +39,18 @@ export class LocalInfoService {
       '&units=metric';
 
     // openweathermap.org api call
-    this.http.get(this.url).subscribe(
-      data => {
-        this.weatherDesc = data['weather'][0]['description'];
-        this.temp = Math.round(data['main']['temp']) + String.fromCharCode(176) + 'C';
-        this.city = data['name'];
-        this.country = data['sys']['country'];
-      },
-      // TODO handle weather request error
-      error => console.log(error),
-      () => callback()
-    );
+    this.http
+      .get(this.url)
+      .pipe(finalize(() => callback()))
+      .subscribe(
+        data => {
+          this.weatherDesc = data['weather'][0]['description'];
+          this.temp = Math.round(data['main']['temp']) + String.fromCharCode(176) + 'C';
+          this.city = data['name'];
+          this.country = data['sys']['country'];
+        },
+        // TODO handle weather request error
+        error => console.log(error)
+      );
   }
 }

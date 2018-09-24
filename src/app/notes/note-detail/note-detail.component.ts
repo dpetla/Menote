@@ -234,6 +234,10 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
         // subscribing to the firebase document (note)
         this.noteDoc.valueChanges().subscribe(
           data => {
+            // deleted note -> do nothing
+            if (!data) {
+              return;
+            }
             // store data note in local variable
             this.note = data as Note;
 

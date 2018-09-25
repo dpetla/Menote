@@ -14,7 +14,7 @@ before_script:
   - npm install -g @angular/cli
 
 script:
-  - if [[ $TRAVIS_BRANCH == "master" ]]; then ng build --prod; fi
+  - if [[ $TRAVIS_BRANCH == "master" && $TRAVIS_PULL_REQUEST == "false"  ]]; then ng build --prod; fi
   - if [[ $TRAVIS_BRANCH == "develop" ]]; then ng build --configuration=staging; fi
 
 after_success:

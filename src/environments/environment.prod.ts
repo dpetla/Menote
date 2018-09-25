@@ -1,12 +1,13 @@
 export const environment = {
   production: true,
+  staging: false,
   firebase: {
-    apiKey: 'AIzaSyBcC9pbQu9Xb6nmfs5WhpSB_1aWX6syQdU',
-    authDomain: 'ng-journal-app.firebaseapp.com',
-    databaseURL: 'https://ng-journal-app.firebaseio.com',
-    projectId: 'ng-journal-app',
-    storageBucket: 'ng-journal-app.appspot.com',
-    messagingSenderId: '768544417123'
+    apiKey: 'AIzaSyBy5bOg8Ncg3z4yLwvPALw0S93gVqNQGBc',
+    authDomain: 'menote.ca',
+    databaseURL: 'https://menote-prod.firebaseio.com',
+    projectId: 'menote-prod',
+    storageBucket: 'menote-prod.appspot.com',
+    messagingSenderId: '350037163457'
   },
   openWeatherMap: {
     url: 'https://api.openweathermap.org/data/2.5/weather?',

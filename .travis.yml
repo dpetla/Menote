@@ -17,8 +17,8 @@ script:
   - ng build --prod
 
 after_success:
-  - if [[ branch = master ]]; then firebase deploy -P prod --token $FIREBASE_TOKEN; fi;
-  - if [[ branch = develop ]]; then firebase deploy -P staging --token $FIREBASE_TOKEN; fi;
+  - if [[ branch == master ]]; then firebase deploy -P prod --token $FIREBASE_TOKEN; fi;
+  - if [[ branch == develop ]]; then firebase deploy -P staging --token $FIREBASE_TOKEN; fi;
 
 notifications:
   email:

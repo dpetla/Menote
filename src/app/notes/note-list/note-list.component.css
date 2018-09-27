@@ -36,7 +36,8 @@ input {
 }
 
 #btn-add {
-  bottom: 0;
+  position: absolute;
+  bottom: 5px;
   left: 280px;
   z-index: 99;
 }

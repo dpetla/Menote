@@ -1,36 +1,37 @@
-<nav class="navbar navbar-expand-md navbar-light bg-primary justify-content-between">
-  <div class="pl-2">
-    <i class="fa fa-bars fa-lg text-white pointer ml-1" aria-hidden="true"
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <i class="fa fa-bars fa text-white pointer ml-2 mr-1" aria-hidden="true"
       (click)="toggleSideMenu()"></i>
-    <a routerLink="/notes" class="navbar-brand text-white ml-1" id="brand-text">
-      menote
-    </a>
-  </div>
-  <div class="dropdown nav-item" *ngIf="isAuthenticated(); else noAuthLinks">
-    <a class="pointer" id="dropdownMenuButton" data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false">
-      <img width="38px" class="img-thumbnail rounded-circle p-0" [src]="getUserPhotoURL()"
-        alt="profile">
-    </a>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item px-3" routerLink="settings/account">
-        <i class="fa fa-cog fa-fw mr-2" aria-hidden="true"></i>Settings
-      </a>
-      <a class="dropdown-item px-3" (click)="onLogout()">
-        <i class="fa fa-sign-out fa-fw mr-2" aria-hidden="true"></i>Sign out
-      </a>
-      <a class="dropdown-item px-3" routerLink="about">
-        <i class="fa fa-info-circle fa-fw mr-2" aria-hidden="true"></i>About
-      </a>
+    <span id="brand-text" class="pointer" routerLink="/notes">menote</span>
+    <span class="spacer"></span>
+    <div class="dropdown nav-item" *ngIf="isAuthenticated(); else noAuthLinks">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <img width="38px" class="img-thumbnail rounded-circle p-0" [src]="getUserPhotoURL()"
+          alt="profile">
+      </button>
+      <mat-menu #menu="matMenu" [overlapTrigger]="false">
+        <button mat-menu-item routerLink="settings/account">
+          <i class="fa fa-cog fa-fw mr-2" aria-hidden="true"></i>
+          <span>Settings</span>
+        </button>
+        <button mat-menu-item routerLink="about">
+          <i class="fa fa-info-circle fa-fw mr-2" aria-hidden="true"></i>
+          <span>About</span>
+        </button>
+        <button mat-menu-item (click)="onLogout()">
+          <i class="fa fa-sign-out fa-fw mr-2" aria-hidden="true"></i>
+          <span>Sign out</span>
+        </button>
+      </mat-menu>
     </div>
-  </div>
-  <ng-template #noAuthLinks>
-    <div>
-      <a routerLink="/signin" routerLinkActive="d-none"
-        [routerLinkActiveOptions]="{ exact: true }" class="text-white pointer mx-2">Sign
-        In</a>
-      <a routerLink="" routerLinkActive="d-none" [routerLinkActiveOptions]="{ exact: true }"
-        class="text-white pointer mx-2">Home</a>
-    </div>
-  </ng-template>
-</nav>
+    <ng-template #noAuthLinks>
+      <div>
+        <a routerLink="/signin" routerLinkActive="d-none"
+          [routerLinkActiveOptions]="{ exact: true }" class="text-white pointer mx-2">Sign
+          In</a>
+        <a routerLink="" routerLinkActive="d-none" [routerLinkActiveOptions]="{ exact: true }"
+          class="text-white pointer mx-2">Home</a>
+      </div>
+    </ng-template>
+  </mat-toolbar-row>
+</mat-toolbar>

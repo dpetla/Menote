@@ -2,7 +2,7 @@
   <div *ngIf="notes | async as noteList; else loading">
     <ng-container *ngIf="noteList.length; else noItems">
       <div class="input-group searchbar">
-        <input type="text" class="searchbox" placeholder="Search notes"
+        <input type="text" class="form-control" placeholder="Search notes"
           [ngModel]="searchString" (ngModelChange)="onSearchList($event)">
         <div class="input-group-append pointer" *ngIf="searchString !== ''">
           <span class="input-group-text" (click)="resetNoteList()">

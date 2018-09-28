@@ -6,42 +6,6 @@ body {
   width: 100%;
 }
 
-/* beta tag */
-body:after {
-  content: 'beta';
-  position: absolute;
-  width: 80px;
-  height: 25px;
-  background: #ee8e4a;
-  top: 7px;
-  left: -20px;
-  text-align: center;
-  font-size: 13px;
-  font-family: sans-serif;
-  text-transform: uppercase;
-  font-weight: bold;
-  color: #fff;
-  line-height: 27px;
-  -ms-transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  z-index: 10;
-  overflow: hidden;
-  -webkit-animation: soft-display 2s;
-  -moz-animation: soft-display 2s;
-  -o-animation: soft-display 2s;
-  animation: soft-display 2s;
-  opacity: 1;
-}
-@keyframes soft-display {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 .pointer {
   cursor: pointer;
 }
@@ -118,5 +82,11 @@ button {
   padding: 0;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto', sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}

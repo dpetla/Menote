@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
 import { ViewService } from '../../shared/view.service';
 
@@ -10,13 +11,14 @@ import { ViewService } from '../../shared/view.service';
 export class HeaderComponent implements OnInit {
   userIcon = '../../../assets/images/account-profile-user-icon.png';
 
-  constructor(private authService: AuthService, private viewService: ViewService) {}
+  constructor(
+    private authService: AuthService,
+    private viewService: ViewService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.authService.subscribeToAuthState();
-    if (navigator.onLine && this.isAuthenticated()) {
-      this.authService.loginWithGoogle();
-    }
   }
 
   onLogout() {
@@ -37,5 +39,9 @@ export class HeaderComponent implements OnInit {
 
   toggleSideMenu() {
     this.viewService.showSideMenu = !this.viewService.showSideMenu;
+  }
+
+  isNotesPage() {
+    return this.router.url.indexOf('/notes') >= 0;
   }
 }

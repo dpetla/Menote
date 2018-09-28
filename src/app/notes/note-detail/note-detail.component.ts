@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestoreDocument } from 'angularfire2/firestore';
 import * as firebase from 'firebase/app';
@@ -28,7 +29,8 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
   constructor(
     private notesService: NotesService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -135,6 +137,18 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
       this.noteDoc.delete().catch(error => console.log(error));
       this.router.navigate(['/notes']);
     }
+
+    // const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+    //   width: '350px',
+    //   data: { name: this.name, animal: this.animal }
+    // });
+
+    // dialogRef.afterClosed().subscribe(isDelete => {
+    //   if (isDelete) {
+    //     this.noteDoc.delete().catch(error => console.log(error));
+    //     this.router.navigate(['/notes']);
+    //   }
+    // });
   }
 
   ngOnDestroy(): void {

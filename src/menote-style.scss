@@ -1,0 +1,77 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$menote-blue: (
+  50: #e4f3fc,
+  100: #bbe1f6,
+  200: #8dcef1,
+  300: #5fbaeb,
+  400: #3dabe6,
+  500: #1b9ce2,
+  600: #1894df,
+  700: #148ada,
+  800: #1080d6,
+  900: #086ecf,
+  A100: #f8fbff,
+  A200: #c5e0ff,
+  A400: #92c5ff,
+  A700: #79b8ff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
+);
+
+$menote-orange: (
+  50: #fff4e6,
+  100: #fee3c0,
+  200: #fed196,
+  300: #fdbf6c,
+  400: #fcb14d,
+  500: #fca32d,
+  600: #fc9b28,
+  700: #fb9122,
+  800: #fb881c,
+  900: #fa7711,
+  A100: #ffffff,
+  A200: #fff8f3,
+  A400: #ffd9c0,
+  A700: #ffcaa7,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #000000,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
+);
+
+$menote-primary: mat-palette($menote-blue);
+$menote-accent: mat-palette($menote-orange);
+$menote-warn: mat-palette($mat-red);
+
+$menote-app-theme: mat-light-theme($menote-primary, $menote-accent, $menote-warn);
+
+@include angular-material-theme($menote-app-theme);

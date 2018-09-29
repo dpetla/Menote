@@ -1,7 +1,15 @@
-<div class="d-flex flex-column">
+<div class="d-flex flex-column" *ngIf="true; else loading">
   <app-header></app-header>
   <div class="align-self-strech">
     <router-outlet></router-outlet>
   </div>
   <app-footer *ngIf="router.url.indexOf('/notes') < 0"></app-footer>
 </div>
+<ng-template #loading>
+  <div class="page-center">
+    <div>
+      <span class="spinner-text">Loading...</span>
+      <mat-spinner color="primary"></mat-spinner>
+    </div>
+  </div>
+</ng-template>

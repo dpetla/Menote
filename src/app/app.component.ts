@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { SwUpdate } from '@angular/service-worker';
 import * as firebase from 'firebase/app';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -13,7 +14,7 @@ import { environment } from '../environments/environment';
 export class AppComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, private swUpdate: SwUpdate) {}
 
   ngOnInit() {
     firebase.initializeApp({

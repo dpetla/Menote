@@ -12,7 +12,10 @@ import { NotesService } from './notes.service';
 export class NotesComponent implements OnInit {
   notes: Observable<Note[]>;
 
-  constructor(private viewService: ViewService, private notesService: NotesService) {}
+  constructor(
+    private viewService: ViewService,
+    private notesService: NotesService
+  ) {}
 
   // get list of notes
   ngOnInit() {
@@ -22,6 +25,9 @@ export class NotesComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.viewService.innerWidth = event.target.innerWidth;
+    if (!this.viewService.showSideMenu && this.viewService.isLargeScreen()) {
+      this.viewService.showSideMenu = this.viewService.isLargeScreen();
+    }
   }
 
   isLargeScreen() {

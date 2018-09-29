@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
 import { ViewService } from '../../shared/view.service';
 import { Note } from '../note.model';
 import { NotesService } from '../notes.service';
@@ -10,7 +10,6 @@ import { NotesService } from '../notes.service';
   styleUrls: ['./note-list.component.css']
 })
 export class NoteListComponent implements OnInit, OnChanges {
-  // tslint:disable-next-line:no-input-rename
   @Input('notes')
   notes: Observable<Note[]>;
   _notes: Note[];
@@ -21,6 +20,16 @@ export class NoteListComponent implements OnInit, OnChanges {
   constructor(private notesService: NotesService, private viewService: ViewService) {}
 
   ngOnInit() {}
+
+  // @Input("notes")
+  // set notes($notes: Observable<Note[]>) {
+  //   if (typeof $notes !== "undefined") {
+  //     $notes.subscribe(notes => {
+  //       this._notes = notes;
+  //       this._notesResult = this._notes;
+  //     });
+  //   }
+  // }
 
   ngOnChanges(changes) {
     if (changes['notes'] && this.notes) {
@@ -37,7 +46,7 @@ export class NoteListComponent implements OnInit, OnChanges {
   }
 
   onSelectNote() {
-    this.viewService.showSideMenu = false;
+    this.viewService.showSideMenu = this.viewService.isLargeScreen();
   }
 
   // getTimeCreated(note: Note) {

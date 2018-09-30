@@ -13,8 +13,9 @@
 </p>
 
 <p align="center">
-  <a href="https://travis-ci.org/dpetla/ng-journal-app">
-    <img alt="Build Status" src="https://travis-ci.org/dpetla/ng-journal-app.svg?branch=master">
+  
+  <a href="https://travis-ci.org/dpetla/Menote">
+    <img alt="Build Status" src="https://travis-ci.org/dpetla/Menote.svg?branch=master">
   </a>
 </p>
 

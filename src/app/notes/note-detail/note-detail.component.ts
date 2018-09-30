@@ -7,6 +7,7 @@ import 'firebase/firestore';
 import { Subscription } from 'rxjs';
 import { Note } from '../note.model';
 import { NotesService } from '../notes.service';
+import { SimpleDialogComponent } from '../simple-dialog/simple-dialog.component';
 import { froalaOptions } from './editor-options';
 
 @Component({
@@ -133,22 +134,21 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
   }
 
   onDeleteNote() {
-    if (window.confirm('Do you want to delete this note?')) {
-      this.noteDoc.delete().catch(error => console.log(error));
-      this.router.navigate(['/notes']);
-    }
+    const dialogRef = this.dialog.open(SimpleDialogComponent, {
+      width: '350px',
+      data: {
+        text: 'Delete note?',
+        confirmBtn: 'Delete',
+        cancelBtn: 'Cancel'
+      }
+    });
 
-    // const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-    //   width: '350px',
-    //   data: { name: this.name, animal: this.animal }
-    // });
-
-    // dialogRef.afterClosed().subscribe(isDelete => {
-    //   if (isDelete) {
-    //     this.noteDoc.delete().catch(error => console.log(error));
-    //     this.router.navigate(['/notes']);
-    //   }
-    // });
+    dialogRef.afterClosed().subscribe(isDelete => {
+      if (isDelete) {
+        this.noteDoc.delete().catch(error => console.log(error));
+        this.router.navigate(['/notes']);
+      }
+    });
   }
 
   ngOnDestroy(): void {

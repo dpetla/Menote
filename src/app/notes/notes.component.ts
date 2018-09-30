@@ -12,14 +12,14 @@ import { NotesService } from './notes.service';
 export class NotesComponent implements OnInit {
   notes: Observable<Note[]>;
 
-  constructor(
-    private viewService: ViewService,
-    private notesService: NotesService
-  ) {}
+  constructor(private viewService: ViewService, private notesService: NotesService) {}
 
   // get list of notes
   ngOnInit() {
-    this.notesService.initialize().then(notes => (this.notes = notes));
+    this.notesService
+      .initialize()
+      .then(notes => (this.notes = notes))
+      .catch(error => console.log(error));
   }
 
   @HostListener('window:resize', ['$event'])

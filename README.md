@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://menote.ca">
-    <img alt="Menote" title="Menote" src="https://github.com/dpetla/ng-journal-app/blob/version-6/src/assets/images/icons/icon-152x152.png" width="150">
+    <img alt="Menote" title="Menote" src="https://github.com/dpetla/Menote/blob/master/src/assets/images/icons/Icon-152-ios.png" width="150">
   </a>
 </p>
 <h3 align="center">Menote</h3>

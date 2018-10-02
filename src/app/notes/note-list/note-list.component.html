@@ -1,5 +1,5 @@
 <div class="list-group h-100 w-100">
-  <div *ngIf="notes | async as noteList; else loading">
+  <div *ngIf="notes$ | async as noteList; else loading">
     <ng-container *ngIf="noteList.length; else noItems">
       <div class="input-group searchbar">
         <input type="text" class="form-control" placeholder="Search notes"
@@ -11,7 +11,7 @@
         </div>
       </div>
       <a class="list-group-item list-group-item-action flex-column align-items-start cust-navbar"
-        *ngFor="let note of _notesResult" [ngClass]="{'active': selectedNote == note}"
+        *ngFor="let note of notesResult" [ngClass]="{'active': selectedNote == note}"
         (click)="onSelectNote()" [routerLink]="['/notes', note.id]"
         routerLinkActive="active">
         <div class="d-flex w-100 justify-content-between">

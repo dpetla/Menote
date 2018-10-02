@@ -11,9 +11,9 @@ import { NotesService } from '../notes.service';
 })
 export class NoteListComponent implements OnInit, OnChanges {
   @Input('notes')
-  notes: Observable<Note[]>;
-  _notes: Note[];
-  _notesResult: Note[];
+  notes$: Observable<Note[]>;
+  notes: Note[];
+  notesResult: Note[];
   searchString = '';
   // innerWidth = window.innerWidth;
 
@@ -22,10 +22,10 @@ export class NoteListComponent implements OnInit, OnChanges {
   ngOnInit() {}
 
   ngOnChanges(changes) {
-    if (changes['notes'] && this.notes) {
-      this.notes.subscribe(notes => {
-        this._notes = notes;
-        this._notesResult = this._notes;
+    if (changes['notes$'] && this.notes$) {
+      this.notes$.subscribe(notes => {
+        this.notes = notes;
+        this.notesResult = this.notes;
       });
     }
   }
@@ -48,11 +48,11 @@ export class NoteListComponent implements OnInit, OnChanges {
     if (searchString === '') {
       this.resetNoteList();
     }
-    if (!this._notes) {
+    if (!this.notes) {
       return;
     } else {
       const term = searchString.toLowerCase();
-      this._notesResult = this._notes.filter(note => {
+      this.notesResult = this.notes.filter(note => {
         const cleanContent = note.content.toLowerCase().replace(/<\/?[^>]+(>|$)/g, '');
         // search in content, title, location or tags
         return (
@@ -67,6 +67,6 @@ export class NoteListComponent implements OnInit, OnChanges {
 
   resetNoteList() {
     this.searchString = '';
-    this._notesResult = this._notes;
+    this.notesResult = this.notes;
   }
 }

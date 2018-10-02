@@ -10,7 +10,7 @@ import { NotesService } from './notes.service';
   styleUrls: ['./notes.component.css']
 })
 export class NotesComponent implements OnInit {
-  notes: Observable<Note[]>;
+  notes$: Observable<Note[]>;
 
   constructor(private viewService: ViewService, private notesService: NotesService) {}
 
@@ -18,7 +18,7 @@ export class NotesComponent implements OnInit {
   ngOnInit() {
     this.notesService
       .initialize()
-      .then(notes => (this.notes = notes))
+      .then(notes => (this.notes$ = notes))
       .catch(error => console.log(error));
   }
 

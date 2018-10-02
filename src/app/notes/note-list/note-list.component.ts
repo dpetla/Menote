@@ -21,16 +21,6 @@ export class NoteListComponent implements OnInit, OnChanges {
 
   ngOnInit() {}
 
-  // @Input("notes")
-  // set notes($notes: Observable<Note[]>) {
-  //   if (typeof $notes !== "undefined") {
-  //     $notes.subscribe(notes => {
-  //       this._notes = notes;
-  //       this._notesResult = this._notes;
-  //     });
-  //   }
-  // }
-
   ngOnChanges(changes) {
     if (changes['notes'] && this.notes) {
       this.notes.subscribe(notes => {
@@ -64,6 +54,7 @@ export class NoteListComponent implements OnInit, OnChanges {
       const term = searchString.toLowerCase();
       this._notesResult = this._notes.filter(note => {
         const cleanContent = note.content.toLowerCase().replace(/<\/?[^>]+(>|$)/g, '');
+        // search in content, title, location or tags
         return (
           cleanContent.includes(term) ||
           note.title.toLowerCase().includes(term) ||

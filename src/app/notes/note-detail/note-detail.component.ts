@@ -38,40 +38,36 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
     // get note id from url param
     this.subscription = this.route.params.subscribe(
       params => {
-        if (this.notesService.notesRef) {
-          // get note document with with ID passed through the URL
-          this.id = params['id'];
-          this.noteDoc = this.notesService.getNote(this.id);
+        // get note document with with ID passed through the URL
+        this.id = params['id'];
+        this.noteDoc = this.notesService.getNote(this.id);
 
-          // subscribing to the firebase document (note)
-          this.noteDoc.valueChanges().subscribe(
-            data => {
-              // deleted note -> do nothing
-              if (!data) {
-                return;
-              }
-              // store data note in local variable
-              this.note = data as Note;
+        // subscribing to the firebase document (note)
+        this.noteDoc.valueChanges().subscribe(
+          data => {
+            // deleted note -> do nothing
+            if (!data) {
+              return;
+            }
+            // store data note in local variable
+            this.note = data as Note;
 
-              // get keys and values from tag object
-              if (this.note['tags']) {
-                this.tags$ = [];
-                const keys = Object.keys(this.note['tags']);
-                const values = Object.values(this.note['tags']);
+            // get keys and values from tag object
+            if (this.note['tags']) {
+              this.tags$ = [];
+              const keys = Object.keys(this.note['tags']);
+              const values = Object.values(this.note['tags']);
 
-                // add tag to local array if value true
-                values.forEach((value, index) => value && this.tags$.push(keys[index]));
-              }
+              // add tag to local array if value true
+              values.forEach((value, index) => value && this.tags$.push(keys[index]));
+            }
 
-              // set flags
-              this.isTagsFull = this.tags$.length >= this.tagsMax;
-              this.tagEditable = false;
-            },
-            error => console.log(error)
-          );
-        } else {
-          this.router.navigate(['notes/']);
-        }
+            // set flags
+            this.isTagsFull = this.tags$.length >= this.tagsMax;
+            this.tagEditable = false;
+          },
+          error => console.log(error)
+        );
       },
       error => console.log(error)
     );

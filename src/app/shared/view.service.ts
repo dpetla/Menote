@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 // target width (in px) to hide/show side menu
 const targetWidth = 900;
@@ -6,14 +6,9 @@ const targetWidth = 900;
 @Injectable({
   providedIn: 'root'
 })
-export class ViewService implements OnInit {
+export class ViewService {
   innerWidth = window.innerWidth;
-  showSideMenu: boolean;
-
-  ngOnInit() {
-    // initialize variable
-    this.showSideMenu = this.isLargeScreen();
-  }
+  showSideMenu = true;
 
   // checks if screen width is less than or equal target
   isLargeScreen() {

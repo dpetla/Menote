@@ -18,6 +18,9 @@
             "polyfills": "src/polyfills.ts",
             "assets": ["src/assets", "src/favicon.ico", "src/manifest.json"],
             "styles": [
+              {
+                "input": "src/menote-style.scss"
+              },
               "node_modules/froala-editor/css/froala_editor.pkgd.min.css",
               "node_modules/froala-editor/css/froala_style.min.css",
               "node_modules/font-awesome/css/font-awesome.css",
@@ -102,6 +105,9 @@
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ],
             "styles": [
+              {
+                "input": "src/menote-style.scss"
+              },
               "node_modules/froala-editor/css/froala_editor.pkgd.min.css",
               "node_modules/froala-editor/css/froala_style.min.css",
               "node_modules/font-awesome/css/font-awesome.css",

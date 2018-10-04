@@ -1,22 +1,23 @@
 #notes-container {
+  width: 100%;
   height: calc(100vh - 62px);
+}
+
+#notes-sidenav {
+  width: 350px;
   overflow: hidden;
 }
 
 #notes-list {
-  min-width: 350px;
-  position: fixed;
-  bottom: 0;
-  top: 55px;
-  z-index: 100;
-}
-
-@media only screen and (min-width: 900px) {
-  #notes-list {
-    position: inherit;
-  }
+  min-width: 100%;
 }
 
 #btn-add {
   margin-top: 200px;
+}
+
+@media only screen and (min-width: 900px) {
+  #notes-list {
+    /* position: inherit; */
+  }
 }

@@ -13,7 +13,7 @@ import { Note } from './note.model';
 })
 export class NotesService {
   notesRef: AngularFirestoreCollection<Note>;
-  notes: Observable<Note[]>;
+  notes$: Observable<Note[]>;
   deletedNotesRef: AngularFirestoreCollection<Note[]>;
 
   // note template used for creating notes
@@ -28,42 +28,37 @@ export class NotesService {
 
   initialize(): Promise<any> {
     return new Promise((resolve, reject) => {
-      if (this.authService.user) {
-        // getting user's notes ref
-        this.notesRef = this.db.collection('notes', ref => {
-          return ref.where('uid', '==', this.authService.user.uid).orderBy('dateCreated', 'desc');
-        });
+      // getting user's notes ref
+      this.notesRef = this.db.collection('notes', ref => {
+        return ref.where('uid', '==', this.authService.user.uid).orderBy('dateCreated', 'desc');
+      });
 
-        // subscription to user's notes
-        this.notes = this.notesRef.snapshotChanges().pipe(
-          map(actions => {
-            return actions.map(action => {
-              const data = action.payload.doc.data() as Note;
-              const id = action.payload.doc.id;
-              return { id, ...data };
-            });
-          })
-        );
+      // subscription to user's notes
+      this.notes$ = this.notesRef.snapshotChanges().pipe(
+        map(actions => {
+          return actions.map(action => {
+            const data = action.payload.doc.data() as Note;
+            const id = action.payload.doc.id;
+            return { id, ...data };
+          });
+        })
+      );
 
-        // new user welcome note
-        if (this.authService.isNewUser) {
-          this.createNote();
-        }
-
-        // notes trash ref
-        this.deletedNotesRef = this.db.collection('notes-deleted');
-
-        resolve(this.notes);
-      } else {
-        // this.router.navigate(['/']);
-        reject();
+      // new user welcome note
+      if (this.authService.isNewUser) {
+        this.createNote();
       }
+
+      // notes trash ref
+      this.deletedNotesRef = this.db.collection('notes-deleted');
+
+      resolve(this.notes$);
     });
   }
 
   // Get all notes
   getNotes() {
-    return this.notes;
+    return this.notes$;
   }
 
   // get note by id

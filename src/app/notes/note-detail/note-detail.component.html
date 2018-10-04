@@ -3,11 +3,12 @@
   <!-- card header -->
   <div class="card-header">
     <div class="d-flex justify-content-between">
-      <input type="text" maxlength="100" class="card-input mb-md-3 border-0" required [ngModel]="note?.title" (ngModelChange)="onTitleChange($event)">
+      <input type="text" maxlength="100" class="card-input mb-md-3 border-0"
+        required [ngModel]="note?.title" (ngModelChange)="onTitleChange($event)">
       <div class="text-right">
-        <a role="button" (click)="onDeleteNote()" class="card-link pointer">
-          <i class="fa fa-trash" aria-hidden="true"></i>
-        </a>
+        <button mat-icon-button (click)="onDeleteNote()">
+          <i class="fa fa-lg fa-trash" aria-hidden="true"></i>
+        </button>
       </div>
     </div>
     <h6 class="card-subtitle mb-2 text-muted d-inline d-md-block">
@@ -26,14 +27,14 @@
         <i (click)="onRemoveTag(tag)" class="fa fa-times pointer">
         </i>
       </span>
-      <button role="button" [hidden]="isTagsFull" *ngIf="!tagEditable; else tagInput" class="badge badge-secondary pointer rounded-circle"
-        (click)="toggleTagEdit()">
+      <button role="button" [hidden]="isTagsFull" *ngIf="!tagEditable; else tagInput"
+        class="badge badge-secondary pointer rounded-circle" (click)="toggleTagEdit()">
         <i class="fa fa-plus"></i>
       </button>
       <ng-template #tagInput>
         <!-- TODO input focus when adding new tag -->
-        <input [autofocus]="tagEditable" autofocus type="text" id="tag-input" class="card-input border-0" (keyup.enter)="onSaveTag($event)"
-          (blur)="tagEditable = false">
+        <input [autofocus]="tagEditable" autofocus type="text" id="tag-input"
+          class="card-input border-0" (keyup.enter)="onSaveTag($event)" (blur)="tagEditable = false">
       </ng-template>
     </div>
   </div>
@@ -42,7 +43,8 @@
   <div class="card-body">
     <div class="card-text h-100">
       <!-- forala editor-->
-      <div [froalaEditor]="froalaOptions" [ngModel]="note?.content" (ngModelChange)="onContentChange($event)"></div>
+      <div [froalaEditor]="froalaOptions" [ngModel]="note?.content"
+        (ngModelChange)="onContentChange($event)"></div>
     </div>
   </div>
 </div>

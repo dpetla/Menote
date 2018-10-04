@@ -17,9 +17,7 @@ export class HeaderComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {
-    this.authService.subscribeToAuthState();
-  }
+  ngOnInit() {}
 
   onLogout() {
     this.authService.logout();

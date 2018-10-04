@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ViewService } from '../shared/view.service';
+import { AuthService } from './../auth/auth.service';
 import { Note } from './note.model';
 import { NotesService } from './notes.service';
 
@@ -12,14 +13,21 @@ import { NotesService } from './notes.service';
 export class NotesComponent implements OnInit {
   notes$: Observable<Note[]>;
 
-  constructor(private viewService: ViewService, private notesService: NotesService) {}
+  constructor(
+    private viewService: ViewService,
+    private notesService: NotesService,
+    private authService: AuthService
+  ) {}
 
   // get list of notes
   ngOnInit() {
-    this.notesService
-      .initialize()
-      .then(notes => (this.notes$ = notes))
-      .catch(error => console.log(error));
+    const delay = this.authService.user ? 0 : 1500;
+    setTimeout(() => {
+      this.notesService
+        .initialize()
+        .then(notes => (this.notes$ = notes))
+        .catch(error => console.log(error));
+    }, delay);
   }
 
   @HostListener('window:resize', ['$event'])

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
+import { Observable, Observer } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +12,32 @@ export class AuthService {
   user: any;
   isNewUser = false;
   jwtHelper = new JwtHelperService();
+  user$: Observable<Object>;
 
-  constructor(private router: Router) {}
-
-  subscribeToAuthState() {
+  constructor(private router: Router) {
     firebase.auth().onAuthStateChanged(user => {
       this.user = user;
+      this.user$ = Observable.create((observer: Observer<any>) => observer.next(this.user));
       if (this.user) {
         user.getIdToken().then(token => localStorage.setItem('menote-token', token));
       }
       const path = localStorage.getItem('menote-nav-hist') || '/notes';
       this.router.navigate([path]);
     });
+    // this.init();
   }
+
+  // init() {
+  //   firebase.auth().onAuthStateChanged(user => {
+  //     this.user = user;
+  //     this.user$ = Observable.create((observer: Observer<any>) => observer.next(this.user));
+  //     if (this.user) {
+  //       user.getIdToken().then(token => localStorage.setItem('menote-token', token));
+  //     }
+  //     const path = localStorage.getItem('menote-nav-hist') || '/notes';
+  //     this.router.navigate([path]);
+  //   });
+  // }
 
   loginWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -35,6 +49,7 @@ export class AuthService {
           .auth()
           .signInWithPopup(provider)
           .then(result => {
+            this.user = result.user;
             this.isNewUser = result.additionalUserInfo.isNewUser;
             this.router.navigate(['/notes']);
           })

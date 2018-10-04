@@ -28,7 +28,6 @@ export class NotesService {
 
   initialize(): Promise<any> {
     return new Promise((resolve, reject) => {
-      // if (this.authService.user) {
       // getting user's notes ref
       this.notesRef = this.db.collection('notes', ref => {
         return ref.where('uid', '==', this.authService.user.uid).orderBy('dateCreated', 'desc');
@@ -54,10 +53,6 @@ export class NotesService {
       this.deletedNotesRef = this.db.collection('notes-deleted');
 
       resolve(this.notes$);
-      // } else {
-      //   // this.router.navigate(['/']);
-      //   reject();
-      // }
     });
   }
 

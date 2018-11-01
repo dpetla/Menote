@@ -7,11 +7,16 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'notes', loadChildren: './notes/notes.module#NotesModule' },
-  { path: 'settings', loadChildren: './settings/settings.module#SettingsModule' }
+  {
+    path: 'settings',
+    loadChildren: './settings/settings.module#SettingsModule'
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules })],
+  imports: [
+    RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules })
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

@@ -28,7 +28,9 @@ export class HeaderComponent implements OnInit {
   }
 
   getUserPhotoURL() {
-    return this.authService.user ? this.authService.user.photoURL : this.userIcon;
+    return this.authService.user
+      ? this.authService.user.photoURL
+      : this.userIcon;
   }
 
   isLargeScreen() {

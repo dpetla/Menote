@@ -8,9 +8,7 @@ const settingsRoutes: Routes = [
   {
     path: '',
     component: SettingsComponent,
-    children: [
-      { path: 'account', component: AccountComponent }
-    ],
+    children: [{ path: 'account', component: AccountComponent }],
     canActivate: [AuthGuard]
   }
 ];

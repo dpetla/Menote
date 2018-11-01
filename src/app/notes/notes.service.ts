@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection
+} from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LocalInfoService } from '../shared/local-info.service';
@@ -30,7 +33,9 @@ export class NotesService {
     return new Promise((resolve, reject) => {
       // getting user's notes ref
       this.notesRef = this.db.collection('notes', ref => {
-        return ref.where('uid', '==', this.authService.user.uid).orderBy('dateCreated', 'desc');
+        return ref
+          .where('uid', '==', this.authService.user.uid)
+          .orderBy('dateCreated', 'desc');
       });
 
       // subscription to user's notes
@@ -71,10 +76,14 @@ export class NotesService {
     this.localInfoService.getLocalInfo(() => {
       // enter note data
       this.newNote.uid = this.authService.user.uid;
-      this.newNote.location = `${this.localInfoService.city}, ${this.localInfoService.country}`;
+      this.newNote.location = `${this.localInfoService.city}, ${
+        this.localInfoService.country
+      }`;
       this.newNote.title = new Date().toDateString();
       this.newNote.dateCreated = new Date();
-      this.newNote.weather = `${this.localInfoService.temp} ${this.localInfoService.weatherDesc}`;
+      this.newNote.weather = `${this.localInfoService.temp} ${
+        this.localInfoService.weatherDesc
+      }`;
 
       // create instruction note when signing up new user
       if (this.authService.isNewUser) {

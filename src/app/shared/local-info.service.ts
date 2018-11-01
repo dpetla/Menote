@@ -26,7 +26,9 @@ export class LocalInfoService {
   // store lat and long in one sing string variable
   setPosition(position) {
     this.position = position.coords;
-    this.latlng = `lat=${this.position['latitude']}&lon=${this.position['longitude']}`;
+    this.latlng = `lat=${this.position['latitude']}&lon=${
+      this.position['longitude']
+    }`;
   }
 
   // use position and api call to get weather and location data
@@ -45,7 +47,8 @@ export class LocalInfoService {
       .subscribe(
         data => {
           this.weatherDesc = data['weather'][0]['description'];
-          this.temp = Math.round(data['main']['temp']) + String.fromCharCode(176) + 'C';
+          this.temp =
+            Math.round(data['main']['temp']) + String.fromCharCode(176) + 'C';
           this.city = data['name'];
           this.country = data['sys']['country'];
         },

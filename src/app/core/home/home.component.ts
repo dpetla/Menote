@@ -29,17 +29,20 @@ export class HomeComponent implements OnInit {
     },
     {
       name: 'Tags',
-      desc: 'Create your own tags to organize and add more detail to your notes.',
+      desc:
+        'Create your own tags to organize and add more detail to your notes.',
       icon: 'tags'
     },
     {
       name: 'Location & Weather',
-      desc: 'Automatically capture and add location and current weather conditions to your notes.',
+      desc:
+        'Automatically capture and add location and current weather conditions to your notes.',
       icon: 'compass'
     },
     {
       name: 'Images',
-      desc: 'Make your notes come to life adding images of your important moments.',
+      desc:
+        'Make your notes come to life adding images of your important moments.',
       icon: 'picture-o'
     }
   ];

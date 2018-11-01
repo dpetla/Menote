@@ -17,9 +17,13 @@ export class AuthService {
   constructor(private router: Router) {
     firebase.auth().onAuthStateChanged(user => {
       this.user = user;
-      this.user$ = Observable.create((observer: Observer<any>) => observer.next(this.user));
+      this.user$ = Observable.create((observer: Observer<any>) =>
+        observer.next(this.user)
+      );
       if (this.user) {
-        user.getIdToken().then(token => localStorage.setItem('menote-token', token));
+        user
+          .getIdToken()
+          .then(token => localStorage.setItem('menote-token', token));
       }
       const path = localStorage.getItem('menote-nav-hist') || '/notes';
       this.router.navigate([path]);
@@ -70,7 +74,10 @@ export class AuthService {
   }
 
   isAuthenticated() {
-    return this.user != null || this.isTokenValid(localStorage.getItem('menote-token'));
+    return (
+      this.user != null ||
+      this.isTokenValid(localStorage.getItem('menote-token'))
+    );
   }
 
   isTokenValid(token: string) {

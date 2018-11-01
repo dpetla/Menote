@@ -59,7 +59,9 @@ export class NoteDetailComponent implements OnInit, OnDestroy {
               const values = Object.values(this.note['tags']);
 
               // add tag to local array if value true
-              values.forEach((value, index) => value && this.tags$.push(keys[index]));
+              values.forEach(
+                (value, index) => value && this.tags$.push(keys[index])
+              );
             }
 
             // set flags

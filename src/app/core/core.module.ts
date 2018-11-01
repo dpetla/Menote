@@ -11,8 +11,19 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [HeaderComponent, HomeComponent, AboutComponent, FooterComponent],
-  imports: [CommonModule, FormsModule, AppRoutingModule, AuthModule, MaterialModule],
+  declarations: [
+    HeaderComponent,
+    HomeComponent,
+    AboutComponent,
+    FooterComponent
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    AppRoutingModule,
+    AuthModule,
+    MaterialModule
+  ],
   exports: [AppRoutingModule, HeaderComponent, FooterComponent],
   providers: [AngularFireAuth]
 })

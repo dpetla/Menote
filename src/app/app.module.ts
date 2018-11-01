@@ -19,9 +19,14 @@ import { MaterialModule } from './material/material.module';
   imports: [
     BrowserModule,
     FormsModule,
-    AngularFireModule.initializeApp(environment.firebase, environment.firebase.projectId),
+    AngularFireModule.initializeApp(
+      environment.firebase,
+      environment.firebase.projectId
+    ),
     AngularFirestoreModule.enablePersistence(),
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('/ngsw-worker.js', {
+      enabled: environment.production
+    }),
     AuthModule,
     CoreModule,
     HttpClientModule,

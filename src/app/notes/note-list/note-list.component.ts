@@ -17,7 +17,10 @@ export class NoteListComponent implements OnInit, OnChanges {
   searchString = '';
   // innerWidth = window.innerWidth;
 
-  constructor(private notesService: NotesService, private viewService: ViewService) {}
+  constructor(
+    private notesService: NotesService,
+    private viewService: ViewService
+  ) {}
 
   ngOnInit() {}
 
@@ -53,13 +56,17 @@ export class NoteListComponent implements OnInit, OnChanges {
     } else {
       const term = searchString.toLowerCase();
       this.notesResult = this.notes.filter(note => {
-        const cleanContent = note.content.toLowerCase().replace(/<\/?[^>]+(>|$)/g, '');
+        const cleanContent = note.content
+          .toLowerCase()
+          .replace(/<\/?[^>]+(>|$)/g, '');
         // search in content, title, location or tags
         return (
           cleanContent.includes(term) ||
           note.title.toLowerCase().includes(term) ||
           note.location.toLowerCase().includes(term) ||
-          Object.keys(note.tags).some(tag => tag.toLowerCase().indexOf(term) >= 0)
+          Object.keys(note.tags).some(
+            tag => tag.toLowerCase().indexOf(term) >= 0
+          )
         );
       });
     }

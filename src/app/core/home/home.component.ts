@@ -50,14 +50,10 @@ export class HomeComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    if (this.isAuthenticated()) {
+    if (this.authService.isAuthenticated()) {
       const path = localStorage.getItem('menote-nav-hist') || '/notes';
       this.router.navigate([path]);
     }
-  }
-
-  isAuthenticated() {
-    return this.authService.isAuthenticated();
   }
 
   onSend(f: NgForm) {

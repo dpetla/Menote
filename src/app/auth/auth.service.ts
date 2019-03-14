@@ -39,7 +39,7 @@ export class AuthService {
           .then(result => {
             this.user = result.user;
             this.isNewUser = result.additionalUserInfo.isNewUser;
-            this.ngZone.run(() => this.router.navigate(['notes']));
+            this.ngZone.run(() => this.router.navigate(['/notes']));
           })
           .catch(error =>
             console.log('Error while logginh with Google.', error)

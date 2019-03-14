@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
-import { Observable, Observer } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,36 +11,21 @@ export class AuthService {
   user: any;
   isNewUser = false;
   jwtHelper = new JwtHelperService();
-  user$: Observable<Object>;
 
-  constructor(private router: Router) {
-    firebase.auth().onAuthStateChanged(user => {
+  constructor(private router: Router, private ngZone: NgZone) {
+    firebase.auth().onAuthStateChanged((user: firebase.User) => {
       this.user = user;
-      this.user$ = Observable.create((observer: Observer<any>) =>
-        observer.next(this.user)
-      );
-      if (this.user) {
+      if (user) {
         user
           .getIdToken()
-          .then(token => localStorage.setItem('menote-token', token));
+          .then((token: string) => localStorage.setItem('menote-token', token))
+          .then(() => {
+            const path = localStorage.getItem('menote-nav-hist') || '/notes';
+            this.ngZone.run(() => this.router.navigate([path]));
+          });
       }
-      const path = localStorage.getItem('menote-nav-hist') || '/notes';
-      this.router.navigate([path]);
     });
-    // this.init();
   }
-
-  // init() {
-  //   firebase.auth().onAuthStateChanged(user => {
-  //     this.user = user;
-  //     this.user$ = Observable.create((observer: Observer<any>) => observer.next(this.user));
-  //     if (this.user) {
-  //       user.getIdToken().then(token => localStorage.setItem('menote-token', token));
-  //     }
-  //     const path = localStorage.getItem('menote-nav-hist') || '/notes';
-  //     this.router.navigate([path]);
-  //   });
-  // }
 
   loginWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -55,9 +39,11 @@ export class AuthService {
           .then(result => {
             this.user = result.user;
             this.isNewUser = result.additionalUserInfo.isNewUser;
-            this.router.navigate(['/notes']);
+            this.ngZone.run(() => this.router.navigate(['notes']));
           })
-          .catch(error => console.log(error));
+          .catch(error =>
+            console.log('Error while logginh with Google.', error)
+          );
       });
   }
 
@@ -66,8 +52,8 @@ export class AuthService {
       .auth()
       .signOut()
       .then(result => {
-        localStorage.setItem('menote-nav-hist', '/');
         localStorage.removeItem('menote-token');
+        localStorage.setItem('menote-nav-hist', '/');
         this.router.navigate(['/']);
       })
       .catch(error => console.log(`Error while logging out. ERROR: ${error}`));

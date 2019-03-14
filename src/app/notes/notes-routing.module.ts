@@ -9,11 +9,11 @@ const notesRoute: Routes = [
   {
     path: '',
     component: NotesComponent,
+    canActivateChild: [AuthGuard],
     children: [
       { path: '', component: NoteStartComponent },
       { path: ':id', component: NoteDetailComponent }
-    ],
-    canActivate: [AuthGuard]
+    ]
   }
 ];
 

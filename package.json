@@ -10,7 +10,7 @@
     "build": "ng build --prod",
     "pwa": "http-server dist/",
     "deploy-prod": "ng build --prod && firebase deploy -P prod",
-    "deploy-staging": "ng build --configuration=staging && ffirebase deploy -P staging",
+    "deploy-staging": "ng build --configuration=staging && firebase deploy -P staging",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

@@ -15,7 +15,6 @@ export class NoteListComponent implements OnInit, OnChanges {
   notes: Note[];
   notesResult: Note[];
   searchString = '';
-  // innerWidth = window.innerWidth;
 
   constructor(
     private notesService: NotesService,
@@ -41,10 +40,6 @@ export class NoteListComponent implements OnInit, OnChanges {
   onSelectNote() {
     this.viewService.showSideMenu = this.viewService.isLargeScreen();
   }
-
-  // getTimeCreated(note: Note) {
-  //   return note.dateCreated.getTime();
-  // }
 
   onSearchList(searchString) {
     this.searchString = searchString;

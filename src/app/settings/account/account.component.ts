@@ -56,10 +56,6 @@ export class AccountComponent implements OnInit {
     return this.authService.user.providerData[0].providerId;
   }
 
-  onDeactivateAccount() {
-    // TODO
-  }
-
   onConfirmDeactivation() {
     return (this.deactivateConfirmed = !this.deactivateConfirmed);
   }

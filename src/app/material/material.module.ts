@@ -9,6 +9,7 @@ import {
   MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 const materialModules = [
   MatButtonModule,
@@ -22,7 +23,7 @@ const materialModules = [
 ];
 @NgModule({
   imports: [...materialModules],
-  declarations: [],
-  exports: [...materialModules]
+  declarations: [LoadingSpinnerComponent],
+  exports: [...materialModules, LoadingSpinnerComponent]
 })
 export class MaterialModule {}

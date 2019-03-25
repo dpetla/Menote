@@ -1,10 +1,18 @@
-<div class="card m-3 d-flex flex-column cust-box-shadow">
-
+<div
+  class="card m-3 d-flex flex-column cust-box-shadow"
+  *ngIf="(note$ | async) as notex"
+>
   <!-- card header -->
   <div class="card-header">
     <div class="d-flex justify-content-between">
-      <input type="text" maxlength="100" class="card-input mb-md-3 border-0"
-        required [ngModel]="note?.title" (ngModelChange)="onTitleChange($event)">
+      <input
+        type="text"
+        maxlength="100"
+        class="card-input mb-md-3 border-0"
+        required
+        [ngModel]="notex.title"
+        (ngModelChange)="onTitleChange($event)"
+      />
       <div class="text-right">
         <button mat-icon-button (click)="onDeleteNote()">
           <i class="fa fa-lg fa-trash" aria-hidden="true"></i>
@@ -13,28 +21,42 @@
     </div>
     <h6 class="card-subtitle mb-2 text-muted d-inline d-md-block">
       <span>
-        {{ note?.location }}
+        {{ notex.location }}
       </span>
       <span class="ml-4">
-        {{ note?.weather }}
+        {{ notex.weather }}
       </span>
     </h6>
 
     <!-- tags -->
     <div class="d-inline d-md-block ml-2 ml-md-auto">
-      <span class="badge badge-pill badge-secondary mr-1" *ngFor="let tag of tags$; index as i">
+      <span
+        class="badge badge-pill badge-secondary mr-1"
+        *ngFor="let tag of notex.tags; index as i"
+      >
         {{ tag }}
-        <i (click)="onRemoveTag(tag)" class="fa fa-times pointer">
-        </i>
+        <i (click)="onRemoveTag(tag)" class="fa fa-times pointer"> </i>
       </span>
-      <button role="button" [hidden]="isTagsFull" *ngIf="!tagEditable; else tagInput"
-        class="badge badge-secondary pointer rounded-circle" (click)="toggleTagEdit()">
+      <button
+        role="button"
+        [hidden]="isTagsFull"
+        *ngIf="!tagEditable; else tagInput"
+        class="badge badge-secondary pointer rounded-circle"
+        (click)="toggleTagEdit()"
+      >
         <i class="fa fa-plus"></i>
       </button>
       <ng-template #tagInput>
         <!-- TODO input focus when adding new tag -->
-        <input [autofocus]="tagEditable" autofocus type="text" id="tag-input"
-          class="card-input border-0" (keyup.enter)="onSaveTag($event)" (blur)="tagEditable = false">
+        <input
+          [autofocus]="tagEditable"
+          autofocus
+          type="text"
+          id="tag-input"
+          class="card-input border-0"
+          (keyup.enter)="onSaveTag($event)"
+          (blur)="tagEditable = false"
+        />
       </ng-template>
     </div>
   </div>
@@ -43,8 +65,11 @@
   <div class="card-body">
     <div class="card-text h-100">
       <!-- forala editor-->
-      <div [froalaEditor]="froalaOptions" [ngModel]="note?.content"
-        (ngModelChange)="onContentChange($event)"></div>
+      <div
+        [froalaEditor]="froalaOptions"
+        [ngModel]="notex.content"
+        (ngModelChange)="onContentChange($event)"
+      ></div>
     </div>
   </div>
 </div>

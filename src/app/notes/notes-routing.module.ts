@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/auth-guard.service';
 import { NoteDetailComponent } from './note-detail/note-detail.component';
 import { NoteStartComponent } from './note-start/note-start.component';
+import { NotesResolverService } from './notes-resolver.service';
 import { NotesComponent } from './notes.component';
 
 const notesRoute: Routes = [
@@ -12,8 +13,12 @@ const notesRoute: Routes = [
     canActivateChild: [AuthGuard],
     children: [
       { path: '', component: NoteStartComponent },
-      { path: ':id', component: NoteDetailComponent }
-    ]
+      {
+        path: ':id',
+        component: NoteDetailComponent
+      }
+    ],
+    resolve: { notes: NotesResolverService }
   }
 ];
 

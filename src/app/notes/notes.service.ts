@@ -5,7 +5,6 @@ import {
   AngularFirestoreCollection
 } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { LocalInfoService } from '../shared/local-info.service';
 import { AuthService } from './../auth/auth.service';
 import * as noteTemplate from './note-templates';
@@ -18,8 +17,6 @@ export class NotesService {
   notesRef: AngularFirestoreCollection<Note>;
   notes$: Observable<Note[]>;
   deletedNotesRef: AngularFirestoreCollection<Note[]>;
-
-  // note template used for creating notes
   newNote: Note = noteTemplate.newNote;
 
   constructor(
@@ -27,46 +24,28 @@ export class NotesService {
     private db: AngularFirestore,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+    this.createWelcomeNoteForNewUser();
+  }
 
-  initialize(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      // getting user's notes ref
-      this.notesRef = this.db.collection('notes', ref => {
-        return ref
-          .where('uid', '==', this.authService.user.uid)
-          .orderBy('dateCreated', 'desc');
-      });
-
-      // subscription to user's notes
-      this.notes$ = this.notesRef.snapshotChanges().pipe(
-        map(actions => {
-          return actions.map(action => {
-            const data = action.payload.doc.data() as Note;
-            const id = action.payload.doc.id;
-            return { id, ...data };
-          });
-        })
-      );
-
-      // new user welcome note
-      if (this.authService.isNewUser) {
-        this.createNote();
-      }
-
-      // notes trash ref
-      this.deletedNotesRef = this.db.collection('notes-deleted');
-
-      resolve(this.notes$);
+  getNotesRef(): AngularFirestoreCollection<Note> {
+    return this.db.collection('notes', ref => {
+      return ref
+        .where('uid', '==', this.authService.user.uid)
+        .orderBy('dateCreated', 'desc');
     });
   }
 
-  // Get all notes
+  createWelcomeNoteForNewUser() {
+    if (this.authService.isNewUser) {
+      this.createNote();
+    }
+  }
+
   getNotes() {
     return this.notes$;
   }
 
-  // get note by id
   getNote(id: string) {
     return this.notesRef.doc(id);
   }

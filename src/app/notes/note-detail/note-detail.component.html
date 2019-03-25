@@ -1,6 +1,6 @@
 <div
   class="card m-3 d-flex flex-column cust-box-shadow"
-  *ngIf="(note$ | async) as notex"
+  *ngIf="(note$ | async) as note; else loading"
 >
   <!-- card header -->
   <div class="card-header">
@@ -10,7 +10,7 @@
         maxlength="100"
         class="card-input mb-md-3 border-0"
         required
-        [ngModel]="notex.title"
+        [ngModel]="note.title"
         (ngModelChange)="onTitleChange($event)"
       />
       <div class="text-right">
@@ -21,10 +21,10 @@
     </div>
     <h6 class="card-subtitle mb-2 text-muted d-inline d-md-block">
       <span>
-        {{ notex.location }}
+        {{ note.location }}
       </span>
       <span class="ml-4">
-        {{ notex.weather }}
+        {{ note.weather }}
       </span>
     </h6>
 
@@ -32,7 +32,7 @@
     <div class="d-inline d-md-block ml-2 ml-md-auto">
       <span
         class="badge badge-pill badge-secondary mr-1"
-        *ngFor="let tag of notex.tags; index as i"
+        *ngFor="let tag of note.tags; index as i"
       >
         {{ tag }}
         <i (click)="onRemoveTag(tag)" class="fa fa-times pointer"> </i>
@@ -67,9 +67,12 @@
       <!-- forala editor-->
       <div
         [froalaEditor]="froalaOptions"
-        [ngModel]="notex.content"
+        [ngModel]="note.content"
         (ngModelChange)="onContentChange($event)"
       ></div>
     </div>
   </div>
 </div>
+<ng-template #loading>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>

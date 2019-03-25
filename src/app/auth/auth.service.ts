@@ -16,35 +16,47 @@ export class AuthService {
     firebase.auth().onAuthStateChanged((user: firebase.User) => {
       this.user = user;
       if (user) {
-        user
-          .getIdToken()
-          .then((token: string) => localStorage.setItem('menote-token', token))
-          .then(() => {
-            const path = localStorage.getItem('menote-nav-hist') || '/notes';
-            this.ngZone.run(() => this.router.navigate([path]));
-          });
+        this.saveUserUid(user);
+        this.getUserToken(user);
       }
     });
   }
 
+  getUserToken(user: any) {
+    user
+      .getIdToken()
+      .then((token: string) => localStorage.setItem('menote-token', token))
+      .then(() => {
+        const path = localStorage.getItem('menote-nav-hist') || '/notes';
+        this.ngZone.run(() => this.router.navigate([path]));
+      });
+  }
+
+  saveUserUid(user: any) {
+    localStorage.setItem('menote-uid', user.uid);
+  }
+
   loginWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
+    this.setSessionPersistence().then(() => this.signUpWithPopUp(provider));
+  }
+
+  setSessionPersistence(): Promise<void> {
+    return firebase
+      .auth()
+      .setPersistence(firebase.auth.Auth.Persistence.SESSION);
+  }
+
+  signUpWithPopUp(provider: any) {
     firebase
       .auth()
-      .setPersistence(firebase.auth.Auth.Persistence.SESSION)
-      .then(() => {
-        firebase
-          .auth()
-          .signInWithPopup(provider)
-          .then(result => {
-            this.user = result.user;
-            this.isNewUser = result.additionalUserInfo.isNewUser;
-            this.ngZone.run(() => this.router.navigate(['/notes']));
-          })
-          .catch(error =>
-            console.log('Error while logginh with Google.', error)
-          );
-      });
+      .signInWithPopup(provider)
+      .then(result => {
+        this.user = result.user;
+        this.isNewUser = result.additionalUserInfo.isNewUser;
+        this.ngZone.run(() => this.router.navigate(['/notes']));
+      })
+      .catch(error => console.log('Error while logginh with Google.', error));
   }
 
   logout() {
@@ -52,11 +64,15 @@ export class AuthService {
       .auth()
       .signOut()
       .then(result => {
-        localStorage.removeItem('menote-token');
-        localStorage.setItem('menote-nav-hist', '/');
+        this.resetLocalStorage();
         this.router.navigate(['/']);
       })
       .catch(error => console.log(`Error while logging out. ERROR: ${error}`));
+  }
+
+  resetLocalStorage() {
+    localStorage.removeItem('menote-token');
+    localStorage.setItem('menote-nav-hist', '/');
   }
 
   isAuthenticated() {

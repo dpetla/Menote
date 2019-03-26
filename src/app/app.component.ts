@@ -1,9 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import {
+  Event,
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router
+} from '@angular/router';
 import { SwUpdate } from '@angular/service-worker';
 import * as firebase from 'firebase/app';
 import { Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 
 @Component({
@@ -13,6 +19,7 @@ import { environment } from '../environments/environment';
 })
 export class AppComponent implements OnInit, OnDestroy {
   subscription: Subscription;
+  isLoading = false;
 
   constructor(public router: Router, private swUpdate: SwUpdate) {}
 
@@ -22,13 +29,36 @@ export class AppComponent implements OnInit, OnDestroy {
       authDomain: environment.firebase.authDomain
     });
 
-    this.subscription = this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        window.scroll(0, 0);
-        const path = event.url !== '/signin' ? event.url : '/notes';
-        localStorage.setItem('menote-nav-hist', path);
-      });
+    this.subscription = this.subscribeToRouterEvents();
+  }
+
+  subscribeToRouterEvents() {
+    return this.router.events.subscribe((event: Event) => {
+      switch (true) {
+        case event instanceof NavigationStart: {
+          this.isLoading = true;
+          break;
+        }
+
+        case event instanceof NavigationEnd: {
+          this.setNavigationHistory(event as NavigationEnd);
+        }
+        case event instanceof NavigationCancel:
+        case event instanceof NavigationError: {
+          this.isLoading = false;
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+    });
+  }
+
+  setNavigationHistory(event: NavigationEnd) {
+    window.scroll(0, 0);
+    const path = event.url !== '/signin' ? event.url : '/notes';
+    localStorage.setItem('menote-nav-hist', path);
   }
 
   ngOnDestroy() {

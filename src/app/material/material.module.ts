@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {
   MatButtonModule,
@@ -22,7 +23,7 @@ const materialModules = [
   MatTooltipModule
 ];
 @NgModule({
-  imports: [...materialModules],
+  imports: [...materialModules, CommonModule],
   declarations: [LoadingSpinnerComponent],
   exports: [...materialModules, LoadingSpinnerComponent]
 })

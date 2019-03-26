@@ -1,6 +1,12 @@
-.center {
-  margin: auto;
-  width: 100px;
-  height: 100%;
-  padding: calc(50vh - 50px) 0;
+.page-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.spinner-text {
+  position: relative;
+  top: 60px;
+  left: 15px;
 }

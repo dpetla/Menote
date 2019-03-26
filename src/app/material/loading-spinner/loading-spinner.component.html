@@ -1,3 +1,6 @@
-<div class="center">
-  <mat-spinner></mat-spinner>
+<div class="page-center">
+  <div>
+    <span class="spinner-text" *ngIf="showLabel">{{ label }}</span>
+    <mat-spinner color="primary"></mat-spinner>
+  </div>
 </div>

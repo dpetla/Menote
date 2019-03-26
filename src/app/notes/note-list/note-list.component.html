@@ -1,19 +1,27 @@
 <div class="list-group h-100 w-100">
-  <div *ngIf="notes$ | async as noteList; else loading">
+  <div *ngIf="(notes$ | async) as noteList; else loading">
     <ng-container *ngIf="noteList.length; else noItems">
       <div class="input-group searchbar">
-        <input type="text" class="form-control" placeholder="Search notes"
-          [ngModel]="searchString" (ngModelChange)="onSearchList($event)">
-        <div class="input-group-append pointer" *ngIf="searchString !== ''">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search notes"
+          [(ngModel)]="searchText"
+        />
+        <div class="input-group-append pointer" *ngIf="searchText !== ''">
           <span class="input-group-text" (click)="resetNoteList()">
             <i class="far fa-times-circle"></i>
           </span>
         </div>
       </div>
-      <a class="list-group-item list-group-item-action flex-column align-items-start cust-navbar"
-        *ngFor="let note of notesResult" [ngClass]="{'active': selectedNote == note}"
-        (click)="onSelectNote()" [routerLink]="['/notes', note.id]"
-        routerLinkActive="active">
+      <a
+        class="list-group-item list-group-item-action flex-column align-items-start cust-navbar"
+        *ngFor="let note of (noteList | filter: searchText)"
+        [ngClass]="{ active: selectedNote == note }"
+        (click)="onSelectNote()"
+        [routerLink]="['/notes', note.id]"
+        routerLinkActive="active"
+      >
         <div class="d-flex w-100 justify-content-between">
           <h6 class="mb-1">
             {{ note.title }}
@@ -21,12 +29,20 @@
           <!-- <small>{{ note.dateCreated.getTime() | date:'shortTime' }}</small> -->
         </div>
         <small class="my-0 mr-3">
-          <i class="fa fa-map-marker" aria-hidden="true" *ngIf="note.location.length > 0">
+          <i
+            class="fa fa-map-marker"
+            aria-hidden="true"
+            *ngIf="note.location.length > 0"
+          >
           </i>
           {{ note.location }}
         </small>
         <small class="my-0 text-nowrap">
-          <i class="fa fa-thermometer-half" aria-hidden="true" *ngIf="note.weather.length > 0">
+          <i
+            class="fa fa-thermometer-half"
+            aria-hidden="true"
+            *ngIf="note.weather.length > 0"
+          >
           </i>
           {{ note.weather }}
         </small>
@@ -39,13 +55,16 @@
     </ng-template>
   </div>
   <ng-template #loading>
-    <div class="align-self-center my-auto">
-      <mat-spinner></mat-spinner>
-    </div>
+    <app-loading-spinner></app-loading-spinner>
   </ng-template>
   <div class="d-block">
-    <button id="btn-add" mat-fab color="accent" (click)="onCreateNote($event)"
-      matTooltip="New note">
+    <button
+      id="btn-add"
+      mat-fab
+      color="accent"
+      (click)="onCreateNote($event)"
+      matTooltip="New note"
+    >
       <i class="fa fa-plus pointer text-lg-center text-white"></i>
     </button>
   </div>

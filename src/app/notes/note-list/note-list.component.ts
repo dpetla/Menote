@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { ViewService } from '../../shared/view.service';
 import { Note } from '../note.model';
@@ -9,12 +9,11 @@ import { NotesService } from '../notes.service';
   templateUrl: './note-list.component.html',
   styleUrls: ['./note-list.component.css']
 })
-export class NoteListComponent implements OnInit, OnChanges {
-  @Input('notes')
-  notes$: Observable<Note[]>;
+export class NoteListComponent implements OnInit {
+  @Input('notes') notes$: Observable<Note[]>;
   notes: Note[];
   notesResult: Note[];
-  searchString = '';
+  searchText = '';
 
   constructor(
     private notesService: NotesService,
@@ -22,15 +21,6 @@ export class NoteListComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit() {}
-
-  ngOnChanges(changes) {
-    if (changes['notes$'] && this.notes$) {
-      this.notes$.subscribe(notes => {
-        this.notes = notes;
-        this.notesResult = this.notes;
-      });
-    }
-  }
 
   onCreateNote(e: Event) {
     e.stopPropagation();
@@ -41,34 +31,7 @@ export class NoteListComponent implements OnInit, OnChanges {
     this.viewService.showSideMenu = this.viewService.isLargeScreen();
   }
 
-  onSearchList(searchString) {
-    this.searchString = searchString;
-    if (searchString === '') {
-      this.resetNoteList();
-    }
-    if (!this.notes) {
-      return;
-    } else {
-      const term = searchString.toLowerCase();
-      this.notesResult = this.notes.filter(note => {
-        const cleanContent = note.content
-          .toLowerCase()
-          .replace(/<\/?[^>]+(>|$)/g, '');
-        // search in content, title, location or tags
-        return (
-          cleanContent.includes(term) ||
-          note.title.toLowerCase().includes(term) ||
-          note.location.toLowerCase().includes(term) ||
-          Object.keys(note.tags).some(
-            tag => tag.toLowerCase().indexOf(term) >= 0
-          )
-        );
-      });
-    }
-  }
-
   resetNoteList() {
-    this.searchString = '';
-    this.notesResult = this.notes;
+    this.searchText = '';
   }
 }

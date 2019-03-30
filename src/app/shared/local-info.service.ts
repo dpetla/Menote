@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { finalize } from 'rxjs/internal/operators/finalize';
+import { Observable } from 'rxjs';
 import { environment } from './../../environments/environment';
+import { WeatherApiResponse } from './WeatherApiResponse.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +15,18 @@ export class LocalInfoService {
   temp: string;
   city: string;
   country: string;
+  urlRoot: string;
+  apiKey: string;
 
   constructor(private http: HttpClient) {
-    // capture browser position when service is created
     const geolocation = window.navigator.geolocation;
     if (geolocation) {
       geolocation.getCurrentPosition(this.setPosition.bind(this));
     }
+    this.urlRoot = environment.openWeatherMap.url;
+    this.apiKey = environment.openWeatherMap.appId;
   }
 
-  // store lat and long in one sing string variable
   setPosition(position) {
     this.position = position.coords;
     this.latlng = `lat=${this.position['latitude']}&lon=${
@@ -32,28 +35,11 @@ export class LocalInfoService {
   }
 
   // use position and api call to get weather and location data
-  getLocalInfo(callback: Function) {
+  getLocalInfo(): Observable<WeatherApiResponse> {
     this.url =
-      environment.openWeatherMap.url +
-      this.latlng +
-      '&APPID=' +
-      environment.openWeatherMap.appId +
-      '&units=metric';
+      this.urlRoot + this.latlng + '&APPID=' + this.apiKey + '&units=metric';
 
     // openweathermap.org api call
-    this.http
-      .get(this.url)
-      .pipe(finalize(() => callback()))
-      .subscribe(
-        data => {
-          this.weatherDesc = data['weather'][0]['description'];
-          this.temp =
-            Math.round(data['main']['temp']) + String.fromCharCode(176) + 'C';
-          this.city = data['name'];
-          this.country = data['sys']['country'];
-        },
-        // TODO handle weather request error
-        error => console.log(error)
-      );
+    return this.http.get<WeatherApiResponse>(this.url);
   }
 }

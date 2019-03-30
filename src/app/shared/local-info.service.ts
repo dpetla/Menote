@@ -34,7 +34,6 @@ export class LocalInfoService {
     }`;
   }
 
-  // use position and api call to get weather and location data
   getLocalInfo(): Observable<WeatherApiResponse> {
     this.url =
       this.urlRoot + this.latlng + '&APPID=' + this.apiKey + '&units=metric';

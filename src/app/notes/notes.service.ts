@@ -92,22 +92,32 @@ export class NotesService {
   }
 
   populateInitialFields(apiData: apiData) {
-    // enter note data
-    this.newNote.uid = this.authService.user.uid;
-    this.newNote.location = `${apiData.city}, ${apiData.country}`;
-    this.newNote.title = new Date().toDateString();
-    this.newNote.dateCreated = new Date();
-    this.newNote.weather = `${apiData.temp} ${apiData.weatherDesc}`;
+    this.populateStandardFields(apiData);
+    this.populateNewUserNote();
+    this.addNoteToFirebase(this.newNote);
+  }
 
-    // create instruction note when signing up new user
+  populateStandardFields(apiData) {
+    const fields = {
+      uid: this.authService.user.uid,
+      location: `${apiData.city}, ${apiData.country}`,
+      title: new Date().toDateString(),
+      dateCreated: new Date(),
+      weather: `${apiData.temp} ${apiData.weatherDesc}`
+    };
+    Object.assign(this.newNote, fields);
+  }
+
+  populateNewUserNote() {
     if (this.authService.isNewUser) {
       this.newNote.title = 'Welcome to menote!';
       this.newNote.content = noteTemplate.firstNoteContent;
     }
+  }
 
-    // create note document in db
+  addNoteToFirebase(newNote: Note) {
     this.notesRef
-      .add(this.newNote)
+      .add(newNote)
       .then(note => this.router.navigate([note.path]))
       .catch(error => console.log(error));
   }

@@ -15,9 +15,3 @@
 #btn-add {
   margin-top: 200px;
 }
-
-@media only screen and (min-width: 900px) {
-  #notes-list {
-    /* position: inherit; */
-  }
-}

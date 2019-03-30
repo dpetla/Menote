@@ -1,7 +1,7 @@
 /* card */
 .card {
   min-width: 370px;
-  height: calc(100% - 30px) !important;
+  height: calc(100% - 32px) !important;
   border: 0;
   overflow: hidden;
 }

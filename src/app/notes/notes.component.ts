@@ -1,9 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 import { ViewService } from '../shared/view.service';
 import { Note } from './note.model';
+import { NotesService } from './notes.service';
 
 @Component({
   selector: 'app-notes',
@@ -15,13 +14,11 @@ export class NotesComponent implements OnInit {
 
   constructor(
     private viewService: ViewService,
-    private activatedRoute: ActivatedRoute
+    private notesService: NotesService
   ) {}
 
   ngOnInit() {
-    this.notes$ = this.activatedRoute.data.pipe(
-      switchMap((data: any) => [data.notes])
-    );
+    this.notes$ = this.notesService.getNotes();
   }
 
   @HostListener('window:resize', ['$event'])

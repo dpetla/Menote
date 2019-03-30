@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
 import { ViewService } from '../../shared/view.service';
 import { Note } from '../note.model';
 import { NotesService } from '../notes.service';
@@ -10,9 +9,7 @@ import { NotesService } from '../notes.service';
   styleUrls: ['./note-list.component.css']
 })
 export class NoteListComponent implements OnInit {
-  @Input('notes') notes$: Observable<Note[]>;
-  notes: Note[];
-  notesResult: Note[];
+  @Input() notes: Note[];
   searchText = '';
 
   constructor(

@@ -1,5 +1,5 @@
 <div class="list-group h-100 w-100">
-  <div *ngIf="(notes$ | async) as noteList; else loading">
+  <div *ngIf="notes as noteList; else loading">
     <ng-container *ngIf="noteList.length; else noItems">
       <div class="input-group searchbar">
         <input
@@ -26,7 +26,9 @@
           <h6 class="mb-1">
             {{ note.title }}
           </h6>
-          <!-- <small>{{ note.dateCreated.getTime() | date:'shortTime' }}</small> -->
+          <small>{{
+            note.dateCreated.seconds * 1000 | date: 'shortTime'
+          }}</small>
         </div>
         <small class="my-0 mr-3">
           <i

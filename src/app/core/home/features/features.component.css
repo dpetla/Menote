@@ -1,0 +1,30 @@
+.feature-card {
+  width: 275px;
+  height: 171px;
+  margin: 40px;
+}
+
+.feature-card i {
+  color: gray;
+}
+
+.feature-name {
+  font-size: 18pt;
+  font-weight: bold;
+  padding: 25px 0 20px;
+  text-align: center;
+  color: #444;
+  margin: 0;
+}
+
+.feature-desc {
+  font-size: 10pt;
+  line-height: 14pt;
+  text-align: center;
+  color: #444;
+}
+
+.signup-btn {
+  min-width: 300px;
+  max-width: 400px;
+}

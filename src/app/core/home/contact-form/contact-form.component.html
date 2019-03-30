@@ -1,0 +1,46 @@
+<div class="bg-dark py-5">
+  <div class="container py-5">
+    <h3 class="text-white pb-5">
+      Got some questions or suggestions about the app? Talk to me about it.
+    </h3>
+    <form
+      class="form-group row"
+      #contactForm="ngForm"
+      (ngSubmit)="onSend(contactForm)"
+    >
+      <div class="col-12 col-md-3">
+        <label for="email" class="sr-only">Email </label>
+        <input
+          [(ngModel)]="email"
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email"
+          email
+          class="form-control form-control-lg"
+        />
+      </div>
+      <div class="col-12 col-md-7 my-md-auto my-3">
+        <label for="message" class="sr-only">Message </label>
+        <input
+          [(ngModel)]="message"
+          type="text"
+          name="message"
+          id="message"
+          placeholder="Your message"
+          required
+          class="form-control form-control-lg"
+        />
+      </div>
+      <div class="col-12 col-md-2">
+        <button
+          type="submit"
+          class="btn btn-lg btn-primary w-100"
+          [disabled]="contactForm.invalid"
+        >
+          Send
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

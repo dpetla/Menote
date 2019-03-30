@@ -8,14 +8,20 @@ import { MaterialModule } from '../material/material.module';
 import { AboutComponent } from './about/about.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { ContactFormComponent } from './home/contact-form/contact-form.component';
+import { FeaturesComponent } from './home/features/features.component';
 import { HomeComponent } from './home/home.component';
+import { LandingComponent } from './home/landing/landing.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     HomeComponent,
     AboutComponent,
-    FooterComponent
+    FooterComponent,
+    LandingComponent,
+    FeaturesComponent,
+    ContactFormComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,30 @@
+#start-container {
+  min-height: calc(100vh - 62px);
+  background-size: cover;
+  background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 1)),
+    url('../../../../assets/images/4659_opt-min.jpg') repeat 50% 50%;
+}
+
+#brand-start {
+  font-size: 3rem;
+}
+
+#home-statement {
+  font-size: 28pt;
+  font-family: 'Permanent Marker', cursive;
+  overflow-wrap: break-word;
+}
+
+@media only screen and (max-width: 400px) {
+  #home-statement {
+    font-size: 24px;
+  }
+}
+
+#devices-sample {
+  z-index: 1;
+  min-width: 375px;
+  width: 90%;
+  max-width: 900px;
+  height: auto;
+}

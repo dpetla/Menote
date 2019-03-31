@@ -28,3 +28,21 @@
   min-width: 300px;
   max-width: 400px;
 }
+
+@media (min-width: 1200px) {
+  .mx-xl-5 {
+    margin: auto 4rem !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  .mx-xl-5 {
+    margin: auto 10rem !important;
+  }
+}
+
+@media (min-width: 1600px) {
+  .mx-xl-5 {
+    margin: auto 16rem !important;
+  }
+}

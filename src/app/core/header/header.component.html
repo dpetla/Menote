@@ -1,15 +1,24 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <button mat-icon-button (click)="toggleSideMenu()" matTooltip="Toggle note list"
-      [matTooltipDisabled]="!isNotesPage()" [disabled]="!isNotesPage()">
+    <button
+      mat-icon-button
+      (click)="toggleSideMenu()"
+      matTooltip="Toggle note list"
+      [matTooltipDisabled]="!isNotesPage()"
+      [disabled]="!isNotesPage()"
+    >
       <i class="fa fa-bars fa-lg text-white pt-1" aria-hidden="true"></i>
     </button>
     <span id="brand-text" class="pointer" routerLink="/notes">menote</span>
     <span class="spacer"></span>
     <div class="dropdown nav-item" *ngIf="isAuthenticated(); else noAuthLinks">
       <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Menu">
-        <img width="38px" class="img-thumbnail rounded-circle p-0" [src]="getUserPhotoURL()"
-          alt="profile">
+        <img
+          width="38px"
+          class="img-thumbnail rounded-circle p-0"
+          [src]="getUserPhotoURL()"
+          alt="profile"
+        />
       </button>
       <mat-menu #menu="matMenu" [overlapTrigger]="false">
         <button mat-menu-item routerLink="settings/account">
@@ -28,11 +37,20 @@
     </div>
     <ng-template #noAuthLinks>
       <div>
-        <a routerLink="/signin" routerLinkActive="d-none"
-          [routerLinkActiveOptions]="{ exact: true }" class="text-white pointer mx-2">Sign
-          In</a>
-        <a routerLink="" routerLinkActive="d-none" [routerLinkActiveOptions]="{ exact: true }"
-          class="text-white pointer mx-2">Home</a>
+        <a
+          routerLink="/signin"
+          routerLinkActive="d-none"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="text-white pointer mx-2"
+          >Sign In</a
+        >
+        <a
+          routerLink=""
+          routerLinkActive="d-none"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="text-white pointer mx-2"
+          >Home</a
+        >
       </div>
     </ng-template>
   </mat-toolbar-row>

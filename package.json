@@ -8,7 +8,7 @@
     "prettier": "prettier --parser typescript --write '**/*.ts'",
     "start": "ng serve",
     "build": "ng build --prod",
-    "pwa": "http-server dist/",
+    "pwa": "ng build --prod && http-server dist/",
     "deploy-prod": "ng build --prod && firebase deploy -P prod",
     "deploy-staging": "ng build --configuration=staging && firebase deploy -P staging",
     "test": "ng test",

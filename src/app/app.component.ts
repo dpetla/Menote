@@ -7,10 +7,10 @@ import {
   NavigationStart,
   Router
 } from '@angular/router';
-import { SwUpdate } from '@angular/service-worker';
 import * as firebase from 'firebase/app';
 import { Subscription } from 'rxjs';
 import { environment } from '../environments/environment';
+import { UpdateService } from './shared/update.service';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   isLoading = false;
 
-  constructor(public router: Router, private swUpdate: SwUpdate) {}
+  constructor(public router: Router, private updateService: UpdateService) {}
 
   ngOnInit() {
     firebase.initializeApp({

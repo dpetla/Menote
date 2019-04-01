@@ -7,6 +7,7 @@ import {
   MatMenuModule,
   MatProgressSpinnerModule,
   MatSidenavModule,
+  MatSnackBarModule,
   MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
@@ -20,7 +21,8 @@ const materialModules = [
   MatMenuModule,
   MatDialogModule,
   MatProgressSpinnerModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatSnackBarModule
 ];
 @NgModule({
   imports: [...materialModules, CommonModule],

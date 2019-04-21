@@ -11,6 +11,8 @@
     "pwa": "ng build --prod && http-server dist/",
     "deploy-prod": "ng build --prod && firebase deploy -P prod",
     "deploy-staging": "ng build --configuration=staging && firebase deploy -P staging",
+    "build:stats": "ng build --prod --stats-json",
+    "analyze": "webpack-bundle-analyzer dist/stats.json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -66,7 +68,8 @@
     "protractor": "^5.4.2",
     "ts-node": "~8.0.3",
     "tslint": "~5.14.0",
-    "typescript": "^3.2.4"
+    "typescript": "^3.2.4",
+    "webpack-bundle-analyzer": "^3.3.2"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

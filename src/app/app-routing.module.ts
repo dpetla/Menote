@@ -6,10 +6,14 @@ import { HomeComponent } from './core/home/home.component';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'notes', loadChildren: './notes/notes.module#NotesModule' },
+  {
+    path: 'notes',
+    loadChildren: () => import(`./notes/notes.module`).then(m => m.NotesModule)
+  },
   {
     path: 'settings',
-    loadChildren: './settings/settings.module#SettingsModule'
+    loadChildren: () =>
+      import(`./settings/settings.module`).then(m => m.SettingsModule)
   },
   { path: '**', redirectTo: '' }
 ];

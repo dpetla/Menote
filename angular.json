@@ -23,7 +23,6 @@
               },
               "node_modules/froala-editor/css/froala_editor.pkgd.min.css",
               "node_modules/froala-editor/css/froala_style.min.css",
-              "node_modules/font-awesome/css/font-awesome.css",
               "src/styles.css"
             ],
             "scripts": [
@@ -42,7 +41,7 @@
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
-              "vendorChunk": false,
+              "vendorChunk": true,
               "buildOptimizer": true,
               "serviceWorker": true,
               "ngswConfigPath": "src/ngsw-config.json",
@@ -56,12 +55,12 @@
             "staging": {
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
+              "sourceMap": true,
               "extractCss": true,
-              "namedChunks": false,
+              "namedChunks": true,
               "aot": true,
               "extractLicenses": true,
-              "vendorChunk": false,
+              "vendorChunk": true,
               "buildOptimizer": true,
               "serviceWorker": true,
               "ngswConfigPath": "src/ngsw-config.json",

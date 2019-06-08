@@ -8,12 +8,13 @@ const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
   {
     path: 'notes',
-    loadChildren: () => import(`./notes/notes.module`).then(m => m.NotesModule)
+    loadChildren: () =>
+      import('./notes/notes.module').then(mod => mod.NotesModule)
   },
   {
     path: 'settings',
     loadChildren: () =>
-      import(`./settings/settings.module`).then(m => m.SettingsModule)
+      import('./settings/settings.module').then(mod => mod.SettingsModule)
   },
   { path: '**', redirectTo: '' }
 ];

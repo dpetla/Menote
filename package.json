@@ -33,7 +33,7 @@
     "@angular/router": "^8.2.5",
     "@angular/service-worker": "^8.2.5",
     "@auth0/angular-jwt": "^3.0.0",
-    "angular-froala-wysiwyg": "^3.0.5",
+    "angular-froala-wysiwyg": "^2.9.3",
     "angularfire2": "^5.2.1",
     "bootstrap": "^4.3.1",
     "core-js": "^3.2.1",

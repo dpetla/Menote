@@ -1,6 +1,10 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "core-js/es6/*": ["../node_modules/core-js/es"]
+    },
     "importHelpers": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,

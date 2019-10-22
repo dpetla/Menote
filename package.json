@@ -35,6 +35,7 @@
     "@auth0/angular-jwt": "^3.0.0",
     "@ngrx/effects": "^8.4.0",
     "@ngrx/store": "^8.4.0",
+    "@ngrx/store-devtools": "^8.4.0",
     "angular-froala-wysiwyg": "^2.9.3",
     "angularfire2": "^5.2.1",
     "bootstrap": "^4.3.1",

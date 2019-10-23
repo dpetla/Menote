@@ -36,27 +36,23 @@ export class AuthService {
     localStorage.setItem('menote-uid', user.uid);
   }
 
-  public loginWithGoogle() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    this.setSessionPersistence().then(() => this.signUpWithPopUp(provider));
-  }
-
   public setSessionPersistence(): Promise<void> {
     return firebase
       .auth()
       .setPersistence(firebase.auth.Auth.Persistence.SESSION);
   }
 
-  public signUpWithPopUp(provider: any) {
-    firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then(result => {
-        this.user = result.user;
-        this.isNewUser = result.additionalUserInfo.isNewUser;
-        this.ngZone.run(() => this.router.navigate(['/notes']));
-      })
-      .catch(error => console.log('Error while logginh with Google.', error));
+  public async signUpWithPopUp(): Promise<firebase.auth.UserCredential> {
+    try {
+      await this.setSessionPersistence();
+      const result = await firebase
+        .auth()
+        .signInWithPopup(new firebase.auth.GoogleAuthProvider());
+      return result;
+    } catch (error) {
+      console.log('Error while logging with Google.', error);
+      return error;
+    }
   }
 
   public logout() {

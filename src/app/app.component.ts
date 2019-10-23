@@ -7,10 +7,7 @@ import {
   NavigationStart,
   Router
 } from '@angular/router';
-import * as firebase from 'firebase/app';
 import { Subscription } from 'rxjs';
-
-import { environment } from '../environments/environment';
 
 import { UpdateService } from './shared/update.service';
 
@@ -26,11 +23,6 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(public router: Router, private updateService: UpdateService) {}
 
   public ngOnInit() {
-    firebase.initializeApp({
-      apiKey: environment.firebase.apiKey,
-      authDomain: environment.firebase.authDomain
-    });
-
     this.subscription = this.subscribeToRouterEvents();
   }
 

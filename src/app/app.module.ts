@@ -5,21 +5,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import * as firebase from 'firebase/app';
 
 import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppEffects } from './app.effects';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { MaterialModule } from './material/material.module';
-import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
-import { EffectsModule } from '@ngrx/effects';
-import { AppEffects } from './app.effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { metaReducers, reducers } from './reducers';
+
+firebase.initializeApp({
+  apiKey: environment.firebase.apiKey,
+  authDomain: environment.firebase.authDomain
+});
 
 @NgModule({
   declarations: [AppComponent],

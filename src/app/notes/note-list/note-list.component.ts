@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+
 import { ViewService } from '../../shared/view.service';
 import { Note } from '../note.model';
 import { NotesService } from '../notes.service';
@@ -9,26 +10,26 @@ import { NotesService } from '../notes.service';
   styleUrls: ['./note-list.component.css']
 })
 export class NoteListComponent implements OnInit {
-  @Input() notes: Note[];
-  searchText = '';
+  @Input() public notes: Note[];
+  public searchText = '';
 
   constructor(
     private notesService: NotesService,
     private viewService: ViewService
   ) {}
 
-  ngOnInit() {}
+  public ngOnInit() {}
 
-  onCreateNote(e: Event) {
+  public onCreateNote(e: Event) {
     e.stopPropagation();
     this.notesService.createNote();
   }
 
-  onSelectNote() {
+  public onSelectNote() {
     this.viewService.showSideMenu = this.viewService.isLargeScreen();
   }
 
-  resetNoteList() {
+  public resetNoteList() {
     this.searchText = '';
   }
 }

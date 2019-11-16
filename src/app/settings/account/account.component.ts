@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { AuthService } from '../../auth/auth.service';
 
 @Component({
@@ -7,13 +8,13 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
-  deactivateConfirmed = false;
+  public deactivateConfirmed = false;
 
   constructor(private authService: AuthService) {}
 
-  ngOnInit() {}
+  public ngOnInit() {}
 
-  getAccountCreation() {
+  public getAccountCreation() {
     const options = {
       month: 'short',
       day: '2-digit',
@@ -24,7 +25,7 @@ export class AccountComponent implements OnInit {
       options
     );
   }
-  getLastSignin() {
+  public getLastSignin() {
     const options = {
       hour12: false,
       month: 'short',
@@ -40,23 +41,23 @@ export class AccountComponent implements OnInit {
     ).toLocaleString('en-US', options);
   }
 
-  getDisplayName() {
+  public getDisplayName() {
     return this.authService.user.displayName;
   }
 
-  getUserName() {
+  public getUserName() {
     return this.authService.user.email;
   }
 
-  isEmailVerified() {
+  public isEmailVerified() {
     return this.authService.user.emailVerified;
   }
 
-  getProvider() {
+  public getProvider() {
     return this.authService.user.providerData[0].providerId;
   }
 
-  onConfirmDeactivation() {
+  public onConfirmDeactivation() {
     return (this.deactivateConfirmed = !this.deactivateConfirmed);
   }
 }

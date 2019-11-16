@@ -6,9 +6,11 @@ import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import { Observable } from 'rxjs';
 import { filter, map, switchMap, take, tap } from 'rxjs/operators';
+
 import { Note } from '../note.model';
 import { NotesService } from '../notes.service';
 import { SimpleDialogComponent } from '../simple-dialog/simple-dialog.component';
+
 import { froalaOptions } from './editor-options';
 
 @Component({
@@ -17,13 +19,13 @@ import { froalaOptions } from './editor-options';
   styleUrls: ['./note-detail.component.css']
 })
 export class NoteDetailComponent implements OnInit {
-  readonly tagsMax = 10;
-  noteDoc: AngularFirestoreDocument<{}>;
-  id$: Observable<string>;
-  note$: Observable<{}>;
-  tagEditable: boolean;
-  isTagsFull: boolean;
-  froalaOptions: Object = froalaOptions;
+  public readonly tagsMax = 10;
+  public noteDoc: AngularFirestoreDocument<{}>;
+  public id$: Observable<string>;
+  public note$: Observable<{}>;
+  public tagEditable: boolean;
+  public isTagsFull: boolean;
+  public froalaOptions: Object = froalaOptions;
 
   constructor(
     private notesService: NotesService,
@@ -32,7 +34,7 @@ export class NoteDetailComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.id$ = this.route.params.pipe(
       map(params => params['id']),
       tap(id => (this.noteDoc = this.notesService.getNote(id)))
@@ -46,13 +48,16 @@ export class NoteDetailComponent implements OnInit {
             note.tags = this.tagsToArray(note.tags);
             return note;
           }),
-          tap(note => this.setNoteFlags(note.tags), error => console.log(error))
+          tap(
+            note => this.setNoteFlags(note.tags),
+            error => console.log(error)
+          )
         )
       )
     );
   }
 
-  tagsToArray(tagsObj: {}) {
+  public tagsToArray(tagsObj: {}) {
     const tags = [];
     if (tagsObj) {
       const keys = Object.keys(tagsObj);
@@ -62,26 +67,26 @@ export class NoteDetailComponent implements OnInit {
     return tags;
   }
 
-  setNoteFlags(tags) {
+  public setNoteFlags(tags) {
     this.isTagsFull = tags.length >= this.tagsMax;
     this.tagEditable = false;
   }
 
-  onTitleChange(event) {
+  public onTitleChange(event) {
     this.noteDoc
       .update({ title: event })
       .then(() => this.updateDate())
       .catch(error => console.log(error));
   }
 
-  onContentChange(event) {
+  public onContentChange(event) {
     this.noteDoc
       .update({ content: event })
       .then(() => this.updateDate())
       .catch(error => console.log(error));
   }
 
-  onSaveTag(event: any) {
+  public onSaveTag(event: any) {
     const newTag = event.target.value;
 
     this.note$
@@ -101,7 +106,7 @@ export class NoteDetailComponent implements OnInit {
     this.toggleTagEdit();
   }
 
-  tagsToObject(tags: Array<string>) {
+  public tagsToObject(tags: string[]) {
     return tags.reduce((tags, key) => {
       if (!tags[key]) {
         tags[key] = true;
@@ -110,7 +115,7 @@ export class NoteDetailComponent implements OnInit {
     }, {});
   }
 
-  pushTagsToDatabase(tags: {}) {
+  public pushTagsToDatabase(tags: {}) {
     this.noteDoc
       .update({
         tags: tags
@@ -119,11 +124,11 @@ export class NoteDetailComponent implements OnInit {
       .catch(error => console.log(error));
   }
 
-  toggleTagEdit() {
+  public toggleTagEdit() {
     this.tagEditable = !this.tagEditable;
   }
 
-  onRemoveTag(tag: string) {
+  public onRemoveTag(tag: string) {
     this.noteDoc
       .update({
         ['tags.' + tag]: firebase.firestore.FieldValue.delete()
@@ -132,13 +137,13 @@ export class NoteDetailComponent implements OnInit {
       .catch(error => console.log(error));
   }
 
-  updateDate() {
+  public updateDate() {
     this.noteDoc.update({
       dateUpdated: new Date()
     });
   }
 
-  onDeleteNote() {
+  public onDeleteNote() {
     const dialogRef = this.dialog.open(SimpleDialogComponent, {
       width: '350px',
       data: {

@@ -6,8 +6,10 @@ import {
 } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import { LocalInfoService } from '../shared/local-info.service';
 import { WeatherApiResponse } from '../shared/WeatherApiResponse.model';
+
 import { AuthService } from './../auth/auth.service';
 import * as noteTemplate from './note-templates';
 import { Note } from './note.model';
@@ -23,9 +25,9 @@ interface apiData {
   providedIn: 'root'
 })
 export class NotesService {
-  notesRef: AngularFirestoreCollection<Note>;
-  notes$: Observable<Note[]>;
-  newNote: Note = noteTemplate.newNote;
+  public notesRef: AngularFirestoreCollection<Note>;
+  public notes$: Observable<Note[]>;
+  public newNote: Note = noteTemplate.newNote;
 
   constructor(
     private localInfoService: LocalInfoService,
@@ -42,14 +44,14 @@ export class NotesService {
     this.createWelcomeNoteForNewUser();
   }
 
-  getNotesRef(): AngularFirestoreCollection<Note> {
+  public getNotesRef(): AngularFirestoreCollection<Note> {
     const uid = localStorage.getItem('menote-uid') || this.authService.user.uid;
     return this.db.collection('notes', ref =>
       ref.where('uid', '==', uid).orderBy('dateCreated', 'desc')
     );
   }
 
-  convertPayloadToNotes(actions) {
+  public convertPayloadToNotes(actions) {
     return actions.map(action => {
       const data = action.payload.doc.data();
       const id = action.payload.doc.id;
@@ -57,21 +59,21 @@ export class NotesService {
     });
   }
 
-  createWelcomeNoteForNewUser() {
+  public createWelcomeNoteForNewUser() {
     if (this.authService.isNewUser) {
       this.createNote();
     }
   }
 
-  getNotes() {
+  public getNotes() {
     return this.notes$;
   }
 
-  getNote(id: string) {
+  public getNote(id: string) {
     return this.notesRef.doc(id);
   }
 
-  createNote() {
+  public createNote() {
     this.localInfoService
       .getLocalInfo()
       .pipe(
@@ -87,17 +89,17 @@ export class NotesService {
       .subscribe((apiData: apiData) => this.populateInitialFields(apiData));
   }
 
-  formatTempString(temp: number): string {
+  public formatTempString(temp: number): string {
     return Math.round(temp) + String.fromCharCode(176) + 'C';
   }
 
-  populateInitialFields(apiData: apiData) {
+  public populateInitialFields(apiData: apiData) {
     this.populateStandardFields(apiData);
     this.populateNewUserNote();
     this.addNoteToFirebase(this.newNote);
   }
 
-  populateStandardFields(apiData) {
+  public populateStandardFields(apiData) {
     const fields = {
       uid: this.authService.user.uid,
       location: `${apiData.city}, ${apiData.country}`,
@@ -108,14 +110,14 @@ export class NotesService {
     Object.assign(this.newNote, fields);
   }
 
-  populateNewUserNote() {
+  public populateNewUserNote() {
     if (this.authService.isNewUser) {
       this.newNote.title = 'Welcome to menote!';
       this.newNote.content = noteTemplate.firstNoteContent;
     }
   }
 
-  addNoteToFirebase(newNote: Note) {
+  public addNoteToFirebase(newNote: Note) {
     this.notesRef
       .add(newNote)
       .then(note => this.router.navigate([note.path]))

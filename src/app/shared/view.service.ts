@@ -7,11 +7,11 @@ const targetWidth = 900;
   providedIn: 'root'
 })
 export class ViewService {
-  innerWidth = window.innerWidth;
-  showSideMenu = true;
+  public innerWidth = window.innerWidth;
+  public showSideMenu = true;
 
   // checks if screen width is less than or equal target
-  isLargeScreen() {
+  public isLargeScreen() {
     return this.innerWidth >= targetWidth;
   }
 }

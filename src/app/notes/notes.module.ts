@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+
 import { MaterialModule } from '../material/material.module';
+
 import { NoteDetailComponent } from './note-detail/note-detail.component';
 import { FilterPipe } from './note-list/filter.pipe';
 import { NoteListComponent } from './note-list/note-list.component';

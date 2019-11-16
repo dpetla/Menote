@@ -9,7 +9,9 @@ import {
 } from '@angular/router';
 import * as firebase from 'firebase/app';
 import { Subscription } from 'rxjs';
+
 import { environment } from '../environments/environment';
+
 import { UpdateService } from './shared/update.service';
 
 @Component({
@@ -18,12 +20,12 @@ import { UpdateService } from './shared/update.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  subscription: Subscription;
-  isLoading = false;
+  public subscription: Subscription;
+  public isLoading = false;
 
   constructor(public router: Router, private updateService: UpdateService) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     firebase.initializeApp({
       apiKey: environment.firebase.apiKey,
       authDomain: environment.firebase.authDomain
@@ -32,7 +34,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscription = this.subscribeToRouterEvents();
   }
 
-  subscribeToRouterEvents() {
+  public subscribeToRouterEvents() {
     return this.router.events.subscribe((event: Event) => {
       switch (true) {
         case event instanceof NavigationStart: {
@@ -55,13 +57,13 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
-  setNavigationHistory(event: NavigationEnd) {
+  public setNavigationHistory(event: NavigationEnd) {
     window.scroll(0, 0);
     const path = event.url !== '/signin' ? event.url : '/notes';
     localStorage.setItem('menote-nav-hist', path);
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 }

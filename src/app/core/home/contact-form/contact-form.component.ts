@@ -7,14 +7,14 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./contact-form.component.css']
 })
 export class ContactFormComponent implements OnInit {
-  email = '';
-  message = '';
+  public email = '';
+  public message = '';
 
   constructor() {}
 
-  ngOnInit() {}
+  public ngOnInit() {}
 
-  onSend(f: NgForm) {
+  public onSend(f: NgForm) {
     window.location.href =
       'mailto:contact%40menote.ca?subject=Menote%20question/suggestion&body=' +
       f.value.message +

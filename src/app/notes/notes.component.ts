@@ -1,6 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { ViewService } from '../shared/view.service';
+
 import { Note } from './note.model';
 import { NotesService } from './notes.service';
 
@@ -10,30 +12,30 @@ import { NotesService } from './notes.service';
   styleUrls: ['./notes.component.css']
 })
 export class NotesComponent implements OnInit {
-  notes$: Observable<Note[]>;
+  public notes$: Observable<Note[]>;
 
   constructor(
     private viewService: ViewService,
     private notesService: NotesService
   ) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.notes$ = this.notesService.getNotes();
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  public onResize(event) {
     this.viewService.innerWidth = event.target.innerWidth;
     if (!this.viewService.showSideMenu && this.viewService.isLargeScreen()) {
       this.viewService.showSideMenu = this.viewService.isLargeScreen();
     }
   }
 
-  isLargeScreen() {
+  public isLargeScreen() {
     return this.viewService.isLargeScreen();
   }
 
-  showSideMenu() {
+  public showSideMenu() {
     return this.viewService.showSideMenu;
   }
 }

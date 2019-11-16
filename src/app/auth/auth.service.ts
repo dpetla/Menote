@@ -8,9 +8,9 @@ import 'firebase/auth';
   providedIn: 'root'
 })
 export class AuthService {
-  user: any;
-  isNewUser = false;
-  jwtHelper = new JwtHelperService();
+  public user: any;
+  public isNewUser = false;
+  public jwtHelper = new JwtHelperService();
 
   constructor(private router: Router, private ngZone: NgZone) {
     firebase.auth().onAuthStateChanged((user: firebase.User) => {
@@ -22,7 +22,7 @@ export class AuthService {
     });
   }
 
-  getUserToken(user: any) {
+  public getUserToken(user: any) {
     user
       .getIdToken()
       .then((token: string) => localStorage.setItem('menote-token', token))
@@ -32,22 +32,22 @@ export class AuthService {
       });
   }
 
-  saveUserUid(user: any) {
+  public saveUserUid(user: any) {
     localStorage.setItem('menote-uid', user.uid);
   }
 
-  loginWithGoogle() {
+  public loginWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
     this.setSessionPersistence().then(() => this.signUpWithPopUp(provider));
   }
 
-  setSessionPersistence(): Promise<void> {
+  public setSessionPersistence(): Promise<void> {
     return firebase
       .auth()
       .setPersistence(firebase.auth.Auth.Persistence.SESSION);
   }
 
-  signUpWithPopUp(provider: any) {
+  public signUpWithPopUp(provider: any) {
     firebase
       .auth()
       .signInWithPopup(provider)
@@ -59,7 +59,7 @@ export class AuthService {
       .catch(error => console.log('Error while logginh with Google.', error));
   }
 
-  logout() {
+  public logout() {
     firebase
       .auth()
       .signOut()
@@ -70,19 +70,19 @@ export class AuthService {
       .catch(error => console.log(`Error while logging out. ERROR: ${error}`));
   }
 
-  resetLocalStorage() {
+  public resetLocalStorage() {
     localStorage.removeItem('menote-token');
     localStorage.setItem('menote-nav-hist', '/');
   }
 
-  isAuthenticated() {
+  public isAuthenticated() {
     return (
       this.user != null ||
       this.isTokenValid(localStorage.getItem('menote-token'))
     );
   }
 
-  isTokenValid(token: string) {
+  public isTokenValid(token: string) {
     const decodedToken = this.jwtHelper.decodeToken(token);
     const isExpired = this.jwtHelper.isTokenExpired(token);
     return decodedToken && !isExpired;

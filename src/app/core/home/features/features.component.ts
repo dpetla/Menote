@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./features.component.css']
 })
 export class FeaturesComponent implements OnInit {
-  features: Array<{ name: string; desc: string; icon: string }> = [
+  public features: { name: string; desc: string; icon: string }[] = [
     {
       name: 'Rich text editor',
       desc: 'Simple but powerful rich text editor to have your notes your way.',
@@ -44,5 +44,5 @@ export class FeaturesComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  public ngOnInit() {}
 }

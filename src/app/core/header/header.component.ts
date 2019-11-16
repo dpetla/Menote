@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { AuthService } from '../../auth/auth.service';
 import { ViewService } from '../../shared/view.service';
 
@@ -9,7 +10,7 @@ import { ViewService } from '../../shared/view.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  userIcon = '../../../assets/images/account-profile-user-icon.png';
+  public userIcon = '../../../assets/images/account-profile-user-icon.png';
 
   constructor(
     private authService: AuthService,
@@ -17,31 +18,31 @@ export class HeaderComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {}
+  public ngOnInit() {}
 
-  onLogout() {
+  public onLogout() {
     this.authService.logout();
   }
 
-  isAuthenticated() {
+  public isAuthenticated() {
     return this.authService.isAuthenticated();
   }
 
-  getUserPhotoURL() {
+  public getUserPhotoURL() {
     return this.authService.user
       ? this.authService.user.photoURL
       : this.userIcon;
   }
 
-  isLargeScreen() {
+  public isLargeScreen() {
     return this.viewService.isLargeScreen();
   }
 
-  toggleSideMenu() {
+  public toggleSideMenu() {
     this.viewService.showSideMenu = !this.viewService.showSideMenu;
   }
 
-  isNotesPage() {
+  public isNotesPage() {
     return this.router.url.indexOf('/notes') >= 0;
   }
 }

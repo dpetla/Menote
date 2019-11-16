@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthService } from '../auth.service';
 export class SigninComponent {
   constructor(private authService: AuthService) {}
 
-  onLoginWithGoogle() {
+  public onLoginWithGoogle() {
     this.authService.loginWithGoogle();
   }
 }

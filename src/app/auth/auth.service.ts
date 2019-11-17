@@ -10,7 +10,7 @@ import 'firebase/auth';
 export class AuthService {
   public user: any;
   public isNewUser = false;
-  public jwtHelper = new JwtHelperService();
+  private jwtHelper = new JwtHelperService();
 
   constructor(private router: Router, private ngZone: NgZone) {
     firebase.auth().onAuthStateChanged((user: firebase.User) => {

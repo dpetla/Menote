@@ -10,8 +10,8 @@ import {
   switchMap,
   tap
 } from 'rxjs/operators';
+import { AuthService } from '../auth.service';
 import * as authActions from './auth.actions';
-import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthEffects {

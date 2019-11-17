@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-
-import { loginWithPopUp } from '../auth.actions';
-import { AuthState } from '../auth.reducer';
+import { loginWithPopUp } from '../store/auth.actions';
+import { AuthState } from '../store/auth.reducer';
 
 @Component({
   selector: 'app-signin',

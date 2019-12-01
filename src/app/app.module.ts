@@ -49,11 +49,11 @@ firebase.initializeApp({
     BrowserAnimationsModule,
     MaterialModule,
     StoreModule.forRoot(reducers, {
-      metaReducers,
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true
-      }
+      metaReducers
+      // runtimeChecks: {
+      //   strictStateImmutability: true,
+      //   strictActionImmutability: true
+      // }
     }),
     EffectsModule.forRoot([AppEffects]),
     StoreDevtoolsModule.instrument({

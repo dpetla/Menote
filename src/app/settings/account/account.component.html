@@ -1,33 +1,35 @@
-<div id="account-container">
+<div id="account-container" *ngIf="user$ | async as user">
   <h3 class="h3 mt-2">Account</h3>
   <hr />
   <div class="d-flex flex-row my-3 account-item">
     <span class="h6 my-auto">Full Name</span>
-    <p class="ml-auto my-auto">{{ getDisplayName() }}</p>
+    <p class="ml-auto my-auto">{{ user.displayName }}</p>
   </div>
 
   <div class="d-flex flex-row my-3 account-item">
     <span class="h6 my-auto">Email/Username</span>
-    <p class="ml-auto my-auto">{{ getUserName() }}</p>
+    <p class="ml-auto my-auto">{{ user.email }}</p>
   </div>
 
   <div class="d-flex flex-row my-3 account-item">
     <span class="h6 my-auto">Email verified?</span>
-    <p class="ml-auto my-auto">{{ isEmailVerified() }}</p>
+    <p class="ml-auto my-auto">{{ user.emailVerified }}</p>
   </div>
 
   <div class="d-flex flex-row my-3 account-item">
     <span class="h6 my-auto">Provider</span>
-    <p class="ml-auto my-auto">{{ getProvider() }}</p>
+    <p class="ml-auto my-auto">{{ user.providerData[0].providerId }}</p>
   </div>
 
   <div class="d-flex flex-row my-3 account-item">
     <span class="h6 my-auto">Account creation</span>
-    <p class="ml-auto my-auto">{{ getAccountCreation() }}</p>
+    <p class="ml-auto my-auto">{{ user.metadata.creationTime | date }}</p>
   </div>
 
   <div class="d-flex flex-row my-3 account-item">
     <span class="h6 my-auto">Last signin</span>
-    <p class="ml-auto my-auto">{{ getLastSignin() }}</p>
+    <p class="ml-auto my-auto">
+      {{ user.metadata.lastSignInTime | date: 'medium' }}
+    </p>
   </div>
 </div>

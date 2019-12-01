@@ -11,12 +11,15 @@
     </button>
     <span id="brand-text" class="pointer" routerLink="/notes">menote</span>
     <span class="spacer"></span>
-    <div class="dropdown nav-item" *ngIf="isAuthenticated(); else noAuthLinks">
+    <div
+      class="dropdown nav-item"
+      *ngIf="isAuthenticated$ | async; else noAuthLinks"
+    >
       <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Menu">
         <img
           width="38px"
           class="img-thumbnail rounded-circle p-0"
-          [src]="getUserPhotoURL()"
+          [src]="userPhotoUrl$ | async"
           alt="profile"
         />
       </button>

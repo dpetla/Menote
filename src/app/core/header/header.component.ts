@@ -1,37 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { pluck, startWith } from 'rxjs/operators';
 
-import { AuthService } from '../../auth/auth.service';
+import {
+  selectIsAuthenticated,
+  selectUser
+} from '../../../app/auth/store/auth.selectors';
+import { logout } from '../../auth/store/auth.actions';
+import { AppState } from '../../reducers';
 import { ViewService } from '../../shared/view.service';
+
+const defaultAvatar = '../../../assets/images/account-profile-user-icon.png';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
-  public userIcon = '../../../assets/images/account-profile-user-icon.png';
+export class HeaderComponent {
+  public isAuthenticated$ = this.store.select(selectIsAuthenticated);
+  public userPhotoUrl$ = this.store
+    .select(selectUser)
+    .pipe(startWith(defaultAvatar), pluck('photoURL'));
 
   constructor(
-    private authService: AuthService,
     private viewService: ViewService,
-    private router: Router
+    private router: Router,
+    private store: Store<AppState>
   ) {}
 
-  public ngOnInit() {}
-
   public onLogout() {
-    this.authService.logout();
-  }
-
-  public isAuthenticated() {
-    return this.authService.isAuthenticated();
-  }
-
-  public getUserPhotoURL() {
-    return this.authService.user
-      ? this.authService.user.photoURL
-      : this.userIcon;
+    this.store.dispatch(logout());
   }
 
   public isLargeScreen() {

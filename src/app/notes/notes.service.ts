@@ -1,20 +1,22 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import {
   AngularFirestore,
   AngularFirestoreCollection
 } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 
+import { selectIsNewUser, selectUser } from '../auth/store/auth.selectors';
+import { AppState } from '../reducers';
 import { LocalInfoService } from '../shared/local-info.service';
 import { WeatherApiResponse } from '../shared/WeatherApiResponse.model';
 
-import { AuthService } from './../auth/auth.service';
 import * as noteTemplate from './note-templates';
 import { Note } from './note.model';
 
-interface apiData {
+interface ApiData {
   weatherDesc: string;
   temp: string;
   city: string;
@@ -24,16 +26,19 @@ interface apiData {
 @Injectable({
   providedIn: 'root'
 })
-export class NotesService {
+export class NotesService implements OnDestroy {
   public notesRef: AngularFirestoreCollection<Note>;
   public notes$: Observable<Note[]>;
   public newNote: Note = noteTemplate.newNote;
+  private isNewUser: boolean;
+  private unsubscribe$ = new Subject<void>();
+  private uid: string;
 
   constructor(
     private localInfoService: LocalInfoService,
     private db: AngularFirestore,
-    private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private store: Store<AppState>
   ) {
     this.notesRef = this.getNotesRef();
 
@@ -41,11 +46,21 @@ export class NotesService {
       .snapshotChanges()
       .pipe(map(this.convertPayloadToNotes));
 
-    this.createWelcomeNoteForNewUser();
+    this.store
+      .select(selectIsNewUser)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(isNewUser => {
+        this.isNewUser = isNewUser;
+        this.createWelcomeNoteForNewUser();
+      });
+    this.store
+      .select(selectUser)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(({ uid }) => (this.uid = uid));
   }
 
   public getNotesRef(): AngularFirestoreCollection<Note> {
-    const uid = localStorage.getItem('menote-uid') || this.authService.user.uid;
+    const uid = localStorage.getItem('menote-uid') || this.uid;
     return this.db.collection('notes', ref =>
       ref.where('uid', '==', uid).orderBy('dateCreated', 'desc')
     );
@@ -60,7 +75,7 @@ export class NotesService {
   }
 
   public createWelcomeNoteForNewUser() {
-    if (this.authService.isNewUser) {
+    if (this.isNewUser) {
       this.createNote();
     }
   }
@@ -86,14 +101,14 @@ export class NotesService {
           };
         })
       )
-      .subscribe((apiData: apiData) => this.populateInitialFields(apiData));
+      .subscribe((apiData: ApiData) => this.populateInitialFields(apiData));
   }
 
   public formatTempString(temp: number): string {
     return Math.round(temp) + String.fromCharCode(176) + 'C';
   }
 
-  public populateInitialFields(apiData: apiData) {
+  public populateInitialFields(apiData: ApiData) {
     this.populateStandardFields(apiData);
     this.populateNewUserNote();
     this.addNoteToFirebase(this.newNote);
@@ -101,7 +116,7 @@ export class NotesService {
 
   public populateStandardFields(apiData) {
     const fields = {
-      uid: this.authService.user.uid,
+      uid: this.uid,
       location: `${apiData.city}, ${apiData.country}`,
       title: new Date().toDateString(),
       dateCreated: new Date(),
@@ -111,7 +126,7 @@ export class NotesService {
   }
 
   public populateNewUserNote() {
-    if (this.authService.isNewUser) {
+    if (this.isNewUser) {
       this.newNote.title = 'Welcome to menote!';
       this.newNote.content = noteTemplate.firstNoteContent;
     }
@@ -122,5 +137,10 @@ export class NotesService {
       .add(newNote)
       .then(note => this.router.navigate([note.path]))
       .catch(error => console.log(error));
+  }
+
+  public ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

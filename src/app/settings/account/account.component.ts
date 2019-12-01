@@ -1,63 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { AuthService } from '../../auth/auth.service';
+import { selectUser } from '../../auth/store/auth.selectors';
+import { AppState } from '../../reducers';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css']
 })
-export class AccountComponent implements OnInit {
+export class AccountComponent {
+  public user$ = this.store.select(selectUser);
   public deactivateConfirmed = false;
 
-  constructor(private authService: AuthService) {}
-
-  public ngOnInit() {}
-
-  public getAccountCreation() {
-    const options = {
-      month: 'short',
-      day: '2-digit',
-      year: 'numeric'
-    };
-    return new Date(this.authService.user.metadata.creationTime).toLocaleString(
-      'en-US',
-      options
-    );
-  }
-  public getLastSignin() {
-    const options = {
-      hour12: false,
-      month: 'short',
-      day: '2-digit',
-      year: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
-      timeZoneName: 'short'
-    };
-    return new Date(
-      this.authService.user.metadata.lastSignInTime
-    ).toLocaleString('en-US', options);
-  }
-
-  public getDisplayName() {
-    return this.authService.user.displayName;
-  }
-
-  public getUserName() {
-    return this.authService.user.email;
-  }
-
-  public isEmailVerified() {
-    return this.authService.user.emailVerified;
-  }
-
-  public getProvider() {
-    return this.authService.user.providerData[0].providerId;
-  }
-
-  public onConfirmDeactivation() {
-    return (this.deactivateConfirmed = !this.deactivateConfirmed);
-  }
+  constructor(private store: Store<AppState>) {}
 }

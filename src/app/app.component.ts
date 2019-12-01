@@ -7,8 +7,13 @@ import {
   NavigationStart,
   Router
 } from '@angular/router';
+import { Store } from '@ngrx/store';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 import { Subscription } from 'rxjs';
 
+import { loginSuccess } from './auth/store/auth.actions';
+import { AppState } from './reducers';
 import { UpdateService } from './shared/update.service';
 
 @Component({
@@ -20,9 +25,18 @@ export class AppComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
   public isLoading = false;
 
-  constructor(public router: Router, private updateService: UpdateService) {}
+  constructor(
+    public router: Router,
+    private updateService: UpdateService,
+    private store: Store<AppState>
+  ) {}
 
   public ngOnInit() {
+    firebase.auth().onAuthStateChanged((user: firebase.User) => {
+      if (user) {
+        this.store.dispatch(loginSuccess({ user, isNewUser: false }));
+      }
+    });
     this.subscription = this.subscribeToRouterEvents();
   }
 

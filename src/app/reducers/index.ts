@@ -1,6 +1,7 @@
 import * as fromRouter from '@ngrx/router-store';
 import {
   createFeatureSelector,
+  createSelector,
   ActionReducerMap,
   MetaReducer
 } from '@ngrx/store';
@@ -10,17 +11,22 @@ import * as fromAuth from '../auth/store/auth.reducer';
 
 export interface AppState {
   router: fromRouter.RouterReducerState<any>;
-  // authState: fromAuth.AuthState;
+  auth: fromAuth.AuthState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-  router: fromRouter.routerReducer
-  // auth: fromAuth.reducer
+  router: fromRouter.routerReducer,
+  auth: fromAuth.reducer
 };
 
 export const metaReducers: MetaReducer<AppState>[] = !environment.production
   ? []
   : [];
+
+export const selectAuthState = createFeatureSelector<
+  AppState,
+  fromAuth.AuthState
+>(fromAuth.authFeatureKey);
 
 export const selectRouter = createFeatureSelector<
   AppState,
@@ -38,3 +44,10 @@ const {
 
 export const selectRouteId = selectRouteParam('id');
 export const selectStatus = selectQueryParam('status');
+
+export const getRouterState = (state: AppState) => state.router;
+
+export const getCurrentUrl = createSelector(
+  getRouterState,
+  (state: fromRouter.RouterReducerState) => state.state && state.state.url
+);

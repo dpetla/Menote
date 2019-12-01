@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { loginWithPopUp } from '../store/auth.actions';
+
+import { login } from '../store/auth.actions';
 import { AuthState } from '../store/auth.reducer';
 
 @Component({
@@ -12,6 +13,6 @@ export class SigninComponent {
   constructor(private store: Store<AuthState>) {}
 
   public onLoginWithGoogle() {
-    this.store.dispatch(loginWithPopUp());
+    this.store.dispatch(login());
   }
 }

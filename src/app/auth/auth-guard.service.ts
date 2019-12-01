@@ -4,18 +4,21 @@ import {
   CanActivate,
   RouterStateSnapshot
 } from '@angular/router';
+import { Store } from '@ngrx/store';
 
-import { AuthService } from './auth.service';
+import { AppState } from '../reducers';
+
+import { selectIsAuthenticated } from './store/auth.selectors';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService) {}
+  constructor(private store: Store<AppState>) {}
 
   public canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ) {
-    return this.authService.isAuthenticated();
+    return this.store.select(selectIsAuthenticated);
   }
 
   public canActivateChild(

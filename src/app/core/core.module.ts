@@ -23,16 +23,10 @@ import { LandingComponent } from './home/landing/landing.component';
     FooterComponent,
     LandingComponent,
     FeaturesComponent,
-    ContactFormComponent
+    ContactFormComponent,
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    AppRoutingModule,
-    AuthModule,
-    MaterialModule
-  ],
+  imports: [CommonModule, FormsModule, AppRoutingModule, AuthModule, MaterialModule],
   exports: [AppRoutingModule, HeaderComponent, FooterComponent],
-  providers: [AngularFireAuth]
+  providers: [AngularFireAuth],
 })
 export class CoreModule {}

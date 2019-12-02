@@ -6,12 +6,12 @@ import { DialogData } from './dialog-data.model';
 @Component({
   selector: 'app-simple-dialog',
   templateUrl: './simple-dialog.component.html',
-  styleUrls: ['./simple-dialog.component.css']
+  styleUrls: ['./simple-dialog.component.css'],
 })
 export class SimpleDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<SimpleDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) {}
 
   public ngOnInit() {}

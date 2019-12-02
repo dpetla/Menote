@@ -12,7 +12,7 @@ import {
   map,
   switchMap,
   tap,
-  withLatestFrom
+  withLatestFrom,
 } from 'rxjs/operators';
 
 import { AppState } from '../../../app/reducers';
@@ -29,37 +29,29 @@ import {
   logoutFailure,
   logoutSuccess,
   setSessionPersistence,
-  setSessionPersistenceFailure
+  setSessionPersistenceFailure,
 } from './auth.actions';
 import { selectUser } from './auth.selectors';
 
 @Injectable()
 export class AuthEffects {
-  constructor(
-    private actions$: Actions,
-    private router: Router,
-    private store: Store<AppState>
-  ) {}
+  constructor(private actions$: Actions, private router: Router, private store: Store<AppState>) {}
 
   public login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(login),
       map(() => setSessionPersistence()),
-      catchError(error => of(loginFailure({ error })))
-    )
+      catchError(error => of(loginFailure({ error }))),
+    ),
   );
 
   public setSessionPersistence$ = createEffect(() =>
     this.actions$.pipe(
       ofType(setSessionPersistence),
-      map(() =>
-        from(
-          firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-        )
-      ),
+      map(() => from(firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION))),
       map(() => loginWithPopUp()),
-      catchError(error => of(setSessionPersistenceFailure({ error })))
-    )
+      catchError(error => of(setSessionPersistenceFailure({ error }))),
+    ),
   );
 
   public loginWithPopUp$ = createEffect(() =>
@@ -67,22 +59,18 @@ export class AuthEffects {
       ofType(loginWithPopUp),
       distinctUntilChanged(),
       exhaustMap(() =>
-        from(
-          firebase
-            .auth()
-            .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-        ).pipe(
+        from(firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())).pipe(
           map((credential: firebase.auth.UserCredential) =>
             loginSuccess({
               user: credential.user,
-              isNewUser: credential.additionalUserInfo.isNewUser
-            })
+              isNewUser: credential.additionalUserInfo.isNewUser,
+            }),
           ),
           tap(() => this.router.navigate(['/notes'])),
-          catchError(error => of(loginFailure({ error })))
-        )
-      )
-    )
+          catchError(error => of(loginFailure({ error }))),
+        ),
+      ),
+    ),
   );
 
   public logout$ = createEffect(() =>
@@ -92,10 +80,10 @@ export class AuthEffects {
         from(firebase.auth().signOut()).pipe(
           first(),
           map(() => logoutSuccess()),
-          catchError(error => of(logoutFailure({ error })))
-        )
-      )
-    )
+          catchError(error => of(logoutFailure({ error }))),
+        ),
+      ),
+    ),
   );
 
   public logoutSuccess$ = createEffect(
@@ -106,20 +94,18 @@ export class AuthEffects {
           localStorage.removeItem('menote-token');
           localStorage.setItem('menote-nav-hist', '/');
           this.router.navigate(['/']);
-        })
+        }),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   public logoutFailure$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(logoutFailure),
-        tap(({ error }) =>
-          console.log(`Error while logging out. ERROR: ${error}`)
-        )
+        tap(({ error }) => console.log(`Error while logging out. ERROR: ${error}`)),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   public getToken$ = createEffect(() =>
@@ -129,10 +115,10 @@ export class AuthEffects {
       switchMap(([_, user]) =>
         from((user as firebase.User).getIdToken()).pipe(
           map((token: string) => getTokenSuccess({ token })),
-          catchError(error => of(getTokenFailure({ error })))
-        )
-      )
-    )
+          catchError(error => of(getTokenFailure({ error }))),
+        ),
+      ),
+    ),
   );
 
   public getTokenSuccess$ = createEffect(
@@ -143,8 +129,8 @@ export class AuthEffects {
           localStorage.setItem('menote-token', token);
           const path = localStorage.getItem('menote-nav-hist') || '/notes';
           this.router.navigate([path]);
-        })
+        }),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 }

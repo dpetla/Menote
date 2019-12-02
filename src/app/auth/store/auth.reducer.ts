@@ -13,7 +13,7 @@ export interface AuthState {
 export const initialState: AuthState = {
   user: null,
   isNewUser: null,
-  token: null
+  token: null,
 };
 
 const authReducer = createReducer(
@@ -21,15 +21,15 @@ const authReducer = createReducer(
   on(loginSuccess, (state, { user, isNewUser }) => ({
     ...state,
     user,
-    isNewUser
+    isNewUser,
   })),
   on(getTokenSuccess, (state, { token }) => ({ ...state, token })),
   on(logoutSuccess, state => ({
     ...state,
     user: null,
     isNewUser: null,
-    token: null
-  }))
+    token: null,
+  })),
 );
 
 export function reducer(state: AuthState | undefined, action: Action) {

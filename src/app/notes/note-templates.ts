@@ -8,7 +8,7 @@ export const newNote = {
   weather: '',
   mood: '',
   tags: {},
-  images: []
+  images: [],
 };
 
 export const firstNoteContent = `<h1>How to use menote!</h1><p>With <span style="color: rgb(44, 130, 201);">

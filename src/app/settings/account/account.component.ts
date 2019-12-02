@@ -7,7 +7,7 @@ import { AppState } from '../../reducers';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.css']
+  styleUrls: ['./account.component.css'],
 })
 export class AccountComponent {
   public user$ = this.store.select(selectUser);

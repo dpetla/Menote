@@ -7,16 +7,13 @@ import { NotesService } from '../notes.service';
 @Component({
   selector: 'app-note-list',
   templateUrl: './note-list.component.html',
-  styleUrls: ['./note-list.component.css']
+  styleUrls: ['./note-list.component.css'],
 })
 export class NoteListComponent implements OnInit {
   @Input() public notes: Note[];
   public searchText = '';
 
-  constructor(
-    private notesService: NotesService,
-    private viewService: ViewService
-  ) {}
+  constructor(private notesService: NotesService, private viewService: ViewService) {}
 
   public ngOnInit() {}
 

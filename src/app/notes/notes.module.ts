@@ -20,7 +20,7 @@ import { SimpleDialogComponent } from './simple-dialog/simple-dialog.component';
     NoteListComponent,
     NoteDetailComponent,
     SimpleDialogComponent,
-    FilterPipe
+    FilterPipe,
   ],
   imports: [
     CommonModule,
@@ -28,9 +28,9 @@ import { SimpleDialogComponent } from './simple-dialog/simple-dialog.component';
     NotesRoutingModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
-    MaterialModule
+    MaterialModule,
   ],
   exports: [NotesRoutingModule],
-  entryComponents: [SimpleDialogComponent]
+  entryComponents: [SimpleDialogComponent],
 })
 export class NotesModule {}

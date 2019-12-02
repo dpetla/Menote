@@ -42,7 +42,7 @@ export const froalaOptions = {
     '#B8312F',
     '#7C706B',
     '#D1D5D8',
-    'REMOVE'
+    'REMOVE',
   ],
   colorsText: [
     '#61BD6D',
@@ -72,7 +72,7 @@ export const froalaOptions = {
     '#B8312F',
     '#7C706B',
     '#D1D5D8',
-    'REMOVE'
+    'REMOVE',
   ],
   // editorClass: 'custom-class',
 
@@ -109,7 +109,7 @@ export const froalaOptions = {
     'help',
     '|',
     'undo',
-    'redo'
+    'redo',
   ],
   toolbarButtonsMD: [
     'fullscreen',
@@ -128,7 +128,7 @@ export const froalaOptions = {
     'insertImage',
     'insertTable',
     'undo',
-    'redo'
+    'redo',
   ],
   toolbarButtonsSM: [
     'fullscreen',
@@ -147,18 +147,9 @@ export const froalaOptions = {
     'insertImage',
     'insertTable',
     'undo',
-    'redo'
+    'redo',
   ],
-  toolbarButtonsXS: [
-    'bold',
-    'italic',
-    'fontFamily',
-    'fontSize',
-    'formatOL',
-    'formatUL',
-    'undo',
-    'redo'
-  ],
+  toolbarButtonsXS: ['bold', 'italic', 'fontFamily', 'fontSize', 'formatOL', 'formatUL', 'undo', 'redo'],
   // toolbarContainer: '#toolbarContainer',
   // toolbarInline: true,
   // toolbarBottom: false,
@@ -190,5 +181,5 @@ export const froalaOptions = {
   imageMove: true,
   imagePaste: true,
   imageUpload: true,
-  imageResizeWithPercent: true
+  imageResizeWithPercent: true,
 };

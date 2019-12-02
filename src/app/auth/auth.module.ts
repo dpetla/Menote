@@ -16,8 +16,8 @@ import * as fromAuth from './store/auth.reducer';
     FormsModule,
     AuthRoutingModule,
     StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducer),
-    EffectsModule.forFeature([AuthEffects])
+    EffectsModule.forFeature([AuthEffects]),
   ],
-  exports: [SigninComponent, AuthRoutingModule]
+  exports: [SigninComponent, AuthRoutingModule],
 })
 export class AuthModule {}

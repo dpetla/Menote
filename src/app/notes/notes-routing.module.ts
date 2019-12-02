@@ -16,15 +16,15 @@ const notesRoute: Routes = [
       { path: '', component: NoteStartComponent },
       {
         path: ':id',
-        component: NoteDetailComponent
-      }
-    ]
-  }
+        component: NoteDetailComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(notesRoute)],
   exports: [RouterModule],
-  providers: [AuthGuard]
+  providers: [AuthGuard],
 })
 export class NotesRoutingModule {}

@@ -9,6 +9,6 @@ import { SettingsComponent } from './settings.component';
 @NgModule({
   declarations: [SettingsComponent, AccountComponent],
   imports: [CommonModule, FormsModule, SettingsRoutingModule],
-  exports: [SettingsRoutingModule, AccountComponent]
+  exports: [SettingsRoutingModule, AccountComponent],
 })
 export class SettingsModule {}

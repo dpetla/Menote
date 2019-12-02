@@ -6,7 +6,7 @@ import { environment } from './../../environments/environment';
 import { WeatherApiResponse } from './WeatherApiResponse.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocalInfoService {
   private latlng: string;

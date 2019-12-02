@@ -1,10 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import {
-  AngularFirestore,
-  AngularFirestoreCollection
-} from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
@@ -24,7 +21,7 @@ interface ApiData {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NotesService implements OnDestroy {
   public notesRef: AngularFirestoreCollection<Note>;
@@ -38,13 +35,11 @@ export class NotesService implements OnDestroy {
     private localInfoService: LocalInfoService,
     private db: AngularFirestore,
     private router: Router,
-    private store: Store<AppState>
+    private store: Store<AppState>,
   ) {
     this.notesRef = this.getNotesRef();
 
-    this.notes$ = this.notesRef
-      .snapshotChanges()
-      .pipe(map(this.convertPayloadToNotes));
+    this.notes$ = this.notesRef.snapshotChanges().pipe(map(this.convertPayloadToNotes));
 
     this.store
       .select(selectIsNewUser)
@@ -61,9 +56,7 @@ export class NotesService implements OnDestroy {
 
   public getNotesRef(): AngularFirestoreCollection<Note> {
     const uid = localStorage.getItem('menote-uid') || this.uid;
-    return this.db.collection('notes', ref =>
-      ref.where('uid', '==', uid).orderBy('dateCreated', 'desc')
-    );
+    return this.db.collection('notes', ref => ref.where('uid', '==', uid).orderBy('dateCreated', 'desc'));
   }
 
   public convertPayloadToNotes(actions) {
@@ -97,9 +90,9 @@ export class NotesService implements OnDestroy {
             weatherDesc: data.weather[0].description,
             temp: this.formatTempString(data.main.temp),
             city: data.name,
-            country: data.sys.country
+            country: data.sys.country,
           };
-        })
+        }),
       )
       .subscribe((apiData: ApiData) => this.populateInitialFields(apiData));
   }
@@ -120,7 +113,7 @@ export class NotesService implements OnDestroy {
       location: `${apiData.city}, ${apiData.country}`,
       title: new Date().toDateString(),
       dateCreated: new Date(),
-      weather: `${apiData.temp} ${apiData.weatherDesc}`
+      weather: `${apiData.temp} ${apiData.weatherDesc}`,
     };
     Object.assign(this.newNote, fields);
   }

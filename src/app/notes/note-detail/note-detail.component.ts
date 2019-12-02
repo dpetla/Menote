@@ -16,7 +16,7 @@ import { froalaOptions } from './editor-options';
 @Component({
   selector: 'app-note-detail',
   templateUrl: './note-detail.component.html',
-  styleUrls: ['./note-detail.component.css']
+  styleUrls: ['./note-detail.component.css'],
 })
 export class NoteDetailComponent implements OnInit {
   public readonly tagsMax = 10;
@@ -31,13 +31,13 @@ export class NoteDetailComponent implements OnInit {
     private notesService: NotesService,
     private route: ActivatedRoute,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {}
 
   public ngOnInit() {
     this.id$ = this.route.params.pipe(
       map(params => params['id']),
-      tap(id => (this.noteDoc = this.notesService.getNote(id)))
+      tap(id => (this.noteDoc = this.notesService.getNote(id))),
     );
 
     this.note$ = this.id$.pipe(
@@ -50,10 +50,10 @@ export class NoteDetailComponent implements OnInit {
           }),
           tap(
             note => this.setNoteFlags(note.tags),
-            error => console.log(error)
-          )
-        )
-      )
+            error => console.log(error),
+          ),
+        ),
+      ),
     );
   }
 
@@ -97,11 +97,11 @@ export class NoteDetailComponent implements OnInit {
           note.tags.push(newTag);
           const tagObj = this.tagsToObject(note.tags);
           return tagObj;
-        })
+        }),
       )
       .subscribe(
         tags => this.pushTagsToDatabase(tags),
-        err => console.log('Error saving tag', err)
+        err => console.log('Error saving tag', err),
       );
     this.toggleTagEdit();
   }
@@ -118,7 +118,7 @@ export class NoteDetailComponent implements OnInit {
   public pushTagsToDatabase(tags: {}) {
     this.noteDoc
       .update({
-        tags: tags
+        tags: tags,
       })
       .then(() => this.updateDate())
       .catch(error => console.log(error));
@@ -131,7 +131,7 @@ export class NoteDetailComponent implements OnInit {
   public onRemoveTag(tag: string) {
     this.noteDoc
       .update({
-        ['tags.' + tag]: firebase.firestore.FieldValue.delete()
+        ['tags.' + tag]: firebase.firestore.FieldValue.delete(),
       })
       .then(() => this.updateDate())
       .catch(error => console.log(error));
@@ -139,7 +139,7 @@ export class NoteDetailComponent implements OnInit {
 
   public updateDate() {
     this.noteDoc.update({
-      dateUpdated: new Date()
+      dateUpdated: new Date(),
     });
   }
 
@@ -149,15 +149,13 @@ export class NoteDetailComponent implements OnInit {
       data: {
         text: 'Delete note?',
         confirmBtn: 'Delete',
-        cancelBtn: 'Cancel'
-      }
+        cancelBtn: 'Cancel',
+      },
     });
 
     dialogRef.afterClosed().subscribe(isDelete => {
       if (isDelete) {
-        this.noteDoc
-          .delete()
-          .catch(error => console.log('Error deleting note.', error));
+        this.noteDoc.delete().catch(error => console.log('Error deleting note.', error));
         this.router.navigate(['/notes']);
       }
     });

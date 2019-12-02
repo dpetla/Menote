@@ -25,7 +25,7 @@ import { metaReducers, reducers } from './reducers';
 
 firebase.initializeApp({
   apiKey: environment.firebase.apiKey,
-  authDomain: environment.firebase.authDomain
+  authDomain: environment.firebase.authDomain,
 });
 
 @NgModule({
@@ -33,13 +33,10 @@ firebase.initializeApp({
   imports: [
     BrowserModule,
     FormsModule,
-    AngularFireModule.initializeApp(
-      environment.firebase,
-      environment.firebase.projectId
-    ),
+    AngularFireModule.initializeApp(environment.firebase, environment.firebase.projectId),
     AngularFirestoreModule.enablePersistence(),
     ServiceWorkerModule.register('/ngsw-worker.js', {
-      enabled: environment.production
+      enabled: environment.production,
     }),
     AuthModule,
     CoreModule,
@@ -49,7 +46,7 @@ firebase.initializeApp({
     BrowserAnimationsModule,
     MaterialModule,
     StoreModule.forRoot(reducers, {
-      metaReducers
+      metaReducers,
       // runtimeChecks: {
       //   strictStateImmutability: true,
       //   strictActionImmutability: true
@@ -58,11 +55,11 @@ firebase.initializeApp({
     EffectsModule.forRoot([AppEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
-      logOnly: environment.production
+      logOnly: environment.production,
     }),
-    StoreRouterConnectingModule.forRoot()
+    StoreRouterConnectingModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

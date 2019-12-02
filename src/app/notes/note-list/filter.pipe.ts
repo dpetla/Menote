@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Note } from '../note.model';
 
 @Pipe({
-  name: 'filter'
+  name: 'filter',
 })
 export class FilterPipe implements PipeTransform {
   public transform(notes: Note[], searchTerm: string): any {
@@ -36,8 +36,6 @@ export class FilterPipe implements PipeTransform {
   }
 
   public searchMatchesTags(note: Note, searchTerm: string): boolean {
-    return Object.keys(note.tags).some(
-      tag => tag.toLowerCase().indexOf(searchTerm) >= 0
-    );
+    return Object.keys(note.tags).some(tag => tag.toLowerCase().indexOf(searchTerm) >= 0);
   }
 }

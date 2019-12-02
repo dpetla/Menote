@@ -9,21 +9,17 @@ const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
   {
     path: 'notes',
-    loadChildren: () =>
-      import('./notes/notes.module').then(mod => mod.NotesModule)
+    loadChildren: () => import('./notes/notes.module').then(mod => mod.NotesModule),
   },
   {
     path: 'settings',
-    loadChildren: () =>
-      import('./settings/settings.module').then(mod => mod.SettingsModule)
+    loadChildren: () => import('./settings/settings.module').then(mod => mod.SettingsModule),
   },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules })
-  ],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules })],
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

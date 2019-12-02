@@ -21,11 +21,11 @@ const materialModules = [
   MatDialogModule,
   MatProgressSpinnerModule,
   MatTooltipModule,
-  MatSnackBarModule
+  MatSnackBarModule,
 ];
 @NgModule({
   imports: [...materialModules, CommonModule],
   declarations: [LoadingSpinnerComponent],
-  exports: [...materialModules, LoadingSpinnerComponent]
+  exports: [...materialModules, LoadingSpinnerComponent],
 })
 export class MaterialModule {}

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 const targetWidth = 900;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ViewService {
   public innerWidth = window.innerWidth;

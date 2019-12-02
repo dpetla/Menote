@@ -1,12 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  Event,
-  NavigationCancel,
-  NavigationEnd,
-  NavigationError,
-  NavigationStart,
-  Router
-} from '@angular/router';
+import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
@@ -19,17 +12,13 @@ import { UpdateService } from './shared/update.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
   public isLoading = false;
 
-  constructor(
-    public router: Router,
-    private updateService: UpdateService,
-    private store: Store<AppState>
-  ) {}
+  constructor(public router: Router, private updateService: UpdateService, private store: Store<AppState>) {}
 
   public ngOnInit() {
     firebase.auth().onAuthStateChanged((user: firebase.User) => {

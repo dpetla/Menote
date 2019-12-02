@@ -11,13 +11,13 @@ const settingsRoutes: Routes = [
     path: '',
     component: SettingsComponent,
     canActivateChild: [AuthGuard],
-    children: [{ path: 'account', component: AccountComponent }]
-  }
+    children: [{ path: 'account', component: AccountComponent }],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(settingsRoutes)],
   exports: [RouterModule],
-  providers: [AuthGuard]
+  providers: [AuthGuard],
 })
 export class SettingsRoutingModule {}

@@ -107,11 +107,11 @@ export class NoteDetailComponent implements OnInit {
   }
 
   public tagsToObject(tags: string[]) {
-    return tags.reduce((tags, key) => {
-      if (!tags[key]) {
-        tags[key] = true;
+    return tags.reduce((acc, key) => {
+      if (!acc[key]) {
+        acc[key] = true;
       }
-      return tags;
+      return acc;
     }, {});
   }
 

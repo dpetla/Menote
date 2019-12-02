@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { login } from '../store/auth.actions';
@@ -8,6 +8,7 @@ import { AuthState } from '../store/auth.reducer';
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SigninComponent {
   constructor(private store: Store<AuthState>) {}

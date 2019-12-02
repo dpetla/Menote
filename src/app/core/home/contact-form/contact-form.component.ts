@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -6,13 +6,9 @@ import { NgForm } from '@angular/forms';
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.css'],
 })
-export class ContactFormComponent implements OnInit {
+export class ContactFormComponent {
   public email = '';
   public message = '';
-
-  constructor() {}
-
-  public ngOnInit() {}
 
   public onSend(f: NgForm) {
     window.location.href =

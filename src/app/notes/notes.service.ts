@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable, Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { filter, map, takeUntil } from 'rxjs/operators';
 
 import { selectIsNewUser, selectUser } from '../auth/store/auth.selectors';
 import { AppState } from '../reducers';
@@ -50,7 +50,10 @@ export class NotesService implements OnDestroy {
       });
     this.store
       .select(selectUser)
-      .pipe(takeUntil(this.unsubscribe$))
+      .pipe(
+        takeUntil(this.unsubscribe$),
+        filter(user => user !== null),
+      )
       .subscribe(({ uid }) => (this.uid = uid));
   }
 

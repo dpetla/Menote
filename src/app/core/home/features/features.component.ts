@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-features',
   templateUrl: './features.component.html',
   styleUrls: ['./features.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FeaturesComponent implements OnInit {
+export class FeaturesComponent {
   public features: { name: string; desc: string; icon: string }[] = [
     {
       name: 'Rich text editor',
@@ -38,8 +39,4 @@ export class FeaturesComponent implements OnInit {
       icon: 'picture-o',
     },
   ];
-
-  constructor() {}
-
-  public ngOnInit() {}
 }

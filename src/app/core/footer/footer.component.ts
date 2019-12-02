@@ -1,16 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FooterComponent implements OnInit {
-  public year: number;
-
-  constructor() {}
-
-  public ngOnInit() {
-    this.year = new Date().getFullYear();
-  }
+export class FooterComponent {
+  public year = new Date().getFullYear();
 }

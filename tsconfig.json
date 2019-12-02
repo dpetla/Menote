@@ -16,5 +16,6 @@
     "target": "es2015",
     "typeRoots": ["node_modules/@types"],
     "lib": ["es2017", "dom"]
-  }
+  },
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

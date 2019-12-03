@@ -6,9 +6,9 @@ import 'firebase/auth';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { checkAppUpdate } from './app.actions';
 import { loginSuccess } from './auth/store/auth.actions';
 import { AppState } from './reducers';
-import { UpdateService } from './shared/update.service';
 
 @Component({
   selector: 'app-root',
@@ -18,9 +18,10 @@ import { UpdateService } from './shared/update.service';
 export class AppComponent implements OnInit {
   public isLoading$: Observable<boolean>;
 
-  constructor(public router: Router, private updateService: UpdateService, private store: Store<AppState>) {}
+  constructor(public router: Router, private store: Store<AppState>) {}
 
   public ngOnInit() {
+    this.store.dispatch(checkAppUpdate());
     firebase.auth().onAuthStateChanged((user: firebase.User) => {
       if (user) {
         this.store.dispatch(loginSuccess({ user, isNewUser: false }));

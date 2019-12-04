@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { WeatherApiResponse } from '../types/WeatherApiResponse.model';
+
 import { environment } from './../../environments/environment';
-import { WeatherApiResponse } from './WeatherApiResponse.model';
 
 @Injectable({
   providedIn: 'root',

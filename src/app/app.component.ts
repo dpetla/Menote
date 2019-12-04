@@ -6,7 +6,7 @@ import 'firebase/auth';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { checkAppUpdate } from './app.actions';
+import { initApp } from './app.actions';
 import { loginSuccess } from './auth/store/auth.actions';
 import { AppState } from './reducers';
 
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   constructor(public router: Router, private store: Store<AppState>) {}
 
   public ngOnInit() {
-    this.store.dispatch(checkAppUpdate());
+    this.store.dispatch(initApp());
     firebase.auth().onAuthStateChanged((user: firebase.User) => {
       if (user) {
         this.store.dispatch(loginSuccess({ user, isNewUser: false }));

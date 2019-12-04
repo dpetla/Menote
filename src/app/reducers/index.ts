@@ -2,23 +2,28 @@ import * as fromRouter from '@ngrx/router-store';
 import { createFeatureSelector, createSelector, ActionReducerMap, MetaReducer } from '@ngrx/store';
 
 import { environment } from '../../environments/environment';
+import * as fromMain from '../app.reducer';
 import * as fromAuth from '../auth/store/auth.reducer';
 
 export interface AppState {
+  main: fromMain.MainState;
   router: fromRouter.RouterReducerState<any>;
   auth: fromAuth.AuthState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
+  main: fromMain.reducer,
   router: fromRouter.routerReducer,
   auth: fromAuth.reducer,
 };
 
 export const metaReducers: MetaReducer<AppState>[] = !environment.production ? [] : [];
 
-export const selectAuthState = createFeatureSelector<AppState, fromAuth.AuthState>(fromAuth.authFeatureKey);
+export const selectMainState = createFeatureSelector<AppState, fromMain.MainState>(fromMain.mainFeatureKey);
 
 export const selectRouter = createFeatureSelector<AppState, fromRouter.RouterReducerState<any>>('router');
+
+export const selectAuthState = createFeatureSelector<AppState, fromAuth.AuthState>(fromAuth.authFeatureKey);
 
 const {
   selectQueryParams, // select the current route query params

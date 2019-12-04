@@ -1,19 +1,38 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SwUpdate } from '@angular/service-worker';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
-import { checkAppUpdate, updateAppFailure, updateAppSuccess, updateAvailable } from './app.actions';
+import { environment } from '../environments/environment';
+
+import {
+  initApp,
+  retrieveCoordinates,
+  retrieveCoordinatesFailure,
+  retrieveLocalWeather,
+  retrieveLocalWeatherFailure,
+  retrieveLocalWeatherSuccess,
+  updateAppFailure,
+  updateAppSuccess,
+  updateAvailable,
+} from './app.actions';
+import { WeatherApiResponse } from './types/WeatherApiResponse.model';
 
 @Injectable()
 export class AppEffects {
-  constructor(private actions$: Actions, private swUpdate: SwUpdate, private snackbar: MatSnackBar) {}
+  constructor(
+    private actions$: Actions,
+    private http: HttpClient,
+    private swUpdate: SwUpdate,
+    private snackbar: MatSnackBar,
+  ) {}
 
   public checkAppUpdate$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(checkAppUpdate),
+      ofType(initApp),
       switchMap(() => this.swUpdate.available.pipe(map(() => updateAvailable()))),
     ),
   );
@@ -29,6 +48,42 @@ export class AppEffects {
             map(() => window.location.reload()),
             map(() => updateAppSuccess()),
             catchError(() => of(updateAppFailure())),
+          ),
+      ),
+    ),
+  );
+
+  public retrieveCoordinates$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(retrieveCoordinates),
+      switchMap(() =>
+        new Observable(obs => {
+          navigator.geolocation.getCurrentPosition(
+            success => {
+              obs.next(success);
+              obs.complete();
+            },
+            error => obs.error(error),
+          );
+        }).pipe(
+          map(({ coords }) => retrieveLocalWeather({ coords })),
+          catchError(error => of(retrieveCoordinatesFailure({ error }))),
+        ),
+      ),
+    ),
+  );
+
+  public retrieveLocalWeather$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(retrieveLocalWeather),
+      switchMap(({ coords }) =>
+        this.http
+          .get<WeatherApiResponse>(
+            `${environment.openWeatherMap.url}lat=${coords.latitude}&lon=${coords.longitude}&APPID=${environment.openWeatherMap.appId}&units=metric`,
+          )
+          .pipe(
+            map(currentWeather => retrieveLocalWeatherSuccess({ currentWeather })),
+            catchError(error => of(retrieveLocalWeatherFailure({ error }))),
           ),
       ),
     ),

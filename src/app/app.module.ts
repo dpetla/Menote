@@ -17,11 +17,11 @@ import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AppEffects } from './app.effects';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { MaterialModule } from './material/material.module';
 import { metaReducers, reducers } from './reducers';
+import { NotesEffects } from './notes/store/notes.effects';
 
 firebase.initializeApp({
   apiKey: environment.firebase.apiKey,
@@ -52,7 +52,7 @@ firebase.initializeApp({
       //   strictActionImmutability: true
       // }
     }),
-    EffectsModule.forRoot([AppEffects]),
+    EffectsModule.forRoot([NotesEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,

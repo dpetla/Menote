@@ -6,7 +6,8 @@ import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { of, Observable } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
-import { environment } from '../environments/environment';
+import { environment } from '../../../environments/environment';
+import { WeatherApiResponse } from '../../types/WeatherApiResponse.model';
 
 import {
   initApp,
@@ -18,11 +19,10 @@ import {
   updateAppFailure,
   updateAppSuccess,
   updateAvailable,
-} from './app.actions';
-import { WeatherApiResponse } from './types/WeatherApiResponse.model';
+} from './notes.actions';
 
 @Injectable()
-export class AppEffects {
+export class NotesEffects {
   constructor(
     private actions$: Actions,
     private http: HttpClient,
@@ -55,7 +55,7 @@ export class AppEffects {
 
   public retrieveCoordinates$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(retrieveCoordinates),
+      ofType(retrieveCoordinates, initApp),
       switchMap(() =>
         new Observable(obs => {
           navigator.geolocation.getCurrentPosition(

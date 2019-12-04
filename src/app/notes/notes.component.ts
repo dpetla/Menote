@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { ViewService } from '../shared/view.service';
 
-import { Note } from './note.model';
+import { Note } from '../types/note.interface';
 import { NotesService } from './notes.service';
 
 @Component({

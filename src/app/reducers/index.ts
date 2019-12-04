@@ -2,24 +2,24 @@ import * as fromRouter from '@ngrx/router-store';
 import { createFeatureSelector, createSelector, ActionReducerMap, MetaReducer } from '@ngrx/store';
 
 import { environment } from '../../environments/environment';
-import * as fromMain from '../app.reducer';
 import * as fromAuth from '../auth/store/auth.reducer';
+import * as fromNotes from '../notes/store/notes.reducer';
 
 export interface AppState {
-  main: fromMain.MainState;
+  notes: fromNotes.NotesState;
   router: fromRouter.RouterReducerState<any>;
   auth: fromAuth.AuthState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-  main: fromMain.reducer,
+  notes: fromNotes.reducer,
   router: fromRouter.routerReducer,
   auth: fromAuth.reducer,
 };
 
 export const metaReducers: MetaReducer<AppState>[] = !environment.production ? [] : [];
 
-export const selectMainState = createFeatureSelector<AppState, fromMain.MainState>(fromMain.mainFeatureKey);
+export const selectNotesState = createFeatureSelector<AppState, fromNotes.NotesState>(fromNotes.notesFeatureKey);
 
 export const selectRouter = createFeatureSelector<AppState, fromRouter.RouterReducerState<any>>('router');
 

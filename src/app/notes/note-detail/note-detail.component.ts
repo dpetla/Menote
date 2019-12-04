@@ -7,7 +7,7 @@ import 'firebase/firestore';
 import { Observable } from 'rxjs';
 import { filter, map, switchMap, take, tap } from 'rxjs/operators';
 
-import { Note } from '../note.model';
+import { Note } from '../../types/note.interface';
 import { NotesService } from '../notes.service';
 import { SimpleDialogComponent } from '../simple-dialog/simple-dialog.component';
 

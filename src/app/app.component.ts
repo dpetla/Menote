@@ -6,8 +6,8 @@ import 'firebase/auth';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { initApp } from './app.actions';
 import { loginSuccess } from './auth/store/auth.actions';
+import { initApp } from './notes/store/notes.actions';
 import { AppState } from './reducers';
 
 @Component({

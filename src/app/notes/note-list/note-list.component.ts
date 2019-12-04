@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { ViewService } from '../../shared/view.service';
-import { Note } from '../note.model';
+import { Note } from '../../types/note.interface';
 import { NotesService } from '../notes.service';
 
 @Component({

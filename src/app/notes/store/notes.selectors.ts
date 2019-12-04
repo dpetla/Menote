@@ -1,9 +1,9 @@
 import { createSelector } from '@ngrx/store';
 
-import { selectMainState } from './reducers';
-import { formatTempString } from './utils/utils';
+import { selectNotesState } from '../../reducers';
+import { formatTempString } from '../../utils/utils';
 
-export const selectCurrentWeather = createSelector(selectMainState, state => state.currentWeather);
+export const selectCurrentWeather = createSelector(selectNotesState, state => state.currentWeather);
 
 export const selectNoteWeatherData = createSelector(
   selectCurrentWeather,

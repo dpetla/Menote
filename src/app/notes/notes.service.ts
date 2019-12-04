@@ -8,17 +8,10 @@ import { filter, map, takeUntil } from 'rxjs/operators';
 import { selectIsNewUser, selectUser } from '../auth/store/auth.selectors';
 import { AppState } from '../reducers';
 import { LocalInfoService } from '../shared/local-info.service';
-import { WeatherApiResponse } from '../shared/WeatherApiResponse.model';
+import { Note } from '../types/note.interface';
+import { WeatherApiResponse } from '../types/WeatherApiResponse.model';
 
 import * as noteTemplate from './note-templates';
-import { Note } from './note.model';
-
-interface ApiData {
-  weatherDesc: string;
-  temp: string;
-  city: string;
-  country: string;
-}
 
 @Injectable({
   providedIn: 'root',
@@ -85,6 +78,7 @@ export class NotesService implements OnDestroy {
   }
 
   public createNote() {
+    // this.store.dispatch(createNote());
     this.localInfoService
       .getLocalInfo()
       .pipe(
@@ -97,14 +91,14 @@ export class NotesService implements OnDestroy {
           };
         }),
       )
-      .subscribe((apiData: ApiData) => this.populateInitialFields(apiData));
+      .subscribe((apiData: NoteWeatherData) => this.populateInitialFields(apiData));
   }
 
   public formatTempString(temp: number): string {
     return Math.round(temp) + String.fromCharCode(176) + 'C';
   }
 
-  public populateInitialFields(apiData: ApiData) {
+  public populateInitialFields(apiData: NoteWeatherData) {
     this.populateStandardFields(apiData);
     this.populateNewUserNote();
     this.addNoteToFirebase(this.newNote);

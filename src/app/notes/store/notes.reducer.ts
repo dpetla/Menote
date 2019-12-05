@@ -1,23 +1,22 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { AngularFirestoreCollection } from 'angularfire2/firestore';
 
 import { Note } from '../../types/note.interface';
 import { WeatherApiResponse } from '../../types/WeatherApiResponse.model';
 
-import { retrieveLocalWeatherSuccess } from './notes.actions';
+import { retrieveLocalWeatherSuccess, retrieveNotesSuccess, selectNote } from './notes.actions';
 
 export const notesFeatureKey = 'notes';
 
 export interface NotesState {
   currentWeather: WeatherApiResponse;
   notes: Note[];
-  notesRef: AngularFirestoreCollection<Note>;
+  selectedId: string;
 }
 
 export const initialState: NotesState = {
   currentWeather: null,
   notes: null,
-  notesRef: null,
+  selectedId: null,
 };
 
 const mianReducer = createReducer(
@@ -25,6 +24,14 @@ const mianReducer = createReducer(
   on(retrieveLocalWeatherSuccess, (state, { currentWeather }) => ({
     ...state,
     currentWeather,
+  })),
+  on(retrieveNotesSuccess, (state, { notes }) => ({
+    ...state,
+    notes,
+  })),
+  on(selectNote, (state, { selectedId }) => ({
+    ...state,
+    selectedId,
   })),
 );
 

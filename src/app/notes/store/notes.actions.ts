@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
 
+import { Note } from '../../types/note.interface';
 import { WeatherApiResponse } from '../../types/WeatherApiResponse.model';
 
 export const initApp = createAction('[Notes] Init App');
@@ -32,3 +33,16 @@ export const retrieveLocalWeatherFailure = createAction(
   '[Notes] Retrieve local weather success failure',
   props<{ error: HttpErrorResponse }>(),
 );
+
+export const retrieveNotesRef = createAction('[Notes] Retrieve NotesRef');
+
+export const retrieveNotes = createAction('[Notes] Retrieve Notes');
+
+export const retrieveNotesSuccess = createAction('[Notes] Retrieve Notes Success', props<{ notes: Note[] }>());
+
+export const retrieveNotesFailure = createAction(
+  '[Notes] Retrieve Notes Failure',
+  props<{ error: HttpErrorResponse }>(),
+);
+
+export const selectNote = createAction('[Notes] Select Note', props<{ selectedId: string }>());

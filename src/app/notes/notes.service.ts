@@ -12,6 +12,7 @@ import { Note } from '../types/note.interface';
 import { WeatherApiResponse } from '../types/WeatherApiResponse.model';
 
 import * as noteTemplate from './note-templates';
+import { selectNotes } from './store/notes.selectors';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +33,7 @@ export class NotesService implements OnDestroy {
   ) {
     this.notesRef = this.getNotesRef();
 
-    this.notes$ = this.notesRef.snapshotChanges().pipe(map(this.convertPayloadToNotes));
+    this.notes$ = this.store.select(selectNotes);
 
     this.store
       .select(selectIsNewUser)
@@ -53,14 +54,6 @@ export class NotesService implements OnDestroy {
   public getNotesRef(): AngularFirestoreCollection<Note> {
     const uid = localStorage.getItem('menote-uid') || this.uid;
     return this.db.collection('notes', ref => ref.where('uid', '==', uid).orderBy('dateCreated', 'desc'));
-  }
-
-  public convertPayloadToNotes(actions) {
-    return actions.map(action => {
-      const data = action.payload.doc.data();
-      const id = action.payload.doc.id;
-      return { id, ...data } as Note;
-    });
   }
 
   public createWelcomeNoteForNewUser() {

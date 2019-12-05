@@ -16,6 +16,7 @@ import {
 } from 'rxjs/operators';
 
 import { AppState } from '../../../app/reducers';
+import { retrieveNotesRef } from '../../notes/store/notes.actions';
 
 import {
   getToken,
@@ -114,7 +115,7 @@ export class AuthEffects {
       withLatestFrom(this.store.select(selectUser)),
       switchMap(([_, user]) =>
         from((user as firebase.User).getIdToken()).pipe(
-          map((token: string) => getTokenSuccess({ token })),
+          switchMap((token: string) => [getTokenSuccess({ token }), retrieveNotesRef()]),
           catchError(error => of(getTokenFailure({ error }))),
         ),
       ),

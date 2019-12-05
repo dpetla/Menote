@@ -5,7 +5,7 @@ import { getTokenSuccess, loginSuccess, logoutSuccess } from './auth.actions';
 export const authFeatureKey = 'auth';
 
 export interface AuthState {
-  user: any;
+  user: firebase.User;
   isNewUser: boolean;
   token: string;
 }

@@ -18,13 +18,9 @@ export class NoteListComponent {
   public notes$: Observable<Note[]> = this.store.select(selectNotes);
   public searchText = '';
 
-  constructor(private store: Store<AppState>, private viewService: ViewService) {}
+  constructor(private store: Store<AppState>) {}
 
   public onCreateNote() {
     this.store.dispatch(createNote());
-  }
-
-  public onSelectNote() {
-    this.viewService.showSideMenu = this.viewService.isLargeScreen();
   }
 }

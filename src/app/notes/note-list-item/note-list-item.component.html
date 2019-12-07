@@ -1,0 +1,22 @@
+<a
+  class="list-group-item list-group-item-action flex-column align-items-start cust-navbar"
+  [ngClass]="{ active: selectedNote == note }"
+  (click)="onSelectNote()"
+  [routerLink]="['/notes', note.id]"
+  routerLinkActive="active"
+>
+  <div class="d-flex w-100 justify-content-between">
+    <h6 class="mb-1">
+      {{ note.title }}
+    </h6>
+    <small>{{ note.dateCreated.seconds * 1000 | date: 'shortTime' }}</small>
+  </div>
+  <small class="my-0 mr-3">
+    <i class="fa fa-map-marker" aria-hidden="true" *ngIf="note.location.length > 0"> </i>
+    {{ note.location }}
+  </small>
+  <small class="my-0 text-nowrap">
+    <i class="fa fa-thermometer-half" aria-hidden="true" *ngIf="note.weather.length > 0"> </i>
+    {{ note.weather }}
+  </small>
+</a>

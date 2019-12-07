@@ -10,10 +10,12 @@ export const selectCurrentWeather = createSelector(selectNotesState, state => st
 export const selectNoteWeatherData = createSelector(
   selectCurrentWeather,
   state =>
-    ({
-      weatherDesc: state.weather[0].description,
-      temp: formatTempString(state.main.temp),
-      city: state.name,
-      country: state.sys.country,
-    } as NoteWeatherData),
+    (state
+      ? {
+          weatherDesc: state.weather[0].description,
+          temp: formatTempString(state.main.temp),
+          city: state.name,
+          country: state.sys.country,
+        }
+      : {}) as NoteWeatherData,
 );

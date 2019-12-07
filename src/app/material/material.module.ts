@@ -10,6 +10,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { ButtonCircularComponent } from './button-circular/button-circular.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 const materialModules = [
@@ -25,7 +26,7 @@ const materialModules = [
 ];
 @NgModule({
   imports: [...materialModules, CommonModule],
-  declarations: [LoadingSpinnerComponent],
-  exports: [...materialModules, LoadingSpinnerComponent],
+  declarations: [LoadingSpinnerComponent, ButtonCircularComponent],
+  exports: [...materialModules, LoadingSpinnerComponent, ButtonCircularComponent],
 })
 export class MaterialModule {}

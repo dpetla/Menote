@@ -20,9 +20,10 @@
   <ng-template #loading>
     <app-loading-spinner></app-loading-spinner>
   </ng-template>
-  <div class="d-block">
-    <button id="btn-add" mat-fab color="accent" (click)="onCreateNote()" matTooltip="New note">
-      <i class="fa fa-plus pointer text-lg-center text-white"></i>
-    </button>
-  </div>
+  <app-button-circular
+    id="btn-add"
+    class="d-block"
+    (handleClick)="onCreateNote()"
+    tooltip="New Note"
+  ></app-button-circular>
 </div>

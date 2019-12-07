@@ -1,32 +1,30 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
+import { AppState } from '../../reducers';
 import { ViewService } from '../../shared/view.service';
 import { Note } from '../../types/note.interface';
-import { NotesService } from '../notes.service';
+import { createNote } from '../store/notes.actions';
+import { selectNotes } from '../store/notes.selectors';
 
 @Component({
   selector: 'app-note-list',
   templateUrl: './note-list.component.html',
   styleUrls: ['./note-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NoteListComponent implements OnInit {
-  @Input() public notes: Note[];
+export class NoteListComponent {
+  public notes$: Observable<Note[]> = this.store.select(selectNotes);
   public searchText = '';
 
-  constructor(private notesService: NotesService, private viewService: ViewService) {}
+  constructor(private store: Store<AppState>, private viewService: ViewService) {}
 
-  public ngOnInit() {}
-
-  public onCreateNote(e: Event) {
-    e.stopPropagation();
-    this.notesService.createNote();
+  public onCreateNote() {
+    this.store.dispatch(createNote());
   }
 
   public onSelectNote() {
     this.viewService.showSideMenu = this.viewService.isLargeScreen();
-  }
-
-  public resetNoteList() {
-    this.searchText = '';
   }
 }

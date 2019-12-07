@@ -1,10 +1,6 @@
 <mat-drawer-container id="notes-container">
-  <mat-drawer
-    id="notes-sidenav"
-    [mode]="isLargeScreen() ? 'side' : 'over'"
-    [opened]="showSideMenu()"
-  >
-    <app-note-list [notes]="notes$ | async" id="notes-list"></app-note-list>
+  <mat-drawer id="notes-sidenav" [mode]="isLargeScreen() ? 'side' : 'over'" [opened]="showSideMenu()">
+    <app-note-list id="notes-list"></app-note-list>
   </mat-drawer>
   <mat-drawer-content id="sidenav-content">
     <router-outlet></router-outlet>

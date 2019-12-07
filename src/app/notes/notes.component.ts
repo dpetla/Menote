@@ -1,24 +1,14 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, HostListener } from '@angular/core';
 
 import { ViewService } from '../shared/view.service';
-
-import { Note } from '../types/note.interface';
-import { NotesService } from './notes.service';
 
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.css'],
 })
-export class NotesComponent implements OnInit {
-  public notes$: Observable<Note[]>;
-
-  constructor(private viewService: ViewService, private notesService: NotesService) {}
-
-  public ngOnInit() {
-    this.notes$ = this.notesService.getNotes();
-  }
+export class NotesComponent {
+  constructor(private viewService: ViewService) {}
 
   @HostListener('window:resize', ['$event'])
   public onResize(event) {

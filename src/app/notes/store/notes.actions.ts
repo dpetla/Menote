@@ -46,3 +46,12 @@ export const retrieveNotesFailure = createAction(
 );
 
 export const selectNote = createAction('[Notes] Select Note', props<{ selectedId: string }>());
+
+export const createNote = createAction('[Notes] Create Note');
+
+export const createNoteSuccess = createAction(
+  '[Notes] Create Note Success',
+  props<{ note: firebase.firestore.DocumentReference }>(),
+);
+
+export const createNoteFailure = createAction('[Notes] Create Note Failure', props<{ error: HttpErrorResponse }>());

@@ -20,8 +20,9 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { MaterialModule } from './material/material.module';
-import { metaReducers, reducers } from './reducers';
+import { SimpleDialogComponent } from './notes/simple-dialog/simple-dialog.component';
 import { NotesEffects } from './notes/store/notes.effects';
+import { metaReducers, reducers } from './reducers';
 
 firebase.initializeApp({
   apiKey: environment.firebase.apiKey,
@@ -29,7 +30,7 @@ firebase.initializeApp({
 });
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SimpleDialogComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -60,6 +61,7 @@ firebase.initializeApp({
     StoreRouterConnectingModule.forRoot(),
   ],
   providers: [],
+  entryComponents: [SimpleDialogComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

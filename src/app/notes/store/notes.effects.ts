@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SwUpdate } from '@angular/service-worker';
@@ -7,21 +8,26 @@ import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { from, of, Observable } from 'rxjs';
-import { catchError, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
+import { catchError, debounceTime, exhaustMap, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
 import { getTokenFailure } from '../../auth/store/auth.actions';
 import { selectIsNewUser, selectUser } from '../../auth/store/auth.selectors';
-import { AppState } from '../../reducers';
+import { selectRouteId, AppState } from '../../reducers';
 import { Note } from '../../types/note.interface';
 import { WeatherApiResponse } from '../../types/WeatherApiResponse.model';
 import { convertPayloadToNotes } from '../../utils/utils';
 import * as noteTemplate from '../note-templates';
+import { SimpleDialogComponent } from '../simple-dialog/simple-dialog.component';
 
 import {
+  cancelDeleteNoteModal,
   createNote,
   createNoteFailure,
   createNoteSuccess,
+  deleteNote,
+  deleteNoteFailure,
+  deleteNoteSuccess,
   initApp,
   retrieveCoordinates,
   retrieveCoordinatesFailure,
@@ -32,9 +38,13 @@ import {
   retrieveNotesFailure,
   retrieveNotesRef,
   retrieveNotesSuccess,
+  showDeleteNoteModal,
   updateAppFailure,
   updateAppSuccess,
   updateAvailable,
+  updateNote,
+  updateNoteFailure,
+  updateNoteSuccess,
 } from './notes.actions';
 import { selectNoteWeatherData } from './notes.selectors';
 
@@ -50,6 +60,7 @@ export class NotesEffects {
     private db: AngularFirestore,
     private store: Store<AppState>,
     private router: Router,
+    private dialog: MatDialog,
   ) {}
 
   public checkAppUpdate$ = createEffect(() =>
@@ -186,6 +197,80 @@ export class NotesEffects {
       this.actions$.pipe(
         ofType(createNoteFailure),
         switchMap(({ error }) => this.snackbar.open(error.message, null, { duration: 6000 }).onAction()),
+      ),
+    { dispatch: false },
+  );
+
+  public upadateNote$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(updateNote),
+      debounceTime(1000),
+      withLatestFrom(this.store.select(selectRouteId)),
+      exhaustMap(([{ key, value }, id]) =>
+        from(this.notesRef.doc(id).update({ [key]: value })).pipe(
+          map(() => updateNoteSuccess({ key })),
+          catchError(error => of(updateNoteFailure({ error }))),
+        ),
+      ),
+    ),
+  );
+
+  public updateNoteSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(updateNoteSuccess),
+        switchMap(({ key }) => this.snackbar.open(`Note ${key} updated!`, null, { duration: 3000 }).onAction()),
+      ),
+    { dispatch: false },
+  );
+
+  public updateNoteFailure$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(updateNoteFailure),
+        switchMap(({ error }) => this.snackbar.open(error.message, null, { duration: 4000 }).onAction()),
+      ),
+    { dispatch: false },
+  );
+
+  public showDeleteNoteModal$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(showDeleteNoteModal),
+      exhaustMap(() =>
+        this.dialog
+          .open(SimpleDialogComponent, {
+            width: '350px',
+            data: {
+              text: 'Delete note?',
+              confirmBtn: 'Delete',
+              cancelBtn: 'Cancel',
+            },
+          })
+          .afterClosed()
+          .pipe(map(result => (result ? deleteNote() : cancelDeleteNoteModal()))),
+      ),
+    ),
+  );
+
+  public deleteNote$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(deleteNote),
+      withLatestFrom(this.store.select(selectRouteId)),
+      exhaustMap(([_, id]) =>
+        from(this.notesRef.doc(id).delete()).pipe(
+          map(() => deleteNoteSuccess()),
+          catchError(error => of(deleteNoteFailure({ error }))),
+        ),
+      ),
+    ),
+  );
+
+  public deleteNoteSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(deleteNoteSuccess),
+        map(() => this.snackbar.open(`Note deleted!`, null, { duration: 3000 }).onAction()),
+        tap(() => this.router.navigate(['/notes'])),
       ),
     { dispatch: false },
   );

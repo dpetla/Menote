@@ -13,7 +13,6 @@ import { NoteListComponent } from './note-list/note-list.component';
 import { NoteStartComponent } from './note-start/note-start.component';
 import { NotesRoutingModule } from './notes-routing.module';
 import { NotesComponent } from './notes.component';
-import { SimpleDialogComponent } from './simple-dialog/simple-dialog.component';
 import * as fromNotes from './store/notes.reducer';
 
 @NgModule({
@@ -22,7 +21,6 @@ import * as fromNotes from './store/notes.reducer';
     NoteStartComponent,
     NoteListComponent,
     NoteDetailComponent,
-    SimpleDialogComponent,
     FilterPipe,
     NoteListItemComponent,
   ],
@@ -36,6 +34,5 @@ import * as fromNotes from './store/notes.reducer';
     StoreModule.forFeature(fromNotes.notesFeatureKey, fromNotes.reducer),
   ],
   exports: [NotesRoutingModule],
-  entryComponents: [SimpleDialogComponent],
 })
 export class NotesModule {}

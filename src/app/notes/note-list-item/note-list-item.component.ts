@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
 
+import { selectRouteId, AppState } from '../../reducers';
 import { ViewService } from '../../shared/view.service';
 import { Note } from '../../types/note.interface';
 
@@ -11,8 +13,10 @@ import { Note } from '../../types/note.interface';
 })
 export class NoteListItemComponent {
   @Input() public note: Note;
+  public id$ = this.store.select(selectRouteId);
 
-  constructor(private viewService: ViewService) {}
+  constructor(private store: Store<AppState>, private viewService: ViewService) {}
+
   public onSelectNote() {
     this.viewService.showSideMenu = this.viewService.isLargeScreen();
   }

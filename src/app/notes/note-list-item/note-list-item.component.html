@@ -1,6 +1,6 @@
 <a
   class="list-group-item list-group-item-action flex-column align-items-start cust-navbar"
-  [ngClass]="{ active: selectedNote == note }"
+  [ngClass]="{ active: note.id === (id$ | async) }"
   (click)="onSelectNote()"
   [routerLink]="['/notes', note.id]"
   routerLinkActive="active"

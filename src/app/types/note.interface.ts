@@ -3,8 +3,8 @@ export interface Note {
   uid: string;
   title: string;
   content: string;
-  dateCreated: Date;
-  dateUpdated: Date;
+  dateCreated: { seconds: number; nanoseconds: number };
+  dateUpdated: { seconds: number; nanoseconds: number };
   location: string;
   weather: string;
   mood: string;

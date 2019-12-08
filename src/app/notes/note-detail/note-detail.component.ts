@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { AngularFirestoreDocument } from 'angularfire2/firestore';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import { Observable } from 'rxjs';
-import { filter, map, switchMap, take, tap } from 'rxjs/operators';
+import { filter, map, take, tap } from 'rxjs/operators';
 
+import { AppState } from '../../reducers';
 import { Note } from '../../types/note.interface';
-import { NotesService } from '../notes.service';
-import { SimpleDialogComponent } from '../simple-dialog/simple-dialog.component';
+import { showDeleteNoteModal, updateNote } from '../store/notes.actions';
+import { selectNote } from '../store/notes.selectors';
 
 import { froalaOptions } from './editor-options';
 
@@ -18,146 +18,64 @@ import { froalaOptions } from './editor-options';
   templateUrl: './note-detail.component.html',
   styleUrls: ['./note-detail.component.css'],
 })
-export class NoteDetailComponent implements OnInit {
+export class NoteDetailComponent {
   public readonly tagsMax = 10;
-  public noteDoc: AngularFirestoreDocument<{}>;
-  public id$: Observable<string>;
-  public note$: Observable<{}>;
+  public noteDoc: AngularFirestoreDocument<{}>; // TODO: delete
+  public note$: Observable<Note> = this.store.select(selectNote).pipe(tap(note => this.setNoteFlags(note.tags)));
   public tagEditable: boolean;
   public isTagsFull: boolean;
   public froalaOptions: Object = froalaOptions;
 
-  constructor(
-    private notesService: NotesService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private dialog: MatDialog,
-  ) {}
-
-  public ngOnInit() {
-    this.id$ = this.route.params.pipe(
-      map(params => params['id']),
-      tap(id => (this.noteDoc = this.notesService.getNote(id))),
-    );
-
-    this.note$ = this.id$.pipe(
-      switchMap(() =>
-        this.noteDoc.valueChanges().pipe(
-          filter(note => note != null),
-          map((note: Note) => {
-            note.tags = this.tagsToArray(note.tags);
-            return note;
-          }),
-          tap(
-            note => this.setNoteFlags(note.tags),
-            error => console.log(error),
-          ),
-        ),
-      ),
-    );
-  }
-
-  public tagsToArray(tagsObj: {}) {
-    const tags = [];
-    if (tagsObj) {
-      const keys = Object.keys(tagsObj);
-      const values = Object.values(tagsObj);
-      values.forEach((value, index) => value && tags.push(keys[index]));
-    }
-    return tags;
-  }
+  constructor(private store: Store<AppState>) {}
 
   public setNoteFlags(tags) {
     this.isTagsFull = tags.length >= this.tagsMax;
     this.tagEditable = false;
   }
 
-  public onTitleChange(event) {
-    this.noteDoc
-      .update({ title: event })
-      .then(() => this.updateDate())
-      .catch(error => console.log(error));
+  public onTitleChange(value) {
+    this.store.dispatch(updateNote({ key: 'title', value }));
   }
 
-  public onContentChange(event) {
-    this.noteDoc
-      .update({ content: event })
-      .then(() => this.updateDate())
-      .catch(error => console.log(error));
+  public onContentChange(value) {
+    this.store.dispatch(updateNote({ key: 'content', value }));
   }
 
-  public onSaveTag(event: any) {
-    const newTag = event.target.value;
-
-    this.note$
-      .pipe(
-        take(1),
-        filter((note: Note) => note.tags.length < this.tagsMax),
-        map((note: Note) => {
-          note.tags.push(newTag);
-          const tagObj = this.tagsToObject(note.tags);
-          return tagObj;
-        }),
-      )
-      .subscribe(
-        tags => this.pushTagsToDatabase(tags),
-        err => console.log('Error saving tag', err),
-      );
-    this.toggleTagEdit();
-  }
-
-  public tagsToObject(tags: string[]) {
-    return tags.reduce((acc, key) => {
-      if (!acc[key]) {
-        acc[key] = true;
-      }
-      return acc;
-    }, {});
-  }
-
-  public pushTagsToDatabase(tags: {}) {
-    this.noteDoc
-      .update({
-        tags: tags,
-      })
-      .then(() => this.updateDate())
-      .catch(error => console.log(error));
+  public onDeleteNote() {
+    this.store.dispatch(showDeleteNoteModal());
   }
 
   public toggleTagEdit() {
     this.tagEditable = !this.tagEditable;
   }
 
+  public pushTagsToDatabase(value: {}) {
+    this.store.dispatch(updateNote({ key: 'tags', value }));
+  }
+
   public onRemoveTag(tag: string) {
-    this.noteDoc
-      .update({
-        ['tags.' + tag]: firebase.firestore.FieldValue.delete(),
-      })
-      .then(() => this.updateDate())
-      .catch(error => console.log(error));
+    this.store.dispatch(updateNote({ key: 'tags.' + tag, value: firebase.firestore.FieldValue.delete() }));
   }
 
-  public updateDate() {
-    this.noteDoc.update({
-      dateUpdated: new Date(),
-    });
-  }
-
-  public onDeleteNote() {
-    const dialogRef = this.dialog.open(SimpleDialogComponent, {
-      width: '350px',
-      data: {
-        text: 'Delete note?',
-        confirmBtn: 'Delete',
-        cancelBtn: 'Cancel',
-      },
-    });
-
-    dialogRef.afterClosed().subscribe(isDelete => {
-      if (isDelete) {
-        this.noteDoc.delete().catch(error => console.log('Error deleting note.', error));
-        this.router.navigate(['/notes']);
-      }
-    });
+  /*  TODO: refactor Tag managment */
+  public onSaveTag(event: any) {
+    const newTag = event.target.value;
+    this.note$
+      .pipe(
+        take(1),
+        filter((note: Note) => note.tags.length < this.tagsMax),
+        map((note: Note) => {
+          note.tags.push(newTag);
+          const tagObj = note.tags.reduce((acc, key) => {
+            if (!acc[key]) {
+              acc[key] = true;
+            }
+            return acc;
+          }, {});
+          return tagObj;
+        }),
+      )
+      .subscribe(tags => this.pushTagsToDatabase(tags));
+    this.toggleTagEdit();
   }
 }

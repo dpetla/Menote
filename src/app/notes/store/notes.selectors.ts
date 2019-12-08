@@ -1,9 +1,16 @@
 import { createSelector } from '@ngrx/store';
 
-import { selectNotesState } from '../../reducers';
-import { formatTempString } from '../../utils/utils';
+import { selectNotesState, selectRouteId } from '../../reducers';
+import { Note } from '../../types/note.interface';
+import { formatTempString, transformTagsToArray } from '../../utils/utils';
 
 export const selectNotes = createSelector(selectNotesState, state => state.notes);
+
+export const selectNoteObj = createSelector(selectNotesState, selectRouteId, (state, id) =>
+  state.notes ? state.notes.find(note => note.id === id) : ({} as Note),
+);
+
+export const selectNote = createSelector(selectNoteObj, transformTagsToArray);
 
 export const selectCurrentWeather = createSelector(selectNotesState, state => state.currentWeather);
 

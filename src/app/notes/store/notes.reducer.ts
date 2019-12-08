@@ -3,7 +3,7 @@ import { createReducer, on, Action } from '@ngrx/store';
 import { Note } from '../../types/note.interface';
 import { WeatherApiResponse } from '../../types/WeatherApiResponse.model';
 
-import { retrieveLocalWeatherSuccess, retrieveNotesSuccess, selectNote } from './notes.actions';
+import { retrieveLocalWeatherSuccess, retrieveNotesSuccess, updateNoteSuccess } from './notes.actions';
 
 export const notesFeatureKey = 'notes';
 
@@ -29,9 +29,9 @@ const mianReducer = createReducer(
     ...state,
     notes,
   })),
-  on(selectNote, (state, { selectedId }) => ({
+  on(updateNoteSuccess, (state, { key }) => ({
     ...state,
-    selectedId,
+    dateUpdated: new Date(),
   })),
 );
 

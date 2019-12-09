@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { AppState } from '../../reducers';
-import { ViewService } from '../../shared/view.service';
 import { Note } from '../../types/note.interface';
 import { createNote } from '../store/notes.actions';
 import { selectNotes } from '../store/notes.selectors';

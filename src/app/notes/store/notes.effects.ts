@@ -174,8 +174,8 @@ export class NotesEffects {
         };
         return Object.assign(noteTemplate.newNote, fields);
       }),
-      switchMap(note =>
-        from(this.notesRef.add(note)).pipe(
+      switchMap(newNote =>
+        from(this.notesRef.add(newNote)).pipe(
           map(note => createNoteSuccess({ note })),
           catchError(error => of(createNoteFailure({ error }))),
         ),

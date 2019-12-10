@@ -4,7 +4,6 @@ export function isObjectEmpty(obj): boolean {
   return Object.entries(obj).length === 0 && obj.constructor === Object;
 }
 
-// TODO: convert to pipe
 export function formatTempString(temp: number): string {
   return Math.round(temp) + String.fromCharCode(176) + 'C';
 }

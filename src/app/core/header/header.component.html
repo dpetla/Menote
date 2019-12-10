@@ -4,24 +4,16 @@
       mat-icon-button
       (click)="toggleSideMenu()"
       matTooltip="Toggle note list"
-      [matTooltipDisabled]="!isNotesPage()"
-      [disabled]="!isNotesPage()"
+      [matTooltipDisabled]="!(isNotesPage$ | async)"
+      [disabled]="!(isNotesPage$ | async)"
     >
       <i class="fa fa-bars fa-lg text-white pt-1" aria-hidden="true"></i>
     </button>
     <span id="brand-text" class="pointer" routerLink="/notes">menote</span>
     <span class="spacer"></span>
-    <div
-      class="dropdown nav-item"
-      *ngIf="isAuthenticated$ | async; else noAuthLinks"
-    >
+    <div class="dropdown nav-item" *ngIf="isAuthenticated$ | async; else noAuthLinks">
       <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Menu">
-        <img
-          width="38px"
-          class="img-thumbnail rounded-circle p-0"
-          [src]="userPhotoUrl$ | async"
-          alt="profile"
-        />
+        <img width="38px" class="img-thumbnail rounded-circle p-0" [src]="userPhotoUrl$ | async" alt="profile" />
       </button>
       <mat-menu #menu="matMenu" [overlapTrigger]="false">
         <button mat-menu-item routerLink="settings/account">

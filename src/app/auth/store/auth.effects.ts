@@ -16,7 +16,7 @@ import {
 } from 'rxjs/operators';
 
 import { AppState } from '../../../app/reducers';
-import { retrieveNotesRef } from '../../notes/store/notes.actions';
+import { initApp, retrieveNotesRef } from '../../notes/store/notes.actions';
 
 import {
   getToken,
@@ -32,7 +32,7 @@ import {
   setSessionPersistence,
   setSessionPersistenceFailure,
 } from './auth.actions';
-import { selectUser } from './auth.selectors';
+import { selectIsAuthenticated, selectUser } from './auth.selectors';
 
 @Injectable()
 export class AuthEffects {
@@ -130,6 +130,21 @@ export class AuthEffects {
           localStorage.setItem('menote-token', token);
           const path = localStorage.getItem('menote-nav-hist') || '/notes';
           this.router.navigate([path]);
+        }),
+      ),
+    { dispatch: false },
+  );
+
+  public startNavigation$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(initApp),
+        withLatestFrom(this.store.select(selectIsAuthenticated)),
+        map(([_, isAuth]) => {
+          if (isAuth) {
+            const path = localStorage.getItem('menote-nav-hist') || '/notes';
+            this.router.navigate([path]);
+          }
         }),
       ),
     { dispatch: false },

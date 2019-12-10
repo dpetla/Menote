@@ -36,6 +36,7 @@ const {
 
 export const selectRouteId = selectRouteParam('id');
 export const selectStatus = selectQueryParam('status');
+export const selectCurrentUrl = selectUrl;
 
 export const getRouterState = (state: AppState) => state.router;
 

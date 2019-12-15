@@ -1,5 +1,5 @@
 <mat-drawer-container id="notes-container">
-  <mat-drawer id="notes-sidenav" [mode]="isLargeScreen() ? 'side' : 'over'" [opened]="showSideMenu()">
+  <mat-drawer id="notes-sidenav" [mode]="(isLargeScreen$ | async) ? 'side' : 'over'" [opened]="showSideMenu$ | async">
     <app-note-list id="notes-list"></app-note-list>
   </mat-drawer>
   <mat-drawer-content id="sidenav-content">

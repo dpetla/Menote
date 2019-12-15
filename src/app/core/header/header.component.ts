@@ -5,7 +5,7 @@ import { filter, map, pluck, startWith } from 'rxjs/operators';
 import { selectIsAuthenticated, selectUser } from '../../../app/auth/store/auth.selectors';
 import { logout } from '../../auth/store/auth.actions';
 import { selectCurrentUrl, AppState } from '../../reducers';
-import { ViewService } from '../../shared/view.service';
+import { toggleSideMenu } from '../../store/view.actions';
 
 const defaultAvatar = '../../../assets/images/account-profile-user-icon.png';
 
@@ -27,13 +27,13 @@ export class HeaderComponent {
     pluck('photoURL'),
   );
 
-  constructor(private viewService: ViewService, private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>) {}
 
   public onLogout() {
     this.store.dispatch(logout());
   }
 
   public toggleSideMenu() {
-    this.viewService.showSideMenu = !this.viewService.showSideMenu;
+    this.store.dispatch(toggleSideMenu());
   }
 }

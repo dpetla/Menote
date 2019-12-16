@@ -8,6 +8,6 @@ export interface Note {
   location: string;
   weather: string;
   mood: string;
-  tags: any;
+  tags: string[];
   images: any;
 }

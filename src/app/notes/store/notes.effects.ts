@@ -8,7 +8,7 @@ import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { from, of, Observable } from 'rxjs';
-import { catchError, debounceTime, exhaustMap, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
+import { catchError, debounceTime, exhaustMap, filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
 import { getTokenFailure } from '../../auth/store/auth.actions';
@@ -174,8 +174,8 @@ export class NotesEffects {
         };
         return Object.assign(noteTemplate.newNote, fields);
       }),
-      switchMap(note =>
-        from(this.notesRef.add(note)).pipe(
+      switchMap(newNote =>
+        from(this.notesRef.add(newNote)).pipe(
           map(note => createNoteSuccess({ note })),
           catchError(error => of(createNoteFailure({ error }))),
         ),
@@ -219,6 +219,7 @@ export class NotesEffects {
     () =>
       this.actions$.pipe(
         ofType(updateNoteSuccess),
+        filter(({ key }) => !['content'].includes(key)),
         switchMap(({ key }) => this.snackbar.open(`Note ${key} updated!`, null, { duration: 3000 }).onAction()),
       ),
     { dispatch: false },

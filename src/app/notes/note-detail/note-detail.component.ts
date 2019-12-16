@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AngularFirestoreDocument } from 'angularfire2/firestore';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import { Observable } from 'rxjs';
-import { filter, map, take, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 import { AppState } from '../../reducers';
 import { Note } from '../../types/note.interface';
@@ -20,7 +19,6 @@ import { froalaOptions } from './editor-options';
 })
 export class NoteDetailComponent {
   public readonly tagsMax = 10;
-  public noteDoc: AngularFirestoreDocument<{}>; // TODO: delete
   public note$: Observable<Note> = this.store.select(selectNote).pipe(tap(note => this.setNoteFlags(note.tags)));
   public tagEditable: boolean;
   public isTagsFull: boolean;
@@ -29,8 +27,10 @@ export class NoteDetailComponent {
   constructor(private store: Store<AppState>) {}
 
   public setNoteFlags(tags) {
-    this.isTagsFull = tags.length >= this.tagsMax;
-    this.tagEditable = false;
+    if (tags) {
+      this.isTagsFull = tags.length >= this.tagsMax;
+      this.tagEditable = false;
+    }
   }
 
   public onTitleChange(value) {
@@ -49,33 +49,14 @@ export class NoteDetailComponent {
     this.tagEditable = !this.tagEditable;
   }
 
-  public pushTagsToDatabase(value: {}) {
-    this.store.dispatch(updateNote({ key: 'tags', value }));
-  }
-
   public onRemoveTag(tag: string) {
-    this.store.dispatch(updateNote({ key: 'tags.' + tag, value: firebase.firestore.FieldValue.delete() }));
+    this.store.dispatch(updateNote({ key: 'tags' + tag, value: firebase.firestore.FieldValue.arrayRemove(tag) }));
   }
 
-  /*  TODO: refactor Tag managment */
   public onSaveTag(event: any) {
-    const newTag = event.target.value;
-    this.note$
-      .pipe(
-        take(1),
-        filter((note: Note) => note.tags.length < this.tagsMax),
-        map((note: Note) => {
-          note.tags.push(newTag);
-          const tagObj = note.tags.reduce((acc, key) => {
-            if (!acc[key]) {
-              acc[key] = true;
-            }
-            return acc;
-          }, {});
-          return tagObj;
-        }),
-      )
-      .subscribe(tags => this.pushTagsToDatabase(tags));
+    this.store.dispatch(
+      updateNote({ key: 'tags', value: firebase.firestore.FieldValue.arrayUnion(event.target.value) }),
+    );
     this.toggleTagEdit();
   }
 }

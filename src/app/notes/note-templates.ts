@@ -1,4 +1,6 @@
-export const newNote = {
+import { Note } from '../types/note.interface';
+
+export const newNote: Note = {
   uid: '',
   title: '',
   content: '',
@@ -7,7 +9,7 @@ export const newNote = {
   location: '',
   weather: '',
   mood: '',
-  tags: {},
+  tags: [],
   images: [],
 };
 

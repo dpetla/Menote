@@ -15,16 +15,3 @@ export function convertPayloadToNotes(actions) {
     return { id, ...data } as Note;
   });
 }
-
-export function transformTagsToArray(note: Note): Note {
-  if (note && !Array.isArray(note.tags)) {
-    const array = [];
-    if (note.tags) {
-      const keys = Object.keys(note.tags);
-      const values = Object.values(note.tags);
-      values.forEach((value, index) => value && array.push(keys[index]));
-    }
-    note.tags = [...array];
-  }
-  return note;
-}

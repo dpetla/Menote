@@ -36,7 +36,7 @@ export class FeaturesComponent {
     {
       name: 'Images',
       desc: 'Make your notes come to life adding images of your important moments.',
-      icon: 'picture-o',
+      icon: 'images',
     },
   ];
 }

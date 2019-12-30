@@ -1,7 +1,4 @@
-<div
-  class="card m-3 d-flex flex-column cust-box-shadow"
-  *ngIf="(note$ | async) as note; else loading"
->
+<div class="card m-3 d-flex flex-column cust-box-shadow" *ngIf="note$ | async as note; else loading">
   <!-- card header -->
   <div class="card-header">
     <div class="d-flex justify-content-between">
@@ -30,10 +27,7 @@
 
     <!-- tags -->
     <div class="d-inline d-md-block ml-2 ml-md-auto">
-      <span
-        class="badge badge-pill badge-secondary mr-1"
-        *ngFor="let tag of note.tags; index as i"
-      >
+      <span class="badge badge-pill badge-secondary mr-1" *ngFor="let tag of note.tags; index as i">
         {{ tag }}
         <i (click)="onRemoveTag(tag)" class="fa fa-times pointer"> </i>
       </span>
@@ -47,7 +41,6 @@
         <i class="fa fa-plus"></i>
       </button>
       <ng-template #tagInput>
-        <!-- TODO input focus when adding new tag -->
         <input
           [autofocus]="tagEditable"
           autofocus
@@ -63,14 +56,12 @@
 
   <!--card body-->
   <div class="card-body">
-    <div class="card-text h-100">
-      <!-- forala editor-->
-      <div
-        [froalaEditor]="froalaOptions"
-        [ngModel]="note.content"
-        (ngModelChange)="onContentChange($event)"
-      ></div>
-    </div>
+    <textarea
+      class="froala-editor"
+      [froalaEditor]="froalaOptions"
+      [ngModel]="note.content"
+      (ngModelChange)="onContentChange($event)"
+    ></textarea>
   </div>
 </div>
 <ng-template #loading>

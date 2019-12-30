@@ -204,7 +204,6 @@ export class NotesEffects {
   public upadateNote$ = createEffect(() =>
     this.actions$.pipe(
       ofType(updateNote),
-      debounceTime(1000),
       withLatestFrom(this.store.select(selectRouteId)),
       exhaustMap(([{ key, value }, id]) =>
         from(this.notesRef.doc(id).update({ [key]: value })).pipe(

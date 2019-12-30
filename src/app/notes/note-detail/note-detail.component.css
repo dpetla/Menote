@@ -13,6 +13,11 @@
   height: calc(100% - 113px);
 }
 
+.froala-editor {
+  height: 100%;
+  overflow-x: auto;
+}
+
 .card-input {
   background-color: transparent;
 }

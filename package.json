@@ -39,7 +39,7 @@
     "@ngrx/router-store": "^8.5.1",
     "@ngrx/store": "^8.4.0",
     "@ngrx/store-devtools": "^8.4.0",
-    "angular-froala-wysiwyg": "^2.9.3",
+    "angular-froala-wysiwyg": "^3.0.6",
     "angularfire2": "^5.2.1",
     "bootstrap": "^4.3.1",
     "core-js": "^3.2.1",

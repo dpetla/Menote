@@ -21,8 +21,8 @@ app-note-start {
 }
 
 .cust-box-shadow {
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 }
 
 /* Override BS4*/
@@ -51,8 +51,8 @@ button.btn.btn-primary {
   display: none !important;
 }
 
-.fr-top {
-  border-top: 0;
+.fr-toolbar.fr-top {
+  border-radius: 0;
 }
 
 .fr-box {
@@ -60,8 +60,12 @@ button.btn.btn-primary {
   height: 100% !important;
 }
 .fr-wrapper {
-  height: calc(100% - 76px);
+  height: calc(100% - 50px);
   overflow-x: hidden;
+}
+
+.second-toolbar {
+  display: none;
 }
 
 @media only screen and (max-width: 900px) {
@@ -76,8 +80,7 @@ app-root:empty + .app-loader {
 }
 
 noscript h4 {
-  font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
-    Helvetica;
+  font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica;
 }
 
 button {

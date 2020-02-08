@@ -19,16 +19,16 @@ import { froalaOptions } from './editor-options';
 })
 export class NoteDetailComponent {
   public readonly tagsMax = 10;
-  public note$: Observable<Note> = this.store.select(selectNote).pipe(tap(note => this.setNoteFlags(note.tags)));
+  public note$: Observable<Note> = this.store.select(selectNote).pipe(tap(note => this.setNoteFlags(note)));
   public tagEditable: boolean;
   public isTagsFull: boolean;
   public froalaOptions: Object = froalaOptions;
 
   constructor(private store: Store<AppState>) {}
 
-  public setNoteFlags(tags) {
-    if (tags) {
-      this.isTagsFull = tags.length >= this.tagsMax;
+  public setNoteFlags(note) {
+    if (note && note.tags) {
+      this.isTagsFull = note.tags.length >= this.tagsMax;
       this.tagEditable = false;
     }
   }

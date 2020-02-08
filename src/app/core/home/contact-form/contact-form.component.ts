@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-contact-form',
   templateUrl: './contact-form.component.html',
-  styleUrls: ['./contact-form.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactFormComponent {
   public email = '';

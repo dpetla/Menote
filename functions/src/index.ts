@@ -5,11 +5,7 @@ import { firstNote } from './note-templates';
 
 admin.initializeApp(functions.config().firebase);
 
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   response.send('Hello from Firebase!');
-// });
-
-export const test = functions.auth.user().onCreate(user => {
+export const onNewUser = functions.auth.user().onCreate(user => {
   const data = {
     ...firstNote,
     uid: user.uid,
@@ -18,6 +14,24 @@ export const test = functions.auth.user().onCreate(user => {
   };
   return admin
     .firestore()
-    .collection('notes')
+    .collection(user.uid)
     .add(data);
+});
+
+export const onDeleteUser = functions.auth.user().onDelete(user => {
+  const collectionRef = admin.firestore().collection(user.uid);
+  const promises: any[] = [];
+
+  collectionRef
+    .get()
+    .then(qs => {
+      qs.forEach(docSnapshot => {
+        promises.push(docSnapshot.ref.delete());
+      });
+      return Promise.all(promises);
+    })
+    .catch(error => {
+      console.log(error);
+      return false;
+    });
 });

@@ -128,7 +128,7 @@ export class NotesEffects {
       withLatestFrom(this.store.select(selectUser)),
       switchMap(([_, { uid }]) =>
         of(
-          this.db.collection<Note>('notes', ref => ref.where('uid', '==', uid).orderBy('dateCreated', 'desc')),
+          this.db.collection<Note>(uid, ref => ref.orderBy('dateCreated', 'desc')),
         ),
       ),
       tap(notesRef => (this.notesRef = notesRef)),
@@ -187,7 +187,7 @@ export class NotesEffects {
     () =>
       this.actions$.pipe(
         ofType(createNoteSuccess),
-        map(({ note }) => this.router.navigate([note.path])),
+        map(({ note }) => this.router.navigate([`notes/${note.id}`])),
       ),
     { dispatch: false },
   );

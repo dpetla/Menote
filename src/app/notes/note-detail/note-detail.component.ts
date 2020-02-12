@@ -10,8 +10,6 @@ import { Note } from '../../types/note.interface';
 import { showDeleteNoteModal, updateNote } from '../store/notes.actions';
 import { selectNote } from '../store/notes.selectors';
 
-import { froalaOptions } from './editor-options';
-
 @Component({
   selector: 'app-note-detail',
   templateUrl: './note-detail.component.html',
@@ -22,7 +20,9 @@ export class NoteDetailComponent {
   public note$: Observable<Note> = this.store.select(selectNote).pipe(tap(note => this.setNoteFlags(note)));
   public tagEditable: boolean;
   public isTagsFull: boolean;
-  public froalaOptions: Object = froalaOptions;
+  public froalaOptions = {
+    placeholderText: 'Describe your day ...',
+  };
 
   constructor(private store: Store<AppState>) {}
 

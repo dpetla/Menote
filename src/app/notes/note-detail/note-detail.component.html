@@ -17,12 +17,8 @@
       </div>
     </div>
     <h6 class="card-subtitle mb-2 text-muted d-inline d-md-block">
-      <span>
-        {{ note.location }}
-      </span>
-      <span class="ml-4">
-        {{ note.weather }}
-      </span>
+      <span>{{ note.location }}</span>
+      <span class="ml-4">{{ note.weather }} </span>
     </h6>
 
     <!-- tags -->
@@ -57,10 +53,9 @@
   <!--card body-->
   <div class="card-body">
     <textarea
-      class="froala-editor"
       [froalaEditor]="froalaOptions"
-      [ngModel]="note.content"
-      (ngModelChange)="onContentChange($event)"
+      [froalaModel]="note.content"
+      (froalaModelChange)="onContentChange($event)"
     ></textarea>
   </div>
 </div>

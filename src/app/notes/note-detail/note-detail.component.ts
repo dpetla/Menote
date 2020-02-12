@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -14,6 +14,7 @@ import { selectNote } from '../store/notes.selectors';
   selector: 'app-note-detail',
   templateUrl: './note-detail.component.html',
   styleUrls: ['./note-detail.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NoteDetailComponent {
   public readonly tagsMax = 10;

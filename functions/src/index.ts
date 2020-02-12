@@ -22,7 +22,7 @@ export const onDeleteUser = functions.auth.user().onDelete(user => {
   const collectionRef = admin.firestore().collection(user.uid);
   const promises: any[] = [];
 
-  collectionRef
+  return collectionRef
     .get()
     .then(qs => {
       qs.forEach(docSnapshot => {

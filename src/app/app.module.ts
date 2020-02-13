@@ -60,7 +60,6 @@ firebase.initializeApp({
     }),
     StoreRouterConnectingModule.forRoot(),
   ],
-  providers: [],
   entryComponents: [SimpleDialogComponent],
   bootstrap: [AppComponent],
 })

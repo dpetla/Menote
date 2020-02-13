@@ -126,7 +126,7 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(getTokenSuccess),
-        map(({ token }) => {
+        tap(({ token }) => {
           localStorage.setItem('menote-token', token);
           const path = localStorage.getItem('menote-nav-hist') || '/notes';
           this.router.navigate([path]);

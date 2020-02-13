@@ -6,7 +6,6 @@ import { DialogData } from '../../types/dialog-data.interface';
 @Component({
   selector: 'app-simple-dialog',
   templateUrl: './simple-dialog.component.html',
-  styleUrls: ['./simple-dialog.component.css'],
 })
 export class SimpleDialogComponent {
   constructor(

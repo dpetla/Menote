@@ -44,7 +44,7 @@
     "bootstrap": "^4.4.1",
     "core-js": "^3.6.4",
     "firebase": "^7.8.1",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "ngrx": "0.0.1-security",
     "popper.js": "^1.16.1",
     "rxjs": "^6.5.4",

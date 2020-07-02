@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://menote.ca">View App</a>
+  <a href="https://menote-prod.web.app/">View App</a>
 </p>
 
 <p align="center">

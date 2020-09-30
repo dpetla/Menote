@@ -21,7 +21,7 @@
 
 <br>
 
-## Build process
+### Build process
 
 - Clone or download the repo
 - `npm install`
